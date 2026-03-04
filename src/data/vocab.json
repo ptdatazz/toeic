@@ -1,0 +1,4740 @@
+[
+  {
+    "word": "revenue",
+    "phonetic": "/ˈrevənuː/",
+    "meaning": "doanh thu",
+    "usage": "business, finance"
+  },
+  {
+    "word": "contract",
+    "phonetic": "/ˈkɒntrækt/",
+    "meaning": "hợp đồng",
+    "usage": "legal, business"
+  },
+  {
+    "word": "purchase",
+    "phonetic": "/ˈpɜːrtʃəs/",
+    "meaning": "mua",
+    "usage": "shopping, business"
+  },
+  {
+    "word": "ability",
+    "phonetic": "/əˈbɪl.ə.t̬i/",
+    "meaning": "năng lực, khả năng"
+  },
+  {
+    "word": "abroad",
+    "phonetic": "/əˈbrɑːd/",
+    "meaning": "ở nước ngoài"
+  },
+  {
+    "word": "accept",
+    "phonetic": "/əkˈsept/",
+    "meaning": "chấp nhận, chấp thuận"
+  },
+  {
+    "word": "access n,",
+    "phonetic": "/ˈæk.ses/",
+    "meaning": "quyền truy cập, sự tiếp cận; truy cập"
+  },
+  {
+    "word": "accessible",
+    "phonetic": "/əkˈses.ə.bəl/",
+    "meaning": "khả năng tiếp cận được"
+  },
+  {
+    "word": "accident",
+    "phonetic": "/ˈæk.sə.dənt/",
+    "meaning": "tai nạn, sự tình cờ"
+  },
+  {
+    "word": "accommodate",
+    "phonetic": "/əˈkɑː.mə.deɪt/",
+    "meaning": "dàn xếp, hỗ trợ"
+  },
+  {
+    "word": "accommodation",
+    "phonetic": "/əˌkɑː.məˈdeɪ.ʃən/",
+    "meaning": "chỗ ở, nơi ở; sự điều tiết, hòa giải"
+  },
+  {
+    "word": "accomplish",
+    "phonetic": "/əˈkɑːm.plɪʃ/",
+    "meaning": "hoàn thành, thực hiện"
+  },
+  {
+    "word": "according (to)",
+    "phonetic": "/əˈkɔːr.dɪŋ ˌtuː/",
+    "meaning": "theo như, dựa vào"
+  },
+  {
+    "word": "accordingly",
+    "phonetic": "/əˈkɔːr.dɪŋ.li/",
+    "meaning": "theo đó, vì vậy"
+  },
+  {
+    "word": "accounting",
+    "phonetic": "/əˈkaʊn.t̬ɪŋ/",
+    "meaning": "sự tính toán, thanh toán"
+  },
+  {
+    "word": "accurate",
+    "phonetic": "/ˈæk.jɚ.ət/",
+    "meaning": "đúng đắn, chính xác"
+  },
+  {
+    "word": "achieve",
+    "phonetic": "/əˈtʃiːv/",
+    "meaning": "đạt được, giành được"
+  },
+  {
+    "word": "acquire",
+    "phonetic": "/əˈkwaɪɚ/",
+    "meaning": "thu nạp được, giành được"
+  },
+  {
+    "word": "act n,",
+    "phonetic": "/ækt/",
+    "meaning": "hành động; thực hiện"
+  },
+  {
+    "word": "actually",
+    "phonetic": "/ˈæk.tʃu.ə.li/",
+    "meaning": "thực sự, trên thực tế"
+  },
+  {
+    "word": "adapt",
+    "phonetic": "/əˈdæpt/",
+    "meaning": "thích nghi, thích ứng"
+  },
+  {
+    "word": "additional",
+    "phonetic": "/əˈdɪʃ.ən.əl/",
+    "meaning": "thêm vào, phụ thêm"
+  },
+  {
+    "word": "adjust",
+    "phonetic": "/əˈdʒʌst/",
+    "meaning": "điều chỉnh"
+  },
+  {
+    "word": "adjustment",
+    "phonetic": "/əˈdʒʌst.mənt/",
+    "meaning": "sự điều chỉnh, sự thay đổi"
+  },
+  {
+    "word": "administration",
+    "phonetic": "/ədˌmɪn.əˈstreɪ.ʃən/",
+    "meaning": "sự quản lý, quản trị"
+  },
+  {
+    "word": "admire",
+    "phonetic": "/ədˈmaɪr/",
+    "meaning": "ngưỡng mộ, thán phục"
+  },
+  {
+    "word": "admit",
+    "phonetic": "/ədˈmɪt/",
+    "meaning": "thừa nhận; tiếp nhận"
+  },
+  {
+    "word": "admittance",
+    "phonetic": "/ədˈmɪt̬.əns/",
+    "meaning": "sự thu nạp, đón nhận"
+  },
+  {
+    "word": "advance n,",
+    "phonetic": "/ədˈvæns/",
+    "meaning": "sự tiến lên; tiến lên phía trước"
+  },
+  {
+    "word": "advanced",
+    "phonetic": "/ədˈvænst/",
+    "meaning": "tiến bộ, cấp tiến"
+  },
+  {
+    "word": "advantage",
+    "phonetic": "/ədˈvæn.t̬ɪdʒ/",
+    "meaning": "lợi thế"
+  },
+  {
+    "word": "advantageous",
+    "phonetic": "/ˌæd.vænˈteɪ.dʒəs/",
+    "meaning": "có lợi, thuận lợi"
+  },
+  {
+    "word": "advertise",
+    "phonetic": "/ˈæd.vɚ.taɪz/",
+    "meaning": "quảng cáo, thông báo"
+  },
+  {
+    "word": "advertisement",
+    "phonetic": "/æd.vɝːˈtaɪz.mənt/",
+    "meaning": "bản tin quảng cáo"
+  },
+  {
+    "word": "advice",
+    "phonetic": "/ədˈvaɪs/",
+    "meaning": "lời khuyên, lời chỉ bảo"
+  },
+  {
+    "word": "advise",
+    "phonetic": "/ədˈvaɪz/",
+    "meaning": "đưa ra lời khuyên"
+  },
+  {
+    "word": "affect",
+    "phonetic": "/əˈfekt/",
+    "meaning": "ảnh hưởng, tác động"
+  },
+  {
+    "word": "afford",
+    "phonetic": "/əˈfɔːrd/",
+    "meaning": "có khả năng, đủ điều kiện; ban phát, cấp phát"
+  },
+  {
+    "word": "affordable",
+    "phonetic": "/əˈfɔːr.də.bəl/",
+    "meaning": "có khả năng chi trả, vừa túi tiền"
+  },
+  {
+    "word": "agency",
+    "phonetic": "/ˈeɪ.dʒən.si/",
+    "meaning": "đại lý, bên môi giới trung gian"
+  },
+  {
+    "word": "agenda",
+    "phonetic": "/əˈdʒen.də/",
+    "meaning": "chương trình nghị sự, kế hoạch chương trình"
+  },
+  {
+    "word": "agree",
+    "phonetic": "/əˈɡriː/",
+    "meaning": "đồng ý, tán thành"
+  },
+  {
+    "word": "agreeable",
+    "phonetic": "/əˈɡriː.ə.bəl/",
+    "meaning": "dễ chịu; thích hợp với"
+  },
+  {
+    "word": "agreement",
+    "phonetic": "/əˈɡriː.mənt/",
+    "meaning": "hợp đồng, giao kèo"
+  },
+  {
+    "word": "agricultural",
+    "phonetic": "/ˌæɡ.rəˈkʌl.tʃɚ.əl/",
+    "meaning": "(thuộc) nông nghiệp"
+  },
+  {
+    "word": "aid n,",
+    "phonetic": "/eɪd/",
+    "meaning": "sự giúp đỡ; cứu trợ, viện trợ"
+  },
+  {
+    "word": "aim n,",
+    "phonetic": "/eɪm/",
+    "meaning": "mục tiêu; nhắm đến, hướng đến"
+  },
+  {
+    "word": "airline",
+    "phonetic": "/ˈer.laɪn/",
+    "meaning": "công ty hàng không"
+  },
+  {
+    "word": "aisle",
+    "phonetic": "/aɪl/",
+    "meaning": "gian hàng, lối đi giữa các dãy ghế"
+  },
+  {
+    "word": "alarm",
+    "phonetic": "/əˈlɑːrm/",
+    "meaning": "sự báo động; báo động"
+  },
+  {
+    "word": "allow",
+    "phonetic": "/əˈlaʊ/",
+    "meaning": "cho phép, để cho"
+  },
+  {
+    "word": "alternative",
+    "phonetic": "/ɑːlˈtɝː.nə.t̬ɪv/",
+    "meaning": "xen kẽ, luân phiên"
+  },
+  {
+    "word": "ambitious",
+    "phonetic": "/æmˈbɪʃ.əs/",
+    "meaning": "tham vọng"
+  },
+  {
+    "word": "amend",
+    "phonetic": "/əˈmend/",
+    "meaning": "sửa chữa, cải tạo"
+  },
+  {
+    "word": "amount n,",
+    "phonetic": "/əˈmaʊnt/",
+    "meaning": "số lượng; cộng dồn lên tới"
+  },
+  {
+    "word": "amusing",
+    "phonetic": "/əˈmjuː.zɪŋ/",
+    "meaning": "vui, có tính hài hước"
+  },
+  {
+    "word": "analysis",
+    "phonetic": "/əˈnæl.ə.sɪs/",
+    "meaning": "sự phân tích, bản phân tích"
+  },
+  {
+    "word": "analyze",
+    "phonetic": "/ˈæn.əl.aɪz/",
+    "meaning": "phân tích"
+  },
+  {
+    "word": "annual",
+    "phonetic": "/ˈæn.ju.əl/",
+    "meaning": "hằng năm"
+  },
+  {
+    "word": "anticipate",
+    "phonetic": "/ænˈtɪs.ə.peɪt/",
+    "meaning": "phỏng đoán, dự đoán"
+  },
+  {
+    "word": "anxious",
+    "phonetic": "/ˈæŋk.ʃəs/",
+    "meaning": "bồn chồn, lo lắng"
+  },
+  {
+    "word": "apologize",
+    "phonetic": "/əˈpɑː.lə.dʒaɪz/",
+    "meaning": "xin lỗi"
+  },
+  {
+    "word": "appeal n,",
+    "phonetic": "/əˈpiːl/",
+    "meaning": "lời thỉnh cầu, sức lôi cuốn; kêu gọi, hấp dẫn"
+  },
+  {
+    "word": "appetizer",
+    "phonetic": "/ˈæp.ə.taɪ.zɚ/",
+    "meaning": "món khai vị"
+  },
+  {
+    "word": "appliance",
+    "phonetic": "/əˈplaɪ.əns/",
+    "meaning": "thiết bị, dụng cụ"
+  },
+  {
+    "word": "applicant",
+    "phonetic": "/ˈæp.lə.kənt/",
+    "meaning": "người ứng tuyển, nguyên cáo"
+  },
+  {
+    "word": "application",
+    "phonetic": "/ˌæp.ləˈkeɪ.ʃən/",
+    "meaning": "ứng dụng, sự áp dụng"
+  },
+  {
+    "word": "apply",
+    "phonetic": "/əˈplaɪ/",
+    "meaning": "áp dụng, ứng tuyển"
+  },
+  {
+    "word": "appoint",
+    "phonetic": "/əˈpɔɪnt/",
+    "meaning": "bổ nhiệm, chỉ định"
+  },
+  {
+    "word": "appointment",
+    "phonetic": "/əˈpɔɪnt.mənt/",
+    "meaning": "sự bổ nhiệm, cuộc hẹn gặp"
+  },
+  {
+    "word": "appreciable",
+    "phonetic": "/əˈpriː.ʃə.bəl/",
+    "meaning": "đáng kể"
+  },
+  {
+    "word": "appreciate",
+    "phonetic": "/əˈpriː.ʃi.eɪt/",
+    "meaning": "đánh giá cao, cảm kích"
+  },
+  {
+    "word": "appreciation",
+    "phonetic": "/əˌpriː.ʃiˈeɪ.ʃən/",
+    "meaning": "sự đánh giá cao, sự cảm kích"
+  },
+  {
+    "word": "appreciative of",
+    "phonetic": "/əˈpriː.ʃə.t̬ɪv/",
+    "meaning": "đánh giá cao, ghi nhận"
+  },
+  {
+    "word": "apprentice",
+    "phonetic": "/əˈpren.t̬ɪs/",
+    "meaning": "người học việc"
+  },
+  {
+    "word": "approve",
+    "phonetic": "/əˈpruːv/",
+    "meaning": "tán thành, phê chuẩn"
+  },
+  {
+    "word": "approximate",
+    "phonetic": "/əˈprɑːk.sə.mət/",
+    "meaning": "xấp xỉ, gần đúng"
+  },
+  {
+    "word": "arbitrate",
+    "phonetic": "/ˈɑːr.bə.treɪt/",
+    "meaning": "phân xử, làm trọng tài"
+  },
+  {
+    "word": "area",
+    "phonetic": "/ˈer.i.ə/",
+    "meaning": "khu vực, lĩnh vực, diện tích"
+  },
+  {
+    "word": "argue",
+    "phonetic": "/ˈɑːrɡ.juː/",
+    "meaning": "tranh cãi, tranh luận"
+  },
+  {
+    "word": "argument",
+    "phonetic": "/ˈɑːrɡ.jə.mənt/",
+    "meaning": "cuộc tranh luận"
+  },
+  {
+    "word": "arrange",
+    "phonetic": "/əˈreɪndʒ/",
+    "meaning": "dàn xếp, sắp đặt"
+  },
+  {
+    "word": "arrangement",
+    "phonetic": "/əˈreɪndʒ.mənt/",
+    "meaning": "sự sắp đặt"
+  },
+  {
+    "word": "assemble",
+    "phonetic": "/əˈsem.bəl/",
+    "meaning": "lắp ráp, thu thập"
+  },
+  {
+    "word": "assess",
+    "phonetic": "/əˈses/",
+    "meaning": "đánh giá, định giá"
+  },
+  {
+    "word": "asset",
+    "phonetic": "/ˈæs.et/",
+    "meaning": "của cải, tài sản, vốn quý"
+  },
+  {
+    "word": "assign",
+    "phonetic": "/əˈsaɪn/",
+    "meaning": "phân công, chia việc"
+  },
+  {
+    "word": "assignment",
+    "phonetic": "/əˈsaɪn.mənt/",
+    "meaning": "sự phân việc, bài tập tiểu luận"
+  },
+  {
+    "word": "assist",
+    "phonetic": "/əˈsɪst/",
+    "meaning": "hỗ trợ, giúp đỡ"
+  },
+  {
+    "word": "assistance",
+    "phonetic": "/əˈsɪs.təns/",
+    "meaning": "sự giúp đỡ, hỗ trợ"
+  },
+  {
+    "word": "assume",
+    "phonetic": "/əˈsuːm/",
+    "meaning": "cho rằng, làm ra vẻ"
+  },
+  {
+    "word": "attach",
+    "phonetic": "/əˈtætʃ/",
+    "meaning": "gán thêm, kèm thêm"
+  },
+  {
+    "word": "attachment",
+    "phonetic": "/əˈtætʃ.mənt/",
+    "meaning": "sự gắn thêm; phần kèm thêm"
+  },
+  {
+    "word": "attend",
+    "phonetic": "/əˈtend/",
+    "meaning": "tham dự"
+  },
+  {
+    "word": "attendance",
+    "phonetic": "/əˈten.dəns/",
+    "meaning": "sự tham gia, có mặt"
+  },
+  {
+    "word": "attract",
+    "phonetic": "/əˈtrækt/",
+    "meaning": "thu hút, hấp dẫn"
+  },
+  {
+    "word": "audience",
+    "phonetic": "/ˈɑː.di.əns/",
+    "meaning": "khán thính giả"
+  },
+  {
+    "word": "audit n,",
+    "phonetic": "/ˈɑː.dɪt/",
+    "meaning": "kiểm toán"
+  },
+  {
+    "word": "authority",
+    "phonetic": "/əˈθɔːr.ə.t̬i/",
+    "meaning": "quyền thế, nhà chức trách, chính quyền"
+  },
+  {
+    "word": "authorize",
+    "phonetic": "/ˈɑː.θɚ.aɪz/",
+    "meaning": "ủy quyền, cấp quyền"
+  },
+  {
+    "word": "availability",
+    "phonetic": "/əˌveɪ.ləˈbɪl.ə.t̬i/",
+    "meaning": "tính sẵn có"
+  },
+  {
+    "word": "available",
+    "phonetic": "/əˈveɪ.lə.bəl/",
+    "meaning": "có sẵn để dùng"
+  },
+  {
+    "word": "avoid",
+    "phonetic": "/əˈvɔɪd/",
+    "meaning": "tránh xa, ngăn ngừa"
+  },
+  {
+    "word": "avid",
+    "phonetic": "/ˈæv.ɪd/",
+    "meaning": "khao khát, thèm khát"
+  },
+  {
+    "word": "awareness",
+    "phonetic": "/əˈwer.nəs/",
+    "meaning": "sự nhận thức, ý thức"
+  },
+  {
+    "word": "awkward",
+    "phonetic": "/ˈɑː.kwɚd/",
+    "meaning": "ngại ngùng, khó xử"
+  },
+  {
+    "word": "background",
+    "phonetic": "/ˈbæk.ɡraʊnd/",
+    "meaning": "phông nền, gia cảnh, quá trình học tập"
+  },
+  {
+    "word": "backpack",
+    "phonetic": "/ˈbæk.pæk/",
+    "meaning": "ba lô đeo sau lưng"
+  },
+  {
+    "word": "baggage claim",
+    "phonetic": "/ˈbæɡ.ɪdʒ kleɪm/",
+    "meaning": "chỗ nhận hành lý"
+  },
+  {
+    "word": "balance",
+    "phonetic": "/ˈbæl.əns/",
+    "meaning": "sự cân bằng, trạng thái cân bằng"
+  },
+  {
+    "word": "bank",
+    "phonetic": "/bæŋk/",
+    "meaning": "ngân hàng, bãi sông"
+  },
+  {
+    "word": "bankrupt n,",
+    "phonetic": "/ˈbæŋ.krʌpt/",
+    "meaning": "người phá sản; vỡ nợ, phá sản"
+  },
+  {
+    "word": "bar code",
+    "phonetic": "/ˈbɑːr ˌkoʊd/",
+    "meaning": "mã vạch"
+  },
+  {
+    "word": "bargain n,",
+    "phonetic": "/ˈbɑːr.ɡɪn/",
+    "meaning": "sự mặc cả, món hời; mặc cả, thương lượng"
+  },
+  {
+    "word": "beautiful",
+    "phonetic": "/ˈbjuː.t̬ə.fəl/",
+    "meaning": "xinh đẹp, tốt đẹp"
+  },
+  {
+    "word": "behave",
+    "phonetic": "/bɪˈheɪv/",
+    "meaning": "hành xử, cư xử"
+  },
+  {
+    "word": "belongings",
+    "phonetic": "/bɪˈlɑːŋ.ɪŋz/",
+    "meaning": "tài sản, đồ dùng cá nhân"
+  },
+  {
+    "word": "beneficial",
+    "phonetic": "/ˌben.əˈfɪʃ.əl/",
+    "meaning": "có ích, có lợi"
+  },
+  {
+    "word": "benefit",
+    "phonetic": "/ˈben.ə.fɪt/",
+    "meaning": "ích lợi"
+  },
+  {
+    "word": "beverage",
+    "phonetic": "/ˈbev.ɚ.ɪdʒ/",
+    "meaning": "đồ uống, đồ giải khát"
+  },
+  {
+    "word": "bill",
+    "phonetic": "/bɪl/",
+    "meaning": "hóa đơn"
+  },
+  {
+    "word": "binder",
+    "phonetic": "/ˈbaɪn.dɚ/",
+    "meaning": "bìa ôm, bìa rời"
+  },
+  {
+    "word": "blanket",
+    "phonetic": "/ˈblæŋ.kɪt/",
+    "meaning": "chăn, mền"
+  },
+  {
+    "word": "board",
+    "phonetic": "/bɔːrd/",
+    "meaning": "tấm ván, bảng, mạn thuyền"
+  },
+  {
+    "word": "boast n,",
+    "phonetic": "/boʊst/",
+    "meaning": "sự khoe khoang; khoác lác"
+  },
+  {
+    "word": "book n,",
+    "phonetic": "/bʊk/",
+    "meaning": "cuốn sách; đặt phòng, đặt vé"
+  },
+  {
+    "word": "boost v,",
+    "phonetic": "/buːst/",
+    "meaning": "đẩy mạnh, kích thích; sự tăng lên"
+  },
+  {
+    "word": "bored",
+    "phonetic": "/bɔːrd/",
+    "meaning": "buồn chán, tẻ nhạt"
+  },
+  {
+    "word": "bother n,",
+    "phonetic": "/ˈbɑː.ðɚ/",
+    "meaning": "điều gây khó chịu; làm phiền, bận tâm"
+  },
+  {
+    "word": "bottom line",
+    "phonetic": "/ˌbɑː.t̬əm ˈlaɪn/",
+    "meaning": "điểm mấu chốt, cốt yếu"
+  },
+  {
+    "word": "branch",
+    "phonetic": "/bræntʃ/",
+    "meaning": "cành cây, chi nhánh"
+  },
+  {
+    "word": "brand",
+    "phonetic": "/brænd/",
+    "meaning": "nhãn hàng, thương hiệu"
+  },
+  {
+    "word": "briefcase",
+    "phonetic": "/ˈbriːf.keɪs/",
+    "meaning": "cặp tài liệu"
+  },
+  {
+    "word": "briefing",
+    "phonetic": "/ˈbriː.fɪŋ/",
+    "meaning": "sự chỉ dẫn, hướng dẫn"
+  },
+  {
+    "word": "broadcast n,",
+    "phonetic": "/ˈbrɑːd.kæst/",
+    "meaning": "chương trình phát thanh; truyền bá, phát thanh"
+  },
+  {
+    "word": "broaden",
+    "phonetic": "/ˈbrɑː.dən/",
+    "meaning": "mở rộng, nới rộng"
+  },
+  {
+    "word": "browser",
+    "phonetic": "/ˈbraʊ.zɚ/",
+    "meaning": "trình duyệt"
+  },
+  {
+    "word": "brush n,",
+    "phonetic": "/brʌʃ/",
+    "meaning": "lược, bàn chải; chải, quét"
+  },
+  {
+    "word": "budget n,",
+    "phonetic": "/ˈbʌdʒ.ɪt/",
+    "meaning": "ngân sách; dự thảo ngân sách"
+  },
+  {
+    "word": "bulletin",
+    "phonetic": "/ˈbʊl.ə.t̬ɪn/",
+    "meaning": "bảng thông báo, tập san"
+  },
+  {
+    "word": "cabin crew",
+    "phonetic": "/ˈkæb.ɪn ˌkruː/",
+    "meaning": "đội bay, tiếp viên hàng không"
+  },
+  {
+    "word": "cafeteria",
+    "phonetic": "/ˌkæf.əˈtɪr.i.ə/",
+    "meaning": "quán ăn tự phục vụ, phòng cà phê"
+  },
+  {
+    "word": "calculate",
+    "phonetic": "/ˈkæl.kjə.leɪt/",
+    "meaning": "tính toán, suy tính"
+  },
+  {
+    "word": "calculation",
+    "phonetic": "/ˌkæl.kjəˈleɪ.ʃən/",
+    "meaning": "sự tính toán"
+  },
+  {
+    "word": "calculator",
+    "phonetic": "/ˈkæl.kjə.leɪ.t̬ɚ/",
+    "meaning": "máy tính bỏ túi"
+  },
+  {
+    "word": "campaign",
+    "phonetic": "/kæmˈpeɪn/",
+    "meaning": "chiến dịch, cuộc vận động"
+  },
+  {
+    "word": "cancel",
+    "phonetic": "/ˈkæn.səl/",
+    "meaning": "hủy bỏ, xóa"
+  },
+  {
+    "word": "cancellation",
+    "phonetic": "/ˌkæn.səlˈeɪ.ʃən/",
+    "meaning": "sự xóa bỏ, bãi bỏ"
+  },
+  {
+    "word": "candidacy",
+    "phonetic": "/ˈkæn.dɪ.də.si/",
+    "meaning": "sự ứng cử"
+  },
+  {
+    "word": "capacity",
+    "phonetic": "/kəˈpæs.ə.t̬i/",
+    "meaning": "năng lực, sức chứa"
+  },
+  {
+    "word": "capital",
+    "phonetic": "/ˈkæp.ə.t̬əl/",
+    "meaning": "thủ đô, nguồn vốn, chữ viết hoa"
+  },
+  {
+    "word": "career",
+    "phonetic": "/kəˈrɪr/",
+    "meaning": "sự nghiệp"
+  },
+  {
+    "word": "careless",
+    "phonetic": "/ˈker.ləs/",
+    "meaning": "bất cẩn, cẩu thả"
+  },
+  {
+    "word": "cash",
+    "phonetic": "/kæʃ/",
+    "meaning": "tiền mặt"
+  },
+  {
+    "word": "cashier",
+    "phonetic": "/kæʃˈɪr/",
+    "meaning": "nhân viên thu ngân"
+  },
+  {
+    "word": "cause n,",
+    "phonetic": "/kɑːz/",
+    "meaning": "nguyên nhân, lý do; gây ra"
+  },
+  {
+    "word": "cautious",
+    "phonetic": "/ˈkɑː.ʃəs/",
+    "meaning": "thận trọng, cẩn thận"
+  },
+  {
+    "word": "celebrate",
+    "phonetic": "/ˈsel.ə.breɪt/",
+    "meaning": "kỉ niệm, tán dương"
+  },
+  {
+    "word": "celebration",
+    "phonetic": "/ˌsel.əˈbreɪ.ʃən/",
+    "meaning": "lễ kỉ niệm"
+  },
+  {
+    "word": "certificate",
+    "phonetic": "/sɚˈtɪf.ə.kət/",
+    "meaning": "giấy chứng nhận"
+  },
+  {
+    "word": "certification",
+    "phonetic": "/ˌsɜ˞ ː.t̬ə.fɪˈkeɪ.ʃən/",
+    "meaning": "sự cấp giấy chứng nhận"
+  },
+  {
+    "word": "chain",
+    "phonetic": "/tʃeɪn/",
+    "meaning": "dây xích, chuỗi"
+  },
+  {
+    "word": "chain store",
+    "phonetic": "/ˈtʃeɪn ˌstɔːr/",
+    "meaning": "cửa hàng theo chuỗi, hệ thống cửa hàng"
+  },
+  {
+    "word": "chair",
+    "phonetic": "/tʃer/",
+    "meaning": "ghế ngồi"
+  },
+  {
+    "word": "chairperson",
+    "phonetic": "/ˈtʃerˌpɝː.sən/",
+    "meaning": "chủ tịch"
+  },
+  {
+    "word": "characteristic",
+    "phonetic": "/ˌker.ək.təˈrɪs.tɪk/",
+    "meaning": "đặc điểm, tính cách"
+  },
+  {
+    "word": "characterize",
+    "phonetic": "/ˈker.ək.tɚ.aɪz/",
+    "meaning": "biểu thị đặc điểm, mô tả đặc điểm"
+  },
+  {
+    "word": "charge n,",
+    "phonetic": "/tʃɑːrdʒ/",
+    "meaning": "chi phí, tiền công; tính giá, đòi trả"
+  },
+  {
+    "word": "charity",
+    "phonetic": "/ˈtʃer.ə.t̬i/",
+    "meaning": "lòng từ bi, tổ chức từ thiện"
+  },
+  {
+    "word": "cheap",
+    "phonetic": "/tʃiːp/",
+    "meaning": "rẻ tiền, xấu"
+  },
+  {
+    "word": "check in",
+    "phonetic": "/tʃek ɪn/",
+    "meaning": "đăng ký phòng, vé máy bay..."
+  },
+  {
+    "word": "check out",
+    "phonetic": "/tʃek aʊt/",
+    "meaning": "trả phòng, thanh toán"
+  },
+  {
+    "word": "chef",
+    "phonetic": "/ʃef/",
+    "meaning": "đầu bếp"
+  },
+  {
+    "word": "circumstances",
+    "phonetic": "/ˈsɝː.kəm.stæns/",
+    "meaning": "hoàn cảnh, tình huống"
+  },
+  {
+    "word": "claim n,",
+    "phonetic": "/kleɪm/",
+    "meaning": "quyền đòi sở hữu; đòi hỏi, nhận"
+  },
+  {
+    "word": "claimant",
+    "phonetic": "/ˈkleɪ.mənt/",
+    "meaning": "người thỉnh cầu, người đòi hỏi"
+  },
+  {
+    "word": "classify",
+    "phonetic": "/ˈklæs.ə.faɪ/",
+    "meaning": "phân loại"
+  },
+  {
+    "word": "client",
+    "phonetic": "/ˈklaɪ.ənt/",
+    "meaning": "khách hàng (của luật sư, cửa hàng...)"
+  },
+  {
+    "word": "climate",
+    "phonetic": "/ˈklaɪ.mət/",
+    "meaning": "khí hậu, thời tiết"
+  },
+  {
+    "word": "commence",
+    "phonetic": "/kəˈmens/",
+    "meaning": "bắt đầu, mở đầu, khởi đầu"
+  },
+  {
+    "word": "commission",
+    "phonetic": "/kəˈmɪʃ.ən/",
+    "meaning": "hội đồng, ủy ban, tiền hoa hồng"
+  },
+  {
+    "word": "committee",
+    "phonetic": "/kəˈmɪt̬.i/",
+    "meaning": "ủy ban"
+  },
+  {
+    "word": "commonly",
+    "phonetic": "/ˈkɑː.mən.li/",
+    "meaning": "thông thường, bình thường"
+  },
+  {
+    "word": "commuter",
+    "phonetic": "/kəˈmjuː.t̬ɚ/",
+    "meaning": "người đi lại bằng vé tháng trên tàu, xe..."
+  },
+  {
+    "word": "company",
+    "phonetic": "/ˈkʌm.pə.ni/",
+    "meaning": "công ty, bạn bè, bằng hữu"
+  },
+  {
+    "word": "compare",
+    "phonetic": "/kəmˈper/",
+    "meaning": "so sánh, đối chiếu"
+  },
+  {
+    "word": "compatible",
+    "phonetic": "/kəmˈpæt̬.ə.bəl/",
+    "meaning": "tương thích, phù hợp"
+  },
+  {
+    "word": "compensate",
+    "phonetic": "/ˈkɑːm.pən.seɪt/",
+    "meaning": "đền bù, bồi thường"
+  },
+  {
+    "word": "compensation",
+    "phonetic": "/ˌkɑːm.penˈseɪ.ʃən/",
+    "meaning": "sự đền bù, vật bồi thường"
+  },
+  {
+    "word": "competent",
+    "phonetic": "/ˈkɑːm.pə.t̬ənt/",
+    "meaning": "có khả năng, đủ trình độ"
+  },
+  {
+    "word": "competitive",
+    "phonetic": "/kəmˈpet̬.ə.t̬ɪv/",
+    "meaning": "có tính cạnh tranh, ganh đua"
+  },
+  {
+    "word": "competitor",
+    "phonetic": "/kəmˈpet̬.ə.t̬ɚ/",
+    "meaning": "người cạnh tranh, đối thủ"
+  },
+  {
+    "word": "complain",
+    "phonetic": "/kəmˈpleɪn/",
+    "meaning": "kêu ca, phàn nàn, oán trách"
+  },
+  {
+    "word": "complaint",
+    "phonetic": "/kəmˈpleɪnt/",
+    "meaning": "lời than phiền, lời phàn nàn"
+  },
+  {
+    "word": "complete",
+    "phonetic": "/kəmˈpliːt/",
+    "meaning": "đầy đủ, hoàn thiện"
+  },
+  {
+    "word": "complexity",
+    "phonetic": "/kəmˈplek.sə.t̬i/",
+    "meaning": "sự phức tạp"
+  },
+  {
+    "word": "compliment",
+    "phonetic": "/ˈkɑːm.plə.mənt/",
+    "meaning": "lời khen, sự ca tụng"
+  },
+  {
+    "word": "complimentary",
+    "phonetic": "/ˌkɑːm.pləˈmen.t̬ɚ.i/",
+    "meaning": "ngợi khen, đánh giá cao"
+  },
+  {
+    "word": "comply",
+    "phonetic": "/kəmˈplaɪ/",
+    "meaning": "tuân theo, làm theo"
+  },
+  {
+    "word": "comprehensive",
+    "phonetic": "/ˌkɑːm.prəˈhen.sɪv/",
+    "meaning": "toàn diện, thông minh"
+  },
+  {
+    "word": "compromise n,",
+    "phonetic": "/ˈkɑːm.prə.maɪz/",
+    "meaning": "sự thỏa hiệp; dàn xếp, thỏa hiệp"
+  },
+  {
+    "word": "compulsory",
+    "phonetic": "/kəmˈpʌl.sɚ.i/",
+    "meaning": "bắt buộc, ép buộc"
+  },
+  {
+    "word": "concede",
+    "phonetic": "/kənˈsiːd/",
+    "meaning": "thừa nhận"
+  },
+  {
+    "word": "conclude",
+    "phonetic": "/kənˈkluːd/",
+    "meaning": "kết thúc, chấm dứt, kết luận"
+  },
+  {
+    "word": "conclusion",
+    "phonetic": "/kənˈkluː.ʒən/",
+    "meaning": "kết luận"
+  },
+  {
+    "word": "concourse",
+    "phonetic": "/ˈkɑːn.kɔːrs/",
+    "meaning": "đám đông, sự tụ họp"
+  },
+  {
+    "word": "confirmation",
+    "phonetic": "/ˌkɑːn.fɚˈmeɪ.ʃən/",
+    "meaning": "sự xác nhận, chứng thực"
+  },
+  {
+    "word": "confusion",
+    "phonetic": "/kənˈfjuː.ʒən/",
+    "meaning": "sự bối rối, khó hiểu"
+  },
+  {
+    "word": "connect",
+    "phonetic": "/kəˈnekt/",
+    "meaning": "nối lại, kết nối"
+  },
+  {
+    "word": "consequence",
+    "phonetic": "/ˈkɑːn.sə.kwəns/",
+    "meaning": "hậu quả, kết quả"
+  },
+  {
+    "word": "considerable",
+    "phonetic": "/kənˈsɪd.ɚ.ə.bəl/",
+    "meaning": "đáng kể, lớn lao"
+  },
+  {
+    "word": "consignment",
+    "phonetic": "/kənˈsaɪn.mənt/",
+    "meaning": "hoạt động gửi hàng để bán"
+  },
+  {
+    "word": "consistently",
+    "phonetic": "/kənˈsɪs.tənt.li/",
+    "meaning": "kiên định, trước sau như một, đồng nhất"
+  },
+  {
+    "word": "constant",
+    "phonetic": "/ˈkɑːn.stənt/",
+    "meaning": "liên tục, liên tiếp, kiên trì"
+  },
+  {
+    "word": "consultant",
+    "phonetic": "/kənˈsʌl.tənt/",
+    "meaning": "tư vấn viên, cố vấn"
+  },
+  {
+    "word": "consume",
+    "phonetic": "/kənˈsuːm/",
+    "meaning": "sử dụng, tiêu dùng, tiêu thụ"
+  },
+  {
+    "word": "consumer",
+    "phonetic": "/kənˈsuː.mɚ/",
+    "meaning": "người tiêu dùng"
+  },
+  {
+    "word": "continual",
+    "phonetic": "/kənˈtɪn.ju.əl/",
+    "meaning": "liên tục, liên miên"
+  },
+  {
+    "word": "continue",
+    "phonetic": "/kənˈtɪn.juː/",
+    "meaning": "tiếp tục, duy trì"
+  },
+  {
+    "word": "contribute",
+    "phonetic": "/kənˈtrɪb.juːt/",
+    "meaning": "đóng góp, góp phần"
+  },
+  {
+    "word": "control panel",
+    "phonetic": "/kənˈtroʊl ˌpæn.əl/",
+    "meaning": "bảng điều khiển"
+  },
+  {
+    "word": "conveniently",
+    "phonetic": "/kənˈviː.ni.ənt.li/",
+    "meaning": "thuận tiện, tiện lợi"
+  },
+  {
+    "word": "convince",
+    "phonetic": "/kənˈvɪns/",
+    "meaning": "thuyết phục"
+  },
+  {
+    "word": "corporate n,",
+    "phonetic": "/ˈkɔːr.pɚ.ət/",
+    "meaning": "công ty, tập đoàn; (thuộc) đoàn thể"
+  },
+  {
+    "word": "cost n,",
+    "phonetic": "/kɑːst/",
+    "meaning": "giá, chi phí; định giá, trả giá"
+  },
+  {
+    "word": "counter n,",
+    "phonetic": "/ˈkaʊn.t̬ɚ/",
+    "meaning": "quầy hàng, quầy thu ngân; phản đối, chống lại"
+  },
+  {
+    "word": "courier",
+    "phonetic": "/ˈkʊr.i.ɚ/",
+    "meaning": "người đưa thư, đưa tin"
+  },
+  {
+    "word": "cover letter",
+    "phonetic": "/ˈkʌv.ə ˌlet.ər/",
+    "meaning": "thư trình bày thông tin, nguyện vọng"
+  },
+  {
+    "word": "coworker",
+    "phonetic": "/ˌkoʊˈwɝː.kɚ/",
+    "meaning": "đồng nghiệp"
+  },
+  {
+    "word": "crash n,",
+    "phonetic": "/kræʃ/",
+    "meaning": "sự va đập, sụp đổ; rơi vỡ, va đập"
+  },
+  {
+    "word": "credentials",
+    "phonetic": "/krɪˈden·ʃəlz/",
+    "meaning": "giấy ủy nhiệm, chứng chỉ"
+  },
+  {
+    "word": "credit",
+    "phonetic": "/ˈkred.ɪt/",
+    "meaning": "danh tiếng, tín dụng, tín chỉ"
+  },
+  {
+    "word": "criterion",
+    "phonetic": "/kraɪˈtɪr.i.ən/",
+    "meaning": "tiêu chí đánh giá"
+  },
+  {
+    "word": "criticize",
+    "phonetic": "/ˈkrɪt̬.ɪ.saɪz/",
+    "meaning": "phê bình, chỉ trích"
+  },
+  {
+    "word": "crowd n,",
+    "phonetic": "/kraʊd/",
+    "meaning": "đám đông, đống; xúm lại, tụ tập"
+  },
+  {
+    "word": "crucial",
+    "phonetic": "/ˈkruː.ʃəl/",
+    "meaning": "có tính quyết định, trọng yếu"
+  },
+  {
+    "word": "currency",
+    "phonetic": "/ˈkɝː.ən.si/",
+    "meaning": "tiền tệ"
+  },
+  {
+    "word": "current n,",
+    "phonetic": "/ˈkɝː.ənt/",
+    "meaning": "dòng, luồng; hiện tại, hiện thời"
+  },
+  {
+    "word": "custom",
+    "phonetic": "/ˈkʌs.təm/",
+    "meaning": "phong tục, tục lệ"
+  },
+  {
+    "word": "customer",
+    "phonetic": "/ˈkʌs.tə.mɚ/",
+    "meaning": "khách hàng"
+  },
+  {
+    "word": "cutting edge",
+    "phonetic": "/ˌkʌt̬.ɪŋ ˈedʒ/",
+    "meaning": "đột phá, vượt trội"
+  },
+  {
+    "word": "cycle",
+    "phonetic": "/ˈsaɪ.kəl/",
+    "meaning": "chu kỳ, chu trình"
+  },
+  {
+    "word": "daily",
+    "phonetic": "/ˈdeɪ.li/",
+    "meaning": "hằng ngày"
+  },
+  {
+    "word": "damage",
+    "phonetic": "/ˈdæm.ɪdʒ/",
+    "meaning": "mối gây hại; làm hại, hư hỏng"
+  },
+  {
+    "word": "deadline",
+    "phonetic": "/ˈded.laɪn/",
+    "meaning": "hạn cuối, hạn hoàn thành"
+  },
+  {
+    "word": "deal n,",
+    "phonetic": "/diːl/",
+    "meaning": "thỏa thuận mua bán; giải quyết, đối phó"
+  },
+  {
+    "word": "debit",
+    "phonetic": "/ˈdeb.ɪt/",
+    "meaning": "món nợ; ghi nợ"
+  },
+  {
+    "word": "debt",
+    "phonetic": "/det/",
+    "meaning": "khoản nợ"
+  },
+  {
+    "word": "decision",
+    "phonetic": "/dɪˈsɪʒ.ən/",
+    "meaning": "quyết định"
+  },
+  {
+    "word": "decorate",
+    "phonetic": "/ˈdek.ər.eɪt/",
+    "meaning": "trang trí, trang hoàng"
+  },
+  {
+    "word": "decrease",
+    "phonetic": "/ˈdiː.kriːs/",
+    "meaning": "sự sụt giảm; làm giảm đi"
+  },
+  {
+    "word": "dedicate",
+    "phonetic": "/ˈded.ə.keɪt/",
+    "meaning": "cống hiến, tận hiến"
+  },
+  {
+    "word": "deduct",
+    "phonetic": "/dɪˈdʌkt/",
+    "meaning": "khấu trừ, trừ đi"
+  },
+  {
+    "word": "definite",
+    "phonetic": "/ˈdef.ən.ət/",
+    "meaning": "xác định rõ, rõ ràng"
+  },
+  {
+    "word": "definitely",
+    "phonetic": "/ˈdef.ən.ət.li/",
+    "meaning": "rõ ràng, dứt khoát, chắc chắn"
+  },
+  {
+    "word": "delay n,",
+    "phonetic": "/dɪˈleɪ/",
+    "meaning": "sự chậm trễ, trì hoãn; làm chậm, hoãn lại"
+  },
+  {
+    "word": "delighted",
+    "phonetic": "/dɪˈlaɪ.t̬ɪd/",
+    "meaning": "hài lòng, vui mừng"
+  },
+  {
+    "word": "demand n,",
+    "phonetic": "/dɪˈmænd/",
+    "meaning": "sự đòi hỏi; yêu cầu"
+  },
+  {
+    "word": "demanding",
+    "phonetic": "/dɪˈmæn.dɪŋ/",
+    "meaning": "yêu cầu cao, đòi hỏi khắt khe"
+  },
+  {
+    "word": "department",
+    "phonetic": "/dɪˈpɑːrt.mənt/",
+    "meaning": "khoa, bộ"
+  },
+  {
+    "word": "depend",
+    "phonetic": "/dɪˈpend/",
+    "meaning": "phụ thuộc, lệ thuộc"
+  },
+  {
+    "word": "dependence",
+    "phonetic": "/dɪˈpen.dəns/",
+    "meaning": "sự phụ thuộc"
+  },
+  {
+    "word": "deposit n,",
+    "phonetic": "/dɪˈpɑː.zɪt/",
+    "meaning": "tiền cọc; đặt cọc"
+  },
+  {
+    "word": "description",
+    "phonetic": "/dɪˈskrɪp.ʃən/",
+    "meaning": "bản mô tả, sự mô tả"
+  },
+  {
+    "word": "designate",
+    "phonetic": "/ˈdez.ɪɡ.neɪt/",
+    "meaning": "chỉ định, bổ nhiệm"
+  },
+  {
+    "word": "dessert",
+    "phonetic": "/dɪˈzɝːt/",
+    "meaning": "món tráng miệng"
+  },
+  {
+    "word": "detail n,",
+    "phonetic": "/ˈdiː.teɪl/",
+    "meaning": "chi tiết, tiểu tiết; trình bày chi tiết, làm rõ"
+  },
+  {
+    "word": "detailed",
+    "phonetic": "/ˈdiː.teɪld/",
+    "meaning": "chi tiết, cụ thể"
+  },
+  {
+    "word": "detect",
+    "phonetic": "/dɪˈtekt/",
+    "meaning": "dò ra, tìm ra, phát hiện"
+  },
+  {
+    "word": "deterioration",
+    "phonetic": "/dɪˌtɪr.i.əˈreɪ.ʃən/",
+    "meaning": "sự hư hại, xuống cấp, sa đọa"
+  },
+  {
+    "word": "determined",
+    "phonetic": "/dɪˈtɝː.mɪnd/",
+    "meaning": "quyết tâm, kiên quyết"
+  },
+  {
+    "word": "develop",
+    "phonetic": "/dɪˈvel.əp/",
+    "meaning": "phát triển, tiến triển"
+  },
+  {
+    "word": "developer",
+    "phonetic": "/dɪˈvel.ə.pɚ/",
+    "meaning": "người phát triển, lập trình viên"
+  },
+  {
+    "word": "development",
+    "phonetic": "/dɪˈvel.əp.mənt/",
+    "meaning": "sự phát triển"
+  },
+  {
+    "word": "diagnose",
+    "phonetic": "/ˌdaɪ.əɡˈnoʊz/",
+    "meaning": "chẩn đoán"
+  },
+  {
+    "word": "differential",
+    "phonetic": "/ˌdɪf.əˈren.ʃəl/",
+    "meaning": "khác biệt, chênh lệch"
+  },
+  {
+    "word": "diligent",
+    "phonetic": "/ˈdɪl.ə.dʒənt/",
+    "meaning": "chăm chỉ, cần cù"
+  },
+  {
+    "word": "disagree",
+    "phonetic": "/ˌdɪs.əˈɡriː/",
+    "meaning": "bất đồng, không khớp với nhau"
+  },
+  {
+    "word": "disagreement",
+    "phonetic": "/ˌdɪs.əˈɡriː.mənt/",
+    "meaning": "sự bất đồng, mối bất hòa, mâu thuẫn"
+  },
+  {
+    "word": "disappointing",
+    "phonetic": "/ˌdɪs.əˈpɔɪn.t̬ɪŋ/",
+    "meaning": "đáng thất vọng"
+  },
+  {
+    "word": "disconnect",
+    "phonetic": "/ˌdɪs.kəˈnekt/",
+    "meaning": "ngắt kết nối"
+  },
+  {
+    "word": "discount n,",
+    "phonetic": "/ˈdɪs.kaʊnt/",
+    "meaning": "sự giảm giá, chiết khấu; giảm giá, bớt giá"
+  },
+  {
+    "word": "discrepancy",
+    "phonetic": "/dɪˈskrep.ən.si/",
+    "meaning": "khác biệt, chênh lệch, điểm không đồng nhất"
+  },
+  {
+    "word": "discrimination",
+    "phonetic": "/dɪˌskrɪm.əˈneɪ.ʃən/",
+    "meaning": "sự phân biệt đối xử"
+  },
+  {
+    "word": "discuss",
+    "phonetic": "/dɪˈskʌs/",
+    "meaning": "thảo luận, tranh luận"
+  },
+  {
+    "word": "discussion",
+    "phonetic": "/dɪˈskʌʃ.ən/",
+    "meaning": "cuộc tranh luận, thảo luận"
+  },
+  {
+    "word": "dish",
+    "phonetic": "/dɪʃ/",
+    "meaning": "đĩa đựng thức ăn, món ăn"
+  },
+  {
+    "word": "dismiss",
+    "phonetic": "/dɪˈsmɪs/",
+    "meaning": "giải tán, thải hồi"
+  },
+  {
+    "word": "dismissive",
+    "phonetic": "/dɪˈsmɪs.ɪv/",
+    "meaning": "thô bạo, tùy tiện"
+  },
+  {
+    "word": "display n,",
+    "phonetic": "/dɪˈspleɪ/",
+    "meaning": "sự bày biện; trưng bày, phô diễn"
+  },
+  {
+    "word": "disposable",
+    "phonetic": "/dɪˈspoʊ.zə.bəl/",
+    "meaning": "dùng một lần, sẵn có để dùng"
+  },
+  {
+    "word": "dispose",
+    "phonetic": "/dɪˈspoʊz/",
+    "meaning": "vứt bỏ, giải quyết"
+  },
+  {
+    "word": "disruption",
+    "phonetic": "/dɪsˈrʌp.ʃən/",
+    "meaning": "sự phá vỡ, đập gãy"
+  },
+  {
+    "word": "distinctive",
+    "phonetic": "/dɪˈstɪŋk.tɪv/",
+    "meaning": "đặc biệt, độc đáo"
+  },
+  {
+    "word": "distinguish",
+    "phonetic": "/dɪˈstɪŋ.ɡwɪʃ/",
+    "meaning": "phân biệt, nhận ra"
+  },
+  {
+    "word": "distribute",
+    "phonetic": "/dɪˈstrɪb.juːt/",
+    "meaning": "phân phát, phân bổ"
+  },
+  {
+    "word": "distribution",
+    "phonetic": "/ˌdɪs.trɪˈbjuː.ʃən/",
+    "meaning": "sự phân phát"
+  },
+  {
+    "word": "document",
+    "phonetic": "/ˈdɑː.kjə.mənt/",
+    "meaning": "văn kiện, tài liệu; dẫn chứng tư liệu"
+  },
+  {
+    "word": "donate",
+    "phonetic": "/ˈdoʊ.neɪt/",
+    "meaning": "quyên góp, đóng góp"
+  },
+  {
+    "word": "donation",
+    "phonetic": "/doʊˈneɪ.ʃən/",
+    "meaning": "sự quyên góp, sự hiến tặng"
+  },
+  {
+    "word": "double n, adj,",
+    "phonetic": "/ˈdʌb.əl/",
+    "meaning": "nhân đôi, gấp dôi"
+  },
+  {
+    "word": "download",
+    "phonetic": "/ˈdaʊn.loʊd/",
+    "meaning": "tải xuống"
+  },
+  {
+    "word": "downsize",
+    "phonetic": "/ˈdaʊn.saɪz/",
+    "meaning": "cắt giảm"
+  },
+  {
+    "word": "downturn",
+    "phonetic": "/ˈdaʊn.tɝːn/",
+    "meaning": "sự suy sụp"
+  },
+  {
+    "word": "downward",
+    "phonetic": "/ˈdaʊn.wɚd/",
+    "meaning": "trở xuống, trở về sau"
+  },
+  {
+    "word": "drastically",
+    "phonetic": "/ˈdræs.tɪ.kəl.i/",
+    "meaning": "mạnh mẽ, quyết liệt"
+  },
+  {
+    "word": "drawer",
+    "phonetic": "/drɑː/",
+    "meaning": "ngăn kéo"
+  },
+  {
+    "word": "drive n,",
+    "phonetic": "/draɪv/",
+    "meaning": "cuộc đua; lái xe"
+  },
+  {
+    "word": "duration",
+    "phonetic": "/djʊəˈreɪ.ʃən/",
+    "meaning": "khoảng thời gian, thời hạn"
+  },
+  {
+    "word": "duty-free adj,",
+    "phonetic": "/ˌduː.t̬iˈfriː/",
+    "meaning": "miễn thuế"
+  },
+  {
+    "word": "earn",
+    "phonetic": "/ɝːn/",
+    "meaning": "kiếm được, giành được"
+  },
+  {
+    "word": "earnings",
+    "phonetic": "/ˈɝː.nɪŋz/",
+    "meaning": "số tiền kiếm được"
+  },
+  {
+    "word": "economize",
+    "phonetic": "/iˈkɑː.nə.maɪz/",
+    "meaning": "tiết kiệm"
+  },
+  {
+    "word": "economy",
+    "phonetic": "/iˈkɑː.nə.mi/",
+    "meaning": "nền kinh tế"
+  },
+  {
+    "word": "effective",
+    "phonetic": "/əˈfek.tɪv/",
+    "meaning": "hiệu quả, có hiệu lực"
+  },
+  {
+    "word": "effectively",
+    "phonetic": "/əˈfek.tɪv.li/",
+    "meaning": "có hiệu quả"
+  },
+  {
+    "word": "effectiveness",
+    "phonetic": "/əˈfek.tɪv.nəs/",
+    "meaning": "sự hiệu quả"
+  },
+  {
+    "word": "efficiency",
+    "phonetic": "/ɪˈfɪʃ.ən.si/",
+    "meaning": "năng lực, hiệu suất, năng suất"
+  },
+  {
+    "word": "efficient",
+    "phonetic": "/ɪˈfɪʃ.ənt/",
+    "meaning": "năng suất cao, hiệu suất tốt"
+  },
+  {
+    "word": "efficiently",
+    "phonetic": "/ɪˈfɪʃ.ənt.li/",
+    "meaning": "có hiệu nghiệm"
+  },
+  {
+    "word": "elderly",
+    "phonetic": "/ˈel.dɚ.li/",
+    "meaning": "có tuổi, lớn tuổi"
+  },
+  {
+    "word": "elevator",
+    "phonetic": "/ˈel.ə.veɪ.t̬ɚ/",
+    "meaning": "thang máy, máy nâng"
+  },
+  {
+    "word": "embark",
+    "phonetic": "/ɪmˈbɑːrk/",
+    "meaning": "bắt đầu, lên đường, dấn thân vào"
+  },
+  {
+    "word": "emergency",
+    "phonetic": "/ɪˈmɝː.dʒən.si/",
+    "meaning": "trường hợp khẩn cấp"
+  },
+  {
+    "word": "emphasize",
+    "phonetic": "/ˈem.fə.saɪz/",
+    "meaning": "nhấn mạnh"
+  },
+  {
+    "word": "employer",
+    "phonetic": "/ɪmˈplɔɪ.ɚ/",
+    "meaning": "người làm chủ, người sử dụng lao động"
+  },
+  {
+    "word": "employment",
+    "phonetic": "/ɪmˈplɔɪ.mənt/",
+    "meaning": "việc làm, sự thuê người làm"
+  },
+  {
+    "word": "enable",
+    "phonetic": "/ɪˈneɪ.bəl/",
+    "meaning": "cho phép, làm cho có khả năng làm gì đó"
+  },
+  {
+    "word": "enclose",
+    "phonetic": "/ɪnˈkloʊz/",
+    "meaning": "vây quanh, rào quanh, gửi kèm"
+  },
+  {
+    "word": "encourage",
+    "phonetic": "/ɪnˈkɝː.ɪdʒ/",
+    "meaning": "động viên, cổ vũ"
+  },
+  {
+    "word": "endure",
+    "phonetic": "/ɪnˈdʊr/",
+    "meaning": "chịu đựng, cam chịu"
+  },
+  {
+    "word": "engineer",
+    "phonetic": "/ˌen.dʒɪˈnɪr/",
+    "meaning": "kỹ sư"
+  },
+  {
+    "word": "engineering",
+    "phonetic": "/ˌen.dʒɪˈnɪr.ɪŋ/",
+    "meaning": "công việc kỹ sư"
+  },
+  {
+    "word": "enhance",
+    "phonetic": "/ɪnˈhæns/",
+    "meaning": "làm tăng thêm, đề cao, đẩy mạnh"
+  },
+  {
+    "word": "enlighten",
+    "phonetic": "/ɪnˈlaɪ.t̬ən/",
+    "meaning": "làm sáng tỏ, khai sáng"
+  },
+  {
+    "word": "enroll",
+    "phonetic": "/ɪnˈrəʊl/",
+    "meaning": "đăng ký, ghi tên"
+  },
+  {
+    "word": "ensure",
+    "phonetic": "/ɪnˈʃʊr/",
+    "meaning": "bảo đảm, chắc chắn"
+  },
+  {
+    "word": "enterprise",
+    "phonetic": "/ˈen.t̬ɚ.praɪz/",
+    "meaning": "xí nghiệp, doanh nghiệp"
+  },
+  {
+    "word": "enthusiastic",
+    "phonetic": "/ɪnˌθuː.ziˈæs.tɪk/",
+    "meaning": "nhiệt tình, hứng khởi"
+  },
+  {
+    "word": "enthusiastically",
+    "phonetic": "/ɪnˌθuː.ziˈæs.tɪ.kəl.i/",
+    "meaning": "hăng say, nhiệt tình"
+  },
+  {
+    "word": "entitlement",
+    "phonetic": "/ɪnˈtaɪ.t̬əl.mənt/",
+    "meaning": "quyền hạn, sự được phép làm"
+  },
+  {
+    "word": "environment",
+    "phonetic": "/ɪnˈvaɪ.rən.mənt/",
+    "meaning": "môi trường"
+  },
+  {
+    "word": "environmental",
+    "phonetic": "/ɪnˌvaɪ.rənˈmen.t̬əl/",
+    "meaning": "(thuộc) môi trường"
+  },
+  {
+    "word": "equivalent adj,",
+    "phonetic": "/ɪˈkwɪv.əl.ənt/",
+    "meaning": "tương đương; vật tương đương"
+  },
+  {
+    "word": "essential",
+    "phonetic": "/ɪˈsen.ʃəl/",
+    "meaning": "(thuộc) bản chất, cốt lõi"
+  },
+  {
+    "word": "estimate",
+    "phonetic": "/ˈes.tə.meɪt/",
+    "meaning": "ước tính, dự đoán"
+  },
+  {
+    "word": "evaluate",
+    "phonetic": "/ɪˈvæl.ju.eɪt/",
+    "meaning": "ước lượng, đánh giá"
+  },
+  {
+    "word": "evolve",
+    "phonetic": "/ɪˈvɑːlv/",
+    "meaning": "tiến hóa"
+  },
+  {
+    "word": "event",
+    "phonetic": "/ɪˈvent/",
+    "meaning": "sự kiện, sự việc"
+  },
+  {
+    "word": "evidence",
+    "phonetic": "/ˈev.ə.dəns/",
+    "meaning": "bằng chứng, chứng cớ"
+  },
+  {
+    "word": "exact",
+    "phonetic": "/ɪɡˈzækt/",
+    "meaning": "chính xác, đúng"
+  },
+  {
+    "word": "examination",
+    "phonetic": "/ɪɡˌzæm.əˈneɪ.ʃən/",
+    "meaning": "sự khám xét, kỳ thi"
+  },
+  {
+    "word": "examine",
+    "phonetic": "/ɪɡˈzæm.ɪn/",
+    "meaning": "khảo sát, kiểm tra"
+  },
+  {
+    "word": "excel",
+    "phonetic": "/ɪkˈsel/",
+    "meaning": "hơn, vượt trội"
+  },
+  {
+    "word": "excellent",
+    "phonetic": "/ˈek.səl.ənt/",
+    "meaning": "xuất sắc, ưu tú"
+  },
+  {
+    "word": "exhibit",
+    "phonetic": "/ɪɡˈzɪb.ɪt/",
+    "meaning": "trưng bày, triển lãm"
+  },
+  {
+    "word": "expand",
+    "phonetic": "/ɪkˈspænd/",
+    "meaning": "mở rộng, nở phồng"
+  },
+  {
+    "word": "expansion",
+    "phonetic": "/ɪkˈspæn.ʃən/",
+    "meaning": "sử mở rộng, giãn nở"
+  },
+  {
+    "word": "expect",
+    "phonetic": "/ɪkˈspekt/",
+    "meaning": "chờ đợi, trông chờ"
+  },
+  {
+    "word": "expectation",
+    "phonetic": "/ˌek.spekˈteɪ.ʃən/",
+    "meaning": "sự mong chờ, ngóng đợi"
+  },
+  {
+    "word": "expenditure",
+    "phonetic": "/ɪkˈspen.də.tʃɚ/",
+    "meaning": "sự tiêu dùng, phí tổn"
+  },
+  {
+    "word": "expense",
+    "phonetic": "/ɪkˈspens/",
+    "meaning": "chi phí, sự tiêu dùng"
+  },
+  {
+    "word": "expensive",
+    "phonetic": "/ɪkˈspen.sɪv/",
+    "meaning": "đắt tiền, đắt đỏ"
+  },
+  {
+    "word": "experience",
+    "phonetic": "/ɪkˈspɪr.i.əns/",
+    "meaning": "trải nghiệm, kinh nghiệm"
+  },
+  {
+    "word": "experienced",
+    "phonetic": "/ɪkˈspɪə.ri.ənst/",
+    "meaning": "người từng trải, người có kinh nghiệm"
+  },
+  {
+    "word": "experiment n,",
+    "phonetic": "/ɪkˈsper.ə.mənt/",
+    "meaning": "thí nghiệm, thử nghiệm"
+  },
+  {
+    "word": "exploration",
+    "phonetic": "/ˌek.spləˈreɪ.ʃən/",
+    "meaning": "cuộc thăm dò, thám hiểm"
+  },
+  {
+    "word": "express n,",
+    "phonetic": "/ɪkˈspres/",
+    "meaning": "công văn hỏa tốc; trình bày, diễn đạt"
+  },
+  {
+    "word": "extend",
+    "phonetic": "/ɪkˈstend/",
+    "meaning": "duỗi thẳng, nới rộng, gia hạn"
+  },
+  {
+    "word": "extension",
+    "phonetic": "/ɪkˈsten.ʃən/",
+    "meaning": "sự mở rộng, gia hạn"
+  },
+  {
+    "word": "external",
+    "phonetic": "/ɪkˈstɝː.nəl/",
+    "meaning": "bên ngoài, đối ngoại"
+  },
+  {
+    "word": "facility",
+    "phonetic": "/fəˈsɪl.ə.t̬i/",
+    "meaning": "điều kiện thuận lợi, sự dễ dàng, thuận lợi"
+  },
+  {
+    "word": "factor",
+    "phonetic": "/ˈfæk.tɚ/",
+    "meaning": "nhân tố"
+  },
+  {
+    "word": "factory",
+    "phonetic": "/ˈfæk.tɚ.i/",
+    "meaning": "nhà máy, xí nghiệp"
+  },
+  {
+    "word": "fail",
+    "phonetic": "/feɪl/",
+    "meaning": "thất bại, trượt (kì thi)"
+  },
+  {
+    "word": "failure",
+    "phonetic": "/ˈfeɪ.ljɚ/",
+    "meaning": "sự thất bại"
+  },
+  {
+    "word": "fair n,",
+    "phonetic": "/fer/",
+    "meaning": "hội chợ, phiên chợ; công bằng, không thiên vị"
+  },
+  {
+    "word": "famed",
+    "phonetic": "/feɪmd/",
+    "meaning": "nổi tiếng, lừng danh"
+  },
+  {
+    "word": "fault",
+    "phonetic": "/fɑːlt/",
+    "meaning": "lỗi, sai lầm"
+  },
+  {
+    "word": "faulty",
+    "phonetic": "/ˈfɑːl.t̬i/",
+    "meaning": "có thiếu sót, mắc khuyết điểm"
+  },
+  {
+    "word": "favor n,",
+    "phonetic": "/ˈfeɪ.vɚ/",
+    "meaning": "thiện ý, sự yêu mến; ưu đãi, thiên vị"
+  },
+  {
+    "word": "fax",
+    "phonetic": "/fæks/",
+    "meaning": "bản fax"
+  },
+  {
+    "word": "feature",
+    "phonetic": "/ˈfiː.tʃɚ/",
+    "meaning": "nét, đặc điểm"
+  },
+  {
+    "word": "fee",
+    "phonetic": "/fiː/",
+    "meaning": "lệ phí, tiền thù lao"
+  },
+  {
+    "word": "feedback n,",
+    "phonetic": "/ˈfiːd.bæk/",
+    "meaning": "phản hồi, góp ý"
+  },
+  {
+    "word": "figure n,",
+    "phonetic": "/ˈfɪɡ.jɚ/",
+    "meaning": "hình dáng, nhân vật; đánh giá, tính toán"
+  },
+  {
+    "word": "file",
+    "phonetic": "/faɪl/",
+    "meaning": "hồ sơ, túi đựng tài liệu"
+  },
+  {
+    "word": "fill",
+    "phonetic": "/fɪl/",
+    "meaning": "làm đầy, nhồi nhét"
+  },
+  {
+    "word": "final",
+    "phonetic": "/ˈfaɪ.nəl/",
+    "meaning": "cuối cùng"
+  },
+  {
+    "word": "finance n,",
+    "phonetic": "/ˈfaɪ.næns/",
+    "meaning": "tài chính; hỗ trợ tài chính"
+  },
+  {
+    "word": "flexible",
+    "phonetic": "/ˈflek.sə.bəl/",
+    "meaning": "linh hoạt, không cố định"
+  },
+  {
+    "word": "flight",
+    "phonetic": "/flaɪt/",
+    "meaning": "chuyến bay, sự rút chạy"
+  },
+  {
+    "word": "flight attendant",
+    "phonetic": "/ˈflaɪt əˌten.dənt/",
+    "meaning": "tiếp viên hàng không"
+  },
+  {
+    "word": "fluctuate",
+    "phonetic": "/ˈflʌk.tʃu.eɪt/",
+    "meaning": "dao động, lên xuống"
+  },
+  {
+    "word": "fluctuation",
+    "phonetic": "/ˌflʌk.tʃuˈeɪ.ʃən/",
+    "meaning": "sự dao động"
+  },
+  {
+    "word": "focus v,",
+    "phonetic": "/ˈfoʊ.kəs/",
+    "meaning": "tập trung"
+  },
+  {
+    "word": "focused",
+    "phonetic": "/ˈfoʊ.kəst/",
+    "meaning": "tập trung, chú ý"
+  },
+  {
+    "word": "fold v,",
+    "phonetic": "/foʊld/",
+    "meaning": "gấp, vén; nếp gấp"
+  },
+  {
+    "word": "folder",
+    "phonetic": "/ˈfoʊl.dɚ/",
+    "meaning": "bìa cứng, xấp tài liệu"
+  },
+  {
+    "word": "force",
+    "phonetic": "/fɔːrs/",
+    "meaning": "sức mạnh, quyền lực"
+  },
+  {
+    "word": "forecast n,",
+    "phonetic": "/ˈfɔːr.kæst/",
+    "meaning": "dự đoán, tiên đoán"
+  },
+  {
+    "word": "foreign",
+    "phonetic": "/ˈfɔːr.ən/",
+    "meaning": "nước ngoài, ngoại quốc"
+  },
+  {
+    "word": "forget",
+    "phonetic": "/fɚˈɡet/",
+    "meaning": "quên"
+  },
+  {
+    "word": "forgetful",
+    "phonetic": "/fɚˈɡet.fəl/",
+    "meaning": "tính hay quên, có trí nhớ tồi"
+  },
+  {
+    "word": "form",
+    "phonetic": "/fɔːrm/",
+    "meaning": "dáng hình; tạo hình"
+  },
+  {
+    "word": "forward",
+    "phonetic": "/ˈfɔːr.wɚd/",
+    "meaning": "về phía trước, tiến lên"
+  },
+  {
+    "word": "frank",
+    "phonetic": "/fræŋk/",
+    "meaning": "ngay thẳng, bộc trực"
+  },
+  {
+    "word": "frankly",
+    "phonetic": "/ˈfræŋ.kli/",
+    "meaning": "thẳng thắn"
+  },
+  {
+    "word": "fuel",
+    "phonetic": "/ˈfjuː.əl/",
+    "meaning": "chất đốt, nhiên liệu"
+  },
+  {
+    "word": "fulfill",
+    "phonetic": "/fʊlˈfɪl/",
+    "meaning": "làm đầy"
+  },
+  {
+    "word": "function v,",
+    "phonetic": "/ˈfʌŋk.ʃən/",
+    "meaning": "hoạt động; chức năng"
+  },
+  {
+    "word": "functional",
+    "phonetic": "/ˈfʌŋk.ʃən.əl/",
+    "meaning": "(thuộc) chức năng"
+  },
+  {
+    "word": "fundraising",
+    "phonetic": "/ˈfʌndˌreɪ.zɪŋ/",
+    "meaning": "sự huy động vốn"
+  },
+  {
+    "word": "furniture",
+    "phonetic": "/ˈfɝː.nɪ.tʃɚ/",
+    "meaning": "đồ đạc"
+  },
+  {
+    "word": "further adj,",
+    "phonetic": "/ˈfɝː.ðɚ/",
+    "meaning": "xa hơn, kỹ hơn"
+  },
+  {
+    "word": "gesture",
+    "phonetic": "/ˈdʒes.tʃɚ/",
+    "meaning": "điệu bộ, cử chỉ"
+  },
+  {
+    "word": "goods",
+    "phonetic": "/ɡʊdz/",
+    "meaning": "của cải, hàng hóa"
+  },
+  {
+    "word": "gradually",
+    "phonetic": "/ˈɡrædʒ.u.ə.li/",
+    "meaning": "dần dần, từ từ"
+  },
+  {
+    "word": "grievance",
+    "phonetic": "/ˈɡriː.vəns/",
+    "meaning": "lời than trách"
+  },
+  {
+    "word": "grill n,",
+    "phonetic": "/ɡrɪl/",
+    "meaning": "chả nướng; nướng, thiêu đốt"
+  },
+  {
+    "word": "growth",
+    "phonetic": "/ɡroʊθ/",
+    "meaning": "sự tăng trưởng, mức độ tăng trưởng"
+  },
+  {
+    "word": "guarantee n,",
+    "phonetic": "/ˌɡer.ənˈtiː/",
+    "meaning": "sự đảm bảo; cam kết"
+  },
+  {
+    "word": "guideline",
+    "phonetic": "/ˈɡaɪd.laɪn/",
+    "meaning": "quy tắc, nguyên tắc"
+  },
+  {
+    "word": "haggle n,",
+    "phonetic": "/ˈhæɡ.əl/",
+    "meaning": "sự mặc cả; tranh cãi"
+  },
+  {
+    "word": "handle n,",
+    "phonetic": "/ˈhæn.dəl/",
+    "meaning": "cán cầm, tay cầm; xử lý"
+  },
+  {
+    "word": "handy",
+    "phonetic": "/ˈhæn.di/",
+    "meaning": "thuận tiện, sẵn tiện"
+  },
+  {
+    "word": "harmful",
+    "phonetic": "/ˈhɑːrm.fəl/",
+    "meaning": "gây tai hại, có hại"
+  },
+  {
+    "word": "hazardous",
+    "phonetic": "/ˈhæz.ɚ.dəs/",
+    "meaning": "mạo hiểm, nguy hiểm"
+  },
+  {
+    "word": "head office",
+    "phonetic": "/ˌhed ˈɑː.fɪs/",
+    "meaning": "cơ quan đầu não, tổng công ty"
+  },
+  {
+    "word": "headquarters",
+    "phonetic": "/ˈhedˌkwɔːr.t̬ɚz/",
+    "meaning": "sở chỉ huy, bộ chỉ huy"
+  },
+  {
+    "word": "hesitate",
+    "phonetic": "/ˈhez.ə.teɪt/",
+    "meaning": "do dự, ngập ngừng"
+  },
+  {
+    "word": "hesitation",
+    "phonetic": "/ˌhez.əˈteɪ.ʃən/",
+    "meaning": "sự ngập ngừng, do dự"
+  },
+  {
+    "word": "hide n,",
+    "phonetic": "/haɪd/",
+    "meaning": "che giấu, che đậy"
+  },
+  {
+    "word": "highlight n,",
+    "phonetic": "/ˈhaɪ.laɪt/",
+    "meaning": "điểm nổi bật; làm nổi bật"
+  },
+  {
+    "word": "highly",
+    "phonetic": "/ˈhaɪ.li/",
+    "meaning": "rất, lắm, tốt"
+  },
+  {
+    "word": "hike",
+    "phonetic": "/haɪk/",
+    "meaning": "cuộc đi bộ, cuộc hành quân; đi bộ đường dài"
+  },
+  {
+    "word": "hire n,",
+    "phonetic": "/haɪr/",
+    "meaning": "sự thuê; thuê, mướn"
+  },
+  {
+    "word": "hold n,",
+    "phonetic": "/hoʊld/",
+    "meaning": "sự cầm, nắm; cầm, giữ"
+  },
+  {
+    "word": "host n,",
+    "phonetic": "/hoʊst/",
+    "meaning": "chủ nhà, người chủ trì; tổ chức, đăng cai"
+  },
+  {
+    "word": "identification",
+    "phonetic": "/aɪˌden.t̬ə.fəˈkeɪ.ʃən/",
+    "meaning": "sự phát hiện, nhận diện"
+  },
+  {
+    "word": "identify",
+    "phonetic": "/aɪˈden.t̬ə.faɪ/",
+    "meaning": "nhận diện, nhận biết"
+  },
+  {
+    "word": "imaginative",
+    "phonetic": "/ɪˈmædʒ.ə.nə.t̬ɪv/",
+    "meaning": "tưởng tượng, không có thực"
+  },
+  {
+    "word": "immediate",
+    "phonetic": "/ɪˈmiː.di.ət/",
+    "meaning": "ngay lập tức, trực tiếp"
+  },
+  {
+    "word": "immediately",
+    "phonetic": "/ɪˈmiː.di.ət.li/",
+    "meaning": "ngay lập tức, tức thì"
+  },
+  {
+    "word": "impact n,",
+    "phonetic": "/ˈɪm.pækt/",
+    "meaning": "tác động, ảnh hưởng"
+  },
+  {
+    "word": "impatient",
+    "phonetic": "/ɪmˈpeɪ.ʃənt/",
+    "meaning": "thiếu kiên nhẫn"
+  },
+  {
+    "word": "impersonate",
+    "phonetic": "/ɪmˈpɝː.sən.eɪt/",
+    "meaning": "mạo danh, đóng vai, nhại lại"
+  },
+  {
+    "word": "imply",
+    "phonetic": "/ɪmˈplaɪ/",
+    "meaning": "ngụ ý, ý nói"
+  },
+  {
+    "word": "improper",
+    "phonetic": "/ɪmˈprɑː.pɚ/",
+    "meaning": "không thích hợp, không phù hợp"
+  },
+  {
+    "word": "improve",
+    "phonetic": "/ɪmˈpruːv/",
+    "meaning": "cải thiện"
+  },
+  {
+    "word": "improvement",
+    "phonetic": "/ɪmˈpruːv.mənt/",
+    "meaning": "sự cải thiện, cải tiến"
+  },
+  {
+    "word": "incentive adj,",
+    "phonetic": "/ɪnˈsen.t̬ɪv/",
+    "meaning": "khuyến khích; sự khích lệ, thúc đẩy"
+  },
+  {
+    "word": "inclined",
+    "phonetic": "/ɪnˈklaɪnd/",
+    "meaning": "có thiên hướng, khuynh hướng"
+  },
+  {
+    "word": "include",
+    "phonetic": "/ɪnˈkluːd/",
+    "meaning": "bao gồm, gồm có"
+  },
+  {
+    "word": "inclusion",
+    "phonetic": "/ɪnˈkluː.ʒən/",
+    "meaning": "sự bao gồm, tính vào"
+  },
+  {
+    "word": "income",
+    "phonetic": "/ˈɪn.kʌm/",
+    "meaning": "thu nhập, lợi tức"
+  },
+  {
+    "word": "inconvenience",
+    "phonetic": "/ˌɪn.kənˈviːn.jəns/",
+    "meaning": "sự bất tiện, phiền hà"
+  },
+  {
+    "word": "increase v,",
+    "phonetic": "/ɪnˈkriːs/",
+    "meaning": "sự tăng lên; tăng thêm"
+  },
+  {
+    "word": "indicate",
+    "phonetic": "/ˈɪn.də.keɪt/",
+    "meaning": "chỉ ra, chứng tỏ, biểu thị"
+  },
+  {
+    "word": "indication",
+    "phonetic": "/ˌɪn.dəˈkeɪ.ʃən/",
+    "meaning": "sự biểu thị, biểu lộ"
+  },
+  {
+    "word": "individual n,",
+    "phonetic": "/ˌɪn.dəˈvɪdʒ.u.əl/",
+    "meaning": "cá nhân; riêng lẻ, tách biệt"
+  },
+  {
+    "word": "individually",
+    "phonetic": "/ˌɪn.dəˈvɪdʒ.u.ə.li/",
+    "meaning": "riêng lẻ"
+  },
+  {
+    "word": "inexperienced",
+    "phonetic": "/ˌɪn.ɪkˈspɪr.i.ənst/",
+    "meaning": "thiếu kinh nghiệm"
+  },
+  {
+    "word": "infer",
+    "phonetic": "/-ˈfɝː/",
+    "meaning": "suy ra, kết luận"
+  },
+  {
+    "word": "inflate",
+    "phonetic": "/ɪnˈfleɪt/",
+    "meaning": "bơm phồng, thổi phồng"
+  },
+  {
+    "word": "inflation",
+    "phonetic": "/ɪnˈfleɪ.ʃən/",
+    "meaning": "sự bơm phồng, lạm phát"
+  },
+  {
+    "word": "influence",
+    "phonetic": "/ˈɪn.flu.əns/",
+    "meaning": "ảnh hưởng, uy lực; chi phối, tác động"
+  },
+  {
+    "word": "influential",
+    "phonetic": "/ˌɪn.fluˈen.ʃəl/",
+    "meaning": "có ảnh hưởng, có tác dụng"
+  },
+  {
+    "word": "information",
+    "phonetic": "/ˌɪn.fɚˈmeɪ.ʃən/",
+    "meaning": "thông tin"
+  },
+  {
+    "word": "input",
+    "phonetic": "/ˈɪn.pʊt/",
+    "meaning": "dữ liệu đầu vào"
+  },
+  {
+    "word": "inquiry",
+    "phonetic": "/ˈɪŋ.kwɚ.i/",
+    "meaning": "sự điều tra, thẩm vấn"
+  },
+  {
+    "word": "install",
+    "phonetic": "/ɪnˈstɑːl/",
+    "meaning": "cài đặt, tải xuống"
+  },
+  {
+    "word": "installation",
+    "phonetic": "/ˌɪn.stəˈleɪ.ʃən/",
+    "meaning": "sự cài đặt"
+  },
+  {
+    "word": "insurance",
+    "phonetic": "/ɪnˈʃɜ.r.əns/",
+    "meaning": "sự bảo hiểm, hợp đồng bảo hiểm"
+  },
+  {
+    "word": "insure",
+    "phonetic": "/ɪnˈʃʊr/",
+    "meaning": "bảo hiểm, đảm bảo"
+  },
+  {
+    "word": "intend",
+    "phonetic": "/ɪnˈtend/",
+    "meaning": "định, có ý định"
+  },
+  {
+    "word": "intention",
+    "phonetic": "/ɪnˈten.ʃən/",
+    "meaning": "dự định, ý định"
+  },
+  {
+    "word": "intently",
+    "phonetic": "/ɪnˈtent.li/",
+    "meaning": "chăm chú, chú ý"
+  },
+  {
+    "word": "intern",
+    "phonetic": "/ɪnˈtɝːn/",
+    "meaning": "thực tập sinh"
+  },
+  {
+    "word": "internal",
+    "phonetic": "/ɪnˈtɝː.nəl/",
+    "meaning": "bên trong, nội bộ"
+  },
+  {
+    "word": "international",
+    "phonetic": "/ˌɪn.t̬ɚˈnæʃ.ən.əl/",
+    "meaning": "quốc tế, đa quốc gia"
+  },
+  {
+    "word": "internship",
+    "phonetic": "/ˈɪn.tɝːn.ʃɪp/",
+    "meaning": "kỳ thực tập"
+  },
+  {
+    "word": "interrupt",
+    "phonetic": "/ˌɪn.t̬əˈrʌpt/",
+    "meaning": "làm gián đoạn, ngắt quãng"
+  },
+  {
+    "word": "interview n,",
+    "phonetic": "/ˈɪn.t̬ɚ.vjuː/",
+    "meaning": "phỏng vấn"
+  },
+  {
+    "word": "invaluable",
+    "phonetic": "/ɪnˈvæl.jə.bəl/",
+    "meaning": "vô giá"
+  },
+  {
+    "word": "invent",
+    "phonetic": "/ɪnˈvent/",
+    "meaning": "phát minh, sáng chế"
+  },
+  {
+    "word": "invention",
+    "phonetic": "/ɪnˈven.ʃən/",
+    "meaning": "sự phát minh, sáng kiến, sáng chế"
+  },
+  {
+    "word": "inventory",
+    "phonetic": "/ˈɪn.vən.tɔːr.i/",
+    "meaning": "sự kiểm kê, bản kiểm kê"
+  },
+  {
+    "word": "invest",
+    "phonetic": "/ɪnˈvest/",
+    "meaning": "đầu tư"
+  },
+  {
+    "word": "investigation",
+    "phonetic": "/ɪnˌves.təˈɡeɪ.ʃən/",
+    "meaning": "sự điều tra, nghiên cứu"
+  },
+  {
+    "word": "investment",
+    "phonetic": "/ɪnˈvest.mənt/",
+    "meaning": "sự đầu tư, vốn đầu tư"
+  },
+  {
+    "word": "invoice",
+    "phonetic": "/ˈɪn.vɔɪs/",
+    "meaning": "hóa đơn"
+  },
+  {
+    "word": "isolate",
+    "phonetic": "/ˈaɪ.sə.leɪt/",
+    "meaning": "cô lập, cách ly"
+  },
+  {
+    "word": "itemize",
+    "phonetic": "/ˈaɪ.t̬ə.maɪz/",
+    "meaning": "trình bày thành từng khoản, từng món"
+  },
+  {
+    "word": "itinerary",
+    "phonetic": "/aɪˈtɪn.ə.rer.i/",
+    "meaning": "hành trình, lịch trình"
+  },
+  {
+    "word": "jealous",
+    "phonetic": "/ˈdʒel.əs/",
+    "meaning": "ghen ghét, đố kỵ"
+  },
+  {
+    "word": "jeopardize",
+    "phonetic": "/ˈdʒep.ɚ.daɪz/",
+    "meaning": "gây nguy hại, đe dọa"
+  },
+  {
+    "word": "jeopardy",
+    "phonetic": "/ˈdʒep.ɚ.di/",
+    "meaning": "nguy cơ, sự nguy hiểm"
+  },
+  {
+    "word": "jobless",
+    "phonetic": "/ˈdʒɑːb.ləs/",
+    "meaning": "thất nghiệp, không có việc làm"
+  },
+  {
+    "word": "joint n,",
+    "phonetic": "/dʒɔɪnt/",
+    "meaning": "mối nối, khớp; chung"
+  },
+  {
+    "word": "journal",
+    "phonetic": "/ˈdʒɝː.nəl/",
+    "meaning": "báo, tạp chí"
+  },
+  {
+    "word": "journey",
+    "phonetic": "/ˈdʒɝː.ni/",
+    "meaning": "cuộc hành trình"
+  },
+  {
+    "word": "justice",
+    "phonetic": "/ˈdʒʌs.tɪs/",
+    "meaning": "sự công bằng, luật pháp"
+  },
+  {
+    "word": "justification",
+    "phonetic": "/ˌdʒʌs.tə.fəˈkeɪ.ʃən/",
+    "meaning": "sự bào chữa, biện hộ"
+  },
+  {
+    "word": "justify",
+    "phonetic": "/ˈdʒʌs.tə.faɪ/",
+    "meaning": "bào chữa, phân bua, biện hộ"
+  },
+  {
+    "word": "keen",
+    "phonetic": "/kiːn/",
+    "meaning": "say mê, ham thích"
+  },
+  {
+    "word": "keep",
+    "phonetic": "/kiːp/",
+    "meaning": "giữ lại, giam giữ"
+  },
+  {
+    "word": "knowledge",
+    "phonetic": "/ˈnɑː.lɪdʒ/",
+    "meaning": "kiến thức, sự hiểu biết"
+  },
+  {
+    "word": "knowledgeable",
+    "phonetic": "/´nɔlidʒəbl/",
+    "meaning": "thông thạo, thành thạo, am tường"
+  },
+  {
+    "word": "label",
+    "phonetic": "/'leɪbl/",
+    "meaning": "nhãn, nhãn hiệu"
+  },
+  {
+    "word": "labor",
+    "phonetic": "/'leibə/",
+    "meaning": "lao động, công việc chân tay"
+  },
+  {
+    "word": "lack n,",
+    "phonetic": "/læk/",
+    "meaning": "sự thiếu, thiếu sót"
+  },
+  {
+    "word": "landlord",
+    "phonetic": "/'lændlɔ:d/",
+    "meaning": "chủ nhà (nhà cho thuê)"
+  },
+  {
+    "word": "laptop",
+    "phonetic": "/´læp¸tɔp/",
+    "meaning": "máy tính"
+  },
+  {
+    "word": "launch",
+    "phonetic": "/lɔ:ntʃ/",
+    "meaning": "Xuồng lớn"
+  },
+  {
+    "word": "law",
+    "phonetic": "/lɑː/",
+    "meaning": "luật, nội quy, quy định"
+  },
+  {
+    "word": "lay",
+    "phonetic": "/lei/",
+    "meaning": "bài thơ ngắn, bài vè ngắn"
+  },
+  {
+    "word": "leak",
+    "phonetic": "/li:k/",
+    "meaning": "lỗ thủng, lỗ rò, khe hở"
+  },
+  {
+    "word": "lean",
+    "phonetic": "/li:n/",
+    "meaning": "độ nghiêng, độ dốc"
+  },
+  {
+    "word": "lease",
+    "phonetic": "/li:s/",
+    "meaning": "hợp đồng cho thuê (bất động sản)"
+  },
+  {
+    "word": "leisure",
+    "phonetic": "/ˈliʒər , ˈlɛʒər/",
+    "meaning": "thì giờ rỗi rãi, lúc thư nhàn"
+  },
+  {
+    "word": "lend",
+    "phonetic": "/lend/",
+    "meaning": "cho vay, cho mượn"
+  },
+  {
+    "word": "liability",
+    "phonetic": "/,laiə'biliti/",
+    "meaning": "trách nhiệm pháp lý, nghĩa vụ pháp lý"
+  },
+  {
+    "word": "license",
+    "phonetic": "/lái:sn/",
+    "meaning": "bản quyền"
+  },
+  {
+    "word": "licensing",
+    "phonetic": "/ˈlaɪ.sən.sɪŋ/",
+    "meaning": "sự cấp giấy phép"
+  },
+  {
+    "word": "lie",
+    "phonetic": "/lai/",
+    "meaning": "sự nói dối, sự nói láo, sự nói điêu, sự dối trá"
+  },
+  {
+    "word": "limited",
+    "phonetic": "/ˈlɪmɪtɪd/",
+    "meaning": "hạn chế, có giới hạn"
+  },
+  {
+    "word": "limousine",
+    "phonetic": "/´limə¸zi:n/",
+    "meaning": "xe hơi"
+  },
+  {
+    "word": "list",
+    "phonetic": "/list/",
+    "meaning": "danh sách, sổ, bản kê khai"
+  },
+  {
+    "word": "livestock",
+    "phonetic": "/´laiv¸stɔk/",
+    "meaning": "vật nuôi, thú nuôi"
+  },
+  {
+    "word": "loan",
+    "phonetic": "/ləʊn/",
+    "meaning": "sự vay nợ"
+  },
+  {
+    "word": "lobby",
+    "phonetic": "/lɒb.i/",
+    "meaning": "hành lang"
+  },
+  {
+    "word": "local",
+    "phonetic": "/'ləʊk(ə)l/",
+    "meaning": "địa phương"
+  },
+  {
+    "word": "locate",
+    "phonetic": "/loʊˈkeɪt/",
+    "meaning": "trụ sở ở, nằm ở"
+  },
+  {
+    "word": "log on",
+    "phonetic": "/lɔg/",
+    "meaning": "kết nối với hệ thống"
+  },
+  {
+    "word": "log",
+    "phonetic": "/lɔg/",
+    "meaning": "khúc gỗ mới đốn hạ"
+  },
+  {
+    "word": "loyal",
+    "phonetic": "/'lɔiəl/",
+    "meaning": "trung thành, trung nghĩa, trung kiên"
+  },
+  {
+    "word": "luggage",
+    "phonetic": "/'lʌgiʤ/",
+    "meaning": "hành lý"
+  },
+  {
+    "word": "luxurious",
+    "phonetic": "/lʌg´zjuəriəs/",
+    "meaning": "sang trọng, lộng lẫy; xa hoa"
+  },
+  {
+    "word": "luxury",
+    "phonetic": "/lʌk.ʃər.i/",
+    "meaning": "sự xa xỉ, sự xa hoa"
+  },
+  {
+    "word": "maintain",
+    "phonetic": "/mein´tein/",
+    "meaning": "giữ gìn, duy trì; bảo vệ"
+  },
+  {
+    "word": "maintenance",
+    "phonetic": "/´meintənəns/",
+    "meaning": "sự giữ gìn, sự duy trì; sự bảo vệ"
+  },
+  {
+    "word": "major",
+    "phonetic": "/ˈmeɪdʒər/",
+    "meaning": "chuyên đề"
+  },
+  {
+    "word": "manage",
+    "phonetic": "/'mænɪʤ/",
+    "meaning": "quản lý"
+  },
+  {
+    "word": "managerial",
+    "phonetic": "/¸mæni´dʒiəriəl/",
+    "meaning": "(thuộc) người quản lý, (thuộc) giám đốc"
+  },
+  {
+    "word": "mandatory",
+    "phonetic": "/'mændətəri/",
+    "meaning": "có tính cách bắt buộc"
+  },
+  {
+    "word": "manufacture",
+    "phonetic": "/,mænju'fæktʃə/",
+    "meaning": "sự chế tạo, sự sản xuất"
+  },
+  {
+    "word": "manufacturing",
+    "phonetic": "/¸mænju´fæktʃəriη/",
+    "meaning": "sự sản xuất; sự chế tạo; sự gia công"
+  },
+  {
+    "word": "marketing",
+    "phonetic": "/'mɑ:kitiɳ/",
+    "meaning": "tiếp thị"
+  },
+  {
+    "word": "mechanic",
+    "phonetic": "/məˈkænɪk/",
+    "meaning": "thợ máy, công nhân cơ khí"
+  },
+  {
+    "word": "medical",
+    "phonetic": "/'medikə/",
+    "meaning": "(thuộc) y học"
+  },
+  {
+    "word": "medication",
+    "phonetic": "/ˌmɛdɪˈkeɪʃən/",
+    "meaning": "sự bốc thuốc, sự cho thuốc"
+  },
+  {
+    "word": "medicine",
+    "phonetic": "/'medisn/",
+    "meaning": "y học"
+  },
+  {
+    "word": "meeting",
+    "phonetic": "/'mi:tiɳ/",
+    "meaning": "(chính trị) cuộc mít tinh, cuộc biểu tình"
+  },
+  {
+    "word": "membership",
+    "phonetic": "/'membəʃip/",
+    "meaning": "tư cách hội viên, địa vị hội viên"
+  },
+  {
+    "word": "memorandum",
+    "phonetic": "/¸memə´rændəm/",
+    "meaning": "bản ghi nhớ"
+  },
+  {
+    "word": "mention",
+    "phonetic": "/'menʃn/",
+    "meaning": "sự kể ra, sự nói đến, sự đề cập"
+  },
+  {
+    "word": "merchandise",
+    "phonetic": "/´mə:tʃən¸daiz/",
+    "meaning": "hàng hóa"
+  },
+  {
+    "word": "mere",
+    "phonetic": "/miə/",
+    "meaning": "ao hồ"
+  },
+  {
+    "word": "merge",
+    "phonetic": "/mə:dʤ/",
+    "meaning": "hoà vào; kết hợp; hợp nhất"
+  },
+  {
+    "word": "merger",
+    "phonetic": "/´mə:dʒə/",
+    "meaning": "sự liên doanh liên kết"
+  },
+  {
+    "word": "mileage",
+    "phonetic": "/´mailidʒ/",
+    "meaning": "tổng số dặm đã đi được"
+  },
+  {
+    "word": "million",
+    "phonetic": "/´miljən/",
+    "meaning": "một triệu"
+  },
+  {
+    "word": "mimic",
+    "phonetic": "/´mimik/",
+    "meaning": "giả; bắt chước"
+  },
+  {
+    "word": "mishear",
+    "phonetic": "/¸mis´hiə/",
+    "meaning": "nghe lầm"
+  },
+  {
+    "word": "misleading",
+    "phonetic": "/mis´li:diη/",
+    "meaning": "làm cho lạc đường, làm cho lạc lối"
+  },
+  {
+    "word": "misrepresent",
+    "phonetic": "/¸misrepri´zent/",
+    "meaning": "trình bày sai, miêu tả sai"
+  },
+  {
+    "word": "monitor",
+    "phonetic": "/'mɔnitə/",
+    "meaning": "lớp trưởng, cán bộ lớp (ở trường học)"
+  },
+  {
+    "word": "monument",
+    "phonetic": "/'mɔnjumənt/",
+    "meaning": "vật kỷ niệm, đài kỷ niệm, bia kỷ niệm"
+  },
+  {
+    "word": "mortgage",
+    "phonetic": "/'mɔ:gidʤ/",
+    "meaning": "cầm cố, thế chấp"
+  },
+  {
+    "word": "motivate",
+    "phonetic": "/´mouti¸veit/",
+    "meaning": "thúc đẩy, làm động cơ thúc đẩy"
+  },
+  {
+    "word": "motivation",
+    "phonetic": "/,mouti'veiʃn/",
+    "meaning": "sự thúc đẩy, động cơ thúc đẩy"
+  },
+  {
+    "word": "napkin",
+    "phonetic": "/'næpkin/",
+    "meaning": "khăn ăn"
+  },
+  {
+    "word": "narrow",
+    "phonetic": "/'nærou/",
+    "meaning": "hẹp, chật hẹp, eo hẹp"
+  },
+  {
+    "word": "narrowing",
+    "phonetic": "/'nærouwiŋ/",
+    "meaning": "sự thu hẹp, sự co hẹp"
+  },
+  {
+    "word": "neighborhood",
+    "phonetic": "/ˈneɪbərˌhʊd/",
+    "meaning": "hàng xóm"
+  },
+  {
+    "word": "network",
+    "phonetic": "/'netwə:k/",
+    "meaning": "lưới, đồ dùng kiểu lưới"
+  },
+  {
+    "word": "nominate",
+    "phonetic": "/'nɔmineit/",
+    "meaning": "chỉ định, chọn, bổ nhiệm"
+  },
+  {
+    "word": "nomination",
+    "phonetic": "/,nɔmi'neiʃn/",
+    "meaning": "sự chỉ định, sự bổ nhiệm"
+  },
+  {
+    "word": "notice",
+    "phonetic": "/'nəƱtis/",
+    "meaning": "thông tri, yết thị, thông báo"
+  },
+  {
+    "word": "notify",
+    "phonetic": "/nəʊ.tɪ.faɪ/",
+    "meaning": "báo, khai báo; thông báo"
+  },
+  {
+    "word": "objection",
+    "phonetic": "/əb'ʤekʃn/",
+    "meaning": "sự phản đối, sự chống đối"
+  },
+  {
+    "word": "objective",
+    "phonetic": "/əb´dʒektiv/",
+    "meaning": "khách quan"
+  },
+  {
+    "word": "obligation",
+    "phonetic": "/,ɔbli'geiʃn/",
+    "meaning": "nghĩa vụ; bổn phận"
+  },
+  {
+    "word": "oblige",
+    "phonetic": "/ə'blaiʤ/",
+    "meaning": "bắt buộc, cưỡng bách; đặt nghĩa vụ cho"
+  },
+  {
+    "word": "obtain",
+    "phonetic": "/əb'teɪn/",
+    "meaning": "đạt được, giành được, thu được"
+  },
+  {
+    "word": "obviously",
+    "phonetic": "/'ɔbviəsli/",
+    "meaning": "một cách rõ ràng; có thể thấy được"
+  },
+  {
+    "word": "occupation",
+    "phonetic": "/,ɔkju'peiʃn/",
+    "meaning": "sự chiếm giữ, sự chiếm đóng"
+  },
+  {
+    "word": "occur",
+    "phonetic": "/ə'kə:/",
+    "meaning": "xảy ra, xảy đến, xuất hiện, tìm thấy"
+  },
+  {
+    "word": "officer",
+    "phonetic": "/´ɔfisə/",
+    "meaning": "sĩ quan"
+  },
+  {
+    "word": "official",
+    "phonetic": "/ə'fiʃəl/",
+    "meaning": "(thuộc) chính quyền; (thuộc) văn phòng"
+  },
+  {
+    "word": "onward",
+    "phonetic": "/'ɔnwəd/",
+    "meaning": "về phía trước, tiến lên, hướng tới"
+  },
+  {
+    "word": "operate",
+    "phonetic": "/'ɔpəreit/",
+    "meaning": "hoạt động; đang làm việc, thi hành (máy...)"
+  },
+  {
+    "word": "operation",
+    "phonetic": "/,ɔpə'reiʃn/",
+    "meaning": "sự hoạt động; quá trình hoạt động"
+  },
+  {
+    "word": "opinion",
+    "phonetic": "/ə'pinjən/",
+    "meaning": "ý kiến, quan điểm"
+  },
+  {
+    "word": "opportunity",
+    "phonetic": "/ɒpərˈtyunɪti/",
+    "meaning": "cơ hội, thời cơ, dịp may"
+  },
+  {
+    "word": "optimistic",
+    "phonetic": "/¸ɔpti´mistik/",
+    "meaning": "lạc quan, yêu đời"
+  },
+  {
+    "word": "order",
+    "phonetic": "/'ɔ:də/",
+    "meaning": "thứ, bậc, ngôi, hàng, cấp, loại, giai cấp"
+  },
+  {
+    "word": "organization",
+    "phonetic": "/,ɔ:gənai'zeiʃn/",
+    "meaning": "sự tổ chức, sự cấu tạo"
+  },
+  {
+    "word": "organize",
+    "phonetic": "/´ɔ:gə¸naiz/",
+    "meaning": "tổ chức, cấu tạo, thiết lập"
+  },
+  {
+    "word": "organized",
+    "phonetic": "/ˈɔːr.ɡən.aɪzd/",
+    "meaning": "có trật tự, ngăn nắp, hữu hiệu"
+  },
+  {
+    "word": "outlook",
+    "phonetic": "/´aut¸luk/",
+    "meaning": "quang cảnh, viễn cảnh"
+  },
+  {
+    "word": "outstanding",
+    "phonetic": "/¸aut´stændiη/",
+    "meaning": "nổi bật, đáng chú ý; nổi tiếng, vượt trội"
+  },
+  {
+    "word": "overall",
+    "phonetic": "/ˈoʊvərˌɔl/",
+    "meaning": "toàn bộ, toàn thể, bao gồm mọi thứ"
+  },
+  {
+    "word": "overdraft",
+    "phonetic": "/´ouvə¸dra:ft/",
+    "meaning": "số tiền chi trội; số tiền rút quá số tiền gửi"
+  },
+  {
+    "word": "overtime",
+    "phonetic": "/´ouvətaim/",
+    "meaning": "quá giờ, ngoài giờ (quy định)"
+  },
+  {
+    "word": "overview",
+    "phonetic": "/´ouvə¸vju:/",
+    "meaning": "sự khái quát; miêu tả chung, ngắn gọn"
+  },
+  {
+    "word": "owe",
+    "phonetic": "/ou/",
+    "meaning": "nợ, hàm ơn"
+  },
+  {
+    "word": "package",
+    "phonetic": "/pæk.ɪdʒ/",
+    "meaning": "đóng gói, đóng kiện, xếp vào bao bì"
+  },
+  {
+    "word": "package",
+    "phonetic": "/pæk.ɪdʒ/",
+    "meaning": "gói đồ, bưu kiện; hộp để đóng hàng, thùng hàng"
+  },
+  {
+    "word": "parcel",
+    "phonetic": "/'pɑ:s(ə)l/",
+    "meaning": "gói; bưu kiện"
+  },
+  {
+    "word": "parking",
+    "phonetic": "/ˈpɑːr.kɪŋ/",
+    "meaning": "bãi đỗ xe"
+  },
+  {
+    "word": "participant",
+    "phonetic": "/pa:´tisipənt/",
+    "meaning": "người tham gia, người tham dự"
+  },
+  {
+    "word": "particularly",
+    "phonetic": "/pə´tikjuləli/",
+    "meaning": "đặc biệt, đặc thù; cá biệt, riêng biệt"
+  },
+  {
+    "word": "passenger",
+    "phonetic": "/'pæsindʤə/",
+    "meaning": "hành khách (đi tàu xe...)"
+  },
+  {
+    "word": "patent",
+    "phonetic": "/'peitənt/",
+    "meaning": "tài tình, khéo léo, tinh xảo"
+  },
+  {
+    "word": "patented",
+    "phonetic": "/ˈpeɪtəntɪd, ˈpætəntɪd/",
+    "meaning": "đã có bằng sáng chế, môn bài"
+  },
+  {
+    "word": "patience",
+    "phonetic": "/´peiʃəns/",
+    "meaning": "tính kiên nhẫn, tính nhẫn nại; sự bền chí"
+  },
+  {
+    "word": "perform",
+    "phonetic": "/pə´fɔ:m/",
+    "meaning": "biểu diễn, trình diễn (kịch, điệu nhảy...); đóng"
+  },
+  {
+    "word": "permanent",
+    "phonetic": "/'pə:mənənt/",
+    "meaning": "lâu dài, vĩnh cửu; thường xuyên"
+  },
+  {
+    "word": "permission",
+    "phonetic": "/pə'miʃn/",
+    "meaning": "sự cho phép, sự chấp nhận; giấy phép"
+  },
+  {
+    "word": "permit",
+    "phonetic": "/'pər'mɪt/",
+    "meaning": "cho phép, cho cơ hội; thừa nhận"
+  },
+  {
+    "word": "personal",
+    "phonetic": "/'pə:snl/",
+    "meaning": "cá nhân, tư, riêng"
+  },
+  {
+    "word": "personalized",
+    "phonetic": "/´pə:sənə¸laiz/",
+    "meaning": "cá nhân hoá"
+  },
+  {
+    "word": "personnel",
+    "phonetic": "/¸pə:sə´nel/",
+    "meaning": "nhân viên, công chức (cơ quan, nhà máy...)"
+  },
+  {
+    "word": "persuade",
+    "phonetic": "/pə'sweid/",
+    "meaning": "thuyết phục"
+  },
+  {
+    "word": "pessimistic",
+    "phonetic": "/¸pesi´mistik/",
+    "meaning": "bi quan, yếm thế"
+  },
+  {
+    "word": "plant",
+    "phonetic": "/plænt , plɑnt/",
+    "meaning": "thực vật"
+  },
+  {
+    "word": "platform",
+    "phonetic": "/'plætfɔ:m/",
+    "meaning": "nền, bục, bệ"
+  },
+  {
+    "word": "pleasant",
+    "phonetic": "/'plezənt/",
+    "meaning": "vui vẻ, dễ thương (người...)"
+  },
+  {
+    "word": "plow",
+    "phonetic": "/plau/",
+    "meaning": "cái cày; công cụ giống như cái cày"
+  },
+  {
+    "word": "plug",
+    "phonetic": "/plʌg/",
+    "meaning": "phích cắm; ổ cắm điện"
+  },
+  {
+    "word": "plumber",
+    "phonetic": "/´plʌmə/",
+    "meaning": "thợ hàn chì, thợ ống nước"
+  },
+  {
+    "word": "point",
+    "phonetic": "/pɔint/",
+    "meaning": "điểm"
+  },
+  {
+    "word": "pointless",
+    "phonetic": "/´pɔintlis/",
+    "meaning": "vô nghĩa, không ý vị, lạc lõng"
+  },
+  {
+    "word": "policy",
+    "phonetic": "/pɔlisi/",
+    "meaning": "chính sách (của chính phủ, đảng...)"
+  },
+  {
+    "word": "polite",
+    "phonetic": "/pəˈlaɪt/",
+    "meaning": "lễ phép, có lễ độ; lịch sự, lịch thiệp"
+  },
+  {
+    "word": "politician",
+    "phonetic": "/,pɒlə'tɪʃn/",
+    "meaning": "nhà chính trị; chính khách"
+  },
+  {
+    "word": "politics",
+    "phonetic": "/'pɔlitiks/",
+    "meaning": "hoạt động chính trị, công việc chính trị"
+  },
+  {
+    "word": "poll",
+    "phonetic": "/poul/",
+    "meaning": "sự bầu cử; số phiếu bầu"
+  },
+  {
+    "word": "pollute",
+    "phonetic": "/pəˈlut/",
+    "meaning": "làm ô nhiễm, làm nhơ bẩn (nước...)"
+  },
+  {
+    "word": "popularity",
+    "phonetic": "/ˌpɒpyəˈlærɪti/",
+    "meaning": "tính đại chúng; tính phổ biến"
+  },
+  {
+    "word": "position",
+    "phonetic": "/pəˈzɪʃən/",
+    "meaning": "vị trí, chỗ (của một vật gì)"
+  },
+  {
+    "word": "postpone",
+    "phonetic": "/pəʊst pəʊn/",
+    "meaning": "hoãn lại, trì hoãn"
+  },
+  {
+    "word": "postponement",
+    "phonetic": "/poust´pounmənt/",
+    "meaning": "sự trì hoãn; trường hợp bị trì hoãn"
+  },
+  {
+    "word": "potential",
+    "phonetic": "/pəˈtenʃl/",
+    "meaning": "tiềm năng; tiềm tàng"
+  },
+  {
+    "word": "power",
+    "phonetic": "/ˈpauə(r)/",
+    "meaning": "khả năng; tài năng, năng lực"
+  },
+  {
+    "word": "practical",
+    "phonetic": "/ˈpræktɪkəl/",
+    "meaning": "thực hành (đối với lý thuyết)"
+  },
+  {
+    "word": "practically",
+    "phonetic": "/´præktikəli/",
+    "meaning": "về mặt thực hành (đối với lý thuyết)"
+  },
+  {
+    "word": "predict",
+    "phonetic": "/pri'dikt/",
+    "meaning": "nói trước, tiên đoán, dự đoán"
+  },
+  {
+    "word": "predictable",
+    "phonetic": "/pri'diktəbl/",
+    "meaning": "có thể đoán trước, có thể dự đoán, dự báo"
+  },
+  {
+    "word": "prefer",
+    "phonetic": "/pri'fə:/",
+    "meaning": "thích hơn, ưa hơn"
+  },
+  {
+    "word": "preference",
+    "phonetic": "/'prefərəns/",
+    "meaning": "sở thích; sự thích hơn, sự ưa hơn"
+  },
+  {
+    "word": "premises",
+    "phonetic": "/'premis/",
+    "meaning": "biệt thự"
+  },
+  {
+    "word": "press",
+    "phonetic": "/pres/",
+    "meaning": "sự ép, sự nén, sự bóp, sự ấn"
+  },
+  {
+    "word": "prevent",
+    "phonetic": "/pri'vent/",
+    "meaning": "ngăn cản; ngăn chặn, ngăn ngừa"
+  },
+  {
+    "word": "prevention",
+    "phonetic": "/pri'ven∫n/",
+    "meaning": "sự ngăn cản, sự ngăn trở"
+  },
+  {
+    "word": "priceless",
+    "phonetic": "/ˈpraɪslɪs/",
+    "meaning": "vô giá; không định giá được"
+  },
+  {
+    "word": "principle",
+    "phonetic": "/ˈprɪntsɪpl/",
+    "meaning": "gốc, nguồn gốc, yếu tố cơ bản"
+  },
+  {
+    "word": "priority",
+    "phonetic": "/prai´ɔriti/",
+    "meaning": "sự ưu thế (về cấp bậc); quyền ưu tiên"
+  },
+  {
+    "word": "private",
+    "phonetic": "/ˈpraɪvɪt/",
+    "meaning": "riêng, tư, cá nhân"
+  },
+  {
+    "word": "probability",
+    "phonetic": "/ˌprɒbəˈbɪlɪti/",
+    "meaning": "sự có thể có, khả năng có thể xảy ra"
+  },
+  {
+    "word": "probably",
+    "phonetic": "/´prɔbəbli/",
+    "meaning": "có khả năng, có lẽ, có thể"
+  },
+  {
+    "word": "probationary",
+    "phonetic": "/prə´beiʃənəri/",
+    "meaning": "đang trong thời gian thử thách"
+  },
+  {
+    "word": "process",
+    "phonetic": "/'prouses/",
+    "meaning": "quá trình, sự tiến triển"
+  },
+  {
+    "word": "profession",
+    "phonetic": "/prə´feʃ(ə)n/",
+    "meaning": "nghề, nghề nghiệp"
+  },
+  {
+    "word": "professional",
+    "phonetic": "/prə'feʃənl/",
+    "meaning": "(thuộc) nghề, (thuộc) nghề nghiệp; có tay nghề"
+  },
+  {
+    "word": "profile",
+    "phonetic": "/´proufail/",
+    "meaning": "tiểu sử sơ lược; mô tả sơ lược"
+  },
+  {
+    "word": "profit",
+    "phonetic": "/ˈprɒfɪt/",
+    "meaning": "thuận lợi; lợi ích, bổ ích"
+  },
+  {
+    "word": "profitability",
+    "phonetic": "/'prɔfitə'biləti/",
+    "meaning": "sự có lợi, sự có ích; sự thuận lợi"
+  },
+  {
+    "word": "profitable",
+    "phonetic": "/´prɑ:fɪtəbl/",
+    "meaning": "có lợi, có ích; thuận lợi"
+  },
+  {
+    "word": "progressive",
+    "phonetic": "/prəˈgrɛsɪv/",
+    "meaning": "tiến lên, tiến tới"
+  },
+  {
+    "word": "prohibit",
+    "phonetic": "/proʊ'hɪbɪt/",
+    "meaning": "cấm, ngăn cấm"
+  },
+  {
+    "word": "project",
+    "phonetic": "/ˈprɒdʒɛkt/",
+    "meaning": "đề án, dự án; kế hoạch"
+  },
+  {
+    "word": "promote",
+    "phonetic": "/prəˈmoʊt/",
+    "meaning": "thăng chức, thăng cấp; đề bạt"
+  },
+  {
+    "word": "promotion",
+    "phonetic": "/prə'mou∫n/",
+    "meaning": "sự thăng chức, sự đề bạt"
+  },
+  {
+    "word": "promptly",
+    "phonetic": "/´prɔmptli/",
+    "meaning": "mau lẹ, nhanh chóng; ngay lập tức"
+  },
+  {
+    "word": "properly",
+    "phonetic": "/´prɔpəli/",
+    "meaning": "đúng đắn, hợp thức, hợp lệ"
+  },
+  {
+    "word": "property",
+    "phonetic": "/'prɔpəti/",
+    "meaning": "tài sản, của cải, vật sở hữu, người giàu có"
+  },
+  {
+    "word": "protect",
+    "phonetic": "/prə'tekt/",
+    "meaning": "bảo vệ, bảo hộ, che chở"
+  },
+  {
+    "word": "protection",
+    "phonetic": "/prə'tek∫n/",
+    "meaning": "sự bảo vệ, sự bảo hộ, sự che chở"
+  },
+  {
+    "word": "publicity",
+    "phonetic": "/pʌb'lɪsətɪ /",
+    "meaning": "sự công khai"
+  },
+  {
+    "word": "publicize",
+    "phonetic": "/´pʌbli¸saiz/",
+    "meaning": "đưa ra công khai; làm cho thiên hạ biết đến"
+  },
+  {
+    "word": "purchase",
+    "phonetic": "/'pə:t∫əs/",
+    "meaning": "sự mua, tậu; vật mua được, vật tậu được"
+  },
+  {
+    "word": "purpose",
+    "phonetic": "/'pɜ:pəs/",
+    "meaning": "mục đích, ý định"
+  },
+  {
+    "word": "pursue",
+    "phonetic": "/pə'sju:/",
+    "meaning": "đuổi theo, đuổi bắt, truy nã, truy kích"
+  },
+  {
+    "word": "qualification",
+    "phonetic": "/,kwalifi'keiSn/",
+    "meaning": "phẩm chất, năng lực"
+  },
+  {
+    "word": "qualified",
+    "phonetic": "/ˈkwɒləˌfaɪd/",
+    "meaning": "đủ tư cách, khả năng, điều kiện"
+  },
+  {
+    "word": "qualify",
+    "phonetic": "/'´kwɔli¸fai/",
+    "meaning": "đủ tư cách, khả năng, điều kiện"
+  },
+  {
+    "word": "questionnaire",
+    "phonetic": "/ˌkwɛstʃəˈnɛər/",
+    "meaning": "bản câu hỏi (để điều tra, để thăm dò ý kiến)"
+  },
+  {
+    "word": "quotation",
+    "phonetic": "/kwou'teiʃn/",
+    "meaning": "sự trích dẫn, sự được trích dẫn"
+  },
+  {
+    "word": "quote",
+    "phonetic": "/kwout/",
+    "meaning": "lời trích dẫn; đoạn trích dẫn"
+  },
+  {
+    "word": "range",
+    "phonetic": "/reɪndʒ/",
+    "meaning": "dãy, hàng"
+  },
+  {
+    "word": "rare",
+    "phonetic": "/reə/",
+    "meaning": "hiếm, hiếm có, ít có"
+  },
+  {
+    "word": "rate",
+    "phonetic": "/reit/",
+    "meaning": "tỷ lệ"
+  },
+  {
+    "word": "rational",
+    "phonetic": "/´ræʃənəl/",
+    "meaning": "có lý trí, dựa trên lý trí"
+  },
+  {
+    "word": "raw",
+    "phonetic": "/rɔ:/",
+    "meaning": "sống, thô"
+  },
+  {
+    "word": "reach",
+    "phonetic": "/ri:tʃ/",
+    "meaning": "sự chìa ra, sự trải ra"
+  },
+  {
+    "word": "realize",
+    "phonetic": "/'riəlaiz/",
+    "meaning": "thấy rõ, hiểu rõ, nhận thức rõ (việc gì...)"
+  },
+  {
+    "word": "rearrange",
+    "phonetic": "/'ri:ə'reindʤ/",
+    "meaning": "sắp xếp lại, bố trí lại, sắp đặt lại"
+  },
+  {
+    "word": "reasonable",
+    "phonetic": "/´ri:zənəbl/",
+    "meaning": "có lý, hợp lý"
+  },
+  {
+    "word": "reasonably",
+    "phonetic": "/ˈriː.zən.ə.bli/",
+    "meaning": "hợp lý"
+  },
+  {
+    "word": "receipt",
+    "phonetic": "/ri´si:t/",
+    "meaning": "công thức (làm bánh, nấu món ăn...)"
+  },
+  {
+    "word": "receive",
+    "phonetic": "/ri'si:v/",
+    "meaning": "nhận, lĩnh, thu"
+  },
+  {
+    "word": "recent",
+    "phonetic": "/´ri:sənt/",
+    "meaning": "gần đây, xảy ra gần đây, mới đây"
+  },
+  {
+    "word": "reception",
+    "phonetic": "/ri'sep∫n/",
+    "meaning": "sự nhận, sự thu nhận, sự lĩnh"
+  },
+  {
+    "word": "receptive",
+    "phonetic": "/ri'septiv/",
+    "meaning": "dễ tiếp thu, dễ lĩnh hội"
+  },
+  {
+    "word": "recipe",
+    "phonetic": "/´resəpi/",
+    "meaning": "công thức làm món ăn"
+  },
+  {
+    "word": "recognize",
+    "phonetic": "/'rekəgnaiz/",
+    "meaning": "công nhận, thừa nhận, chấp nhận"
+  },
+  {
+    "word": "recommend",
+    "phonetic": "/rekə'mend/",
+    "meaning": "giới thiệu, tiến cử (người, vật...)"
+  },
+  {
+    "word": "recommendation",
+    "phonetic": "/¸rekəmen´deiʃən/",
+    "meaning": "sự giới thiệu, sự tiến cử"
+  },
+  {
+    "word": "recruit",
+    "phonetic": "/ri'kru:t/",
+    "meaning": "tuyển, chiêu mộ (lính mới); tìm thêm"
+  },
+  {
+    "word": "recruitment",
+    "phonetic": "/ ri'kru;tm(ə)nt/",
+    "meaning": "sự tuyển mộ (lính), sự lấy thêm"
+  },
+  {
+    "word": "reduce",
+    "phonetic": "/ri'dju:s/",
+    "meaning": "thu nhỏ, làm giảm bớt"
+  },
+  {
+    "word": "reduction",
+    "phonetic": "/ri´dʌkʃən/",
+    "meaning": "sự thu nhỏ, sự giảm bớt"
+  },
+  {
+    "word": "redundant",
+    "phonetic": "/ri'dʌndənt/",
+    "meaning": "thừa, dư"
+  },
+  {
+    "word": "refrigerator",
+    "phonetic": "/rɪˈfrɪdʒ.ər.eɪ.tər/",
+    "meaning": "tủ lạnh"
+  },
+  {
+    "word": "refund n,",
+    "phonetic": "/ˈrifʌnd/",
+    "meaning": "trả lại, sự trả lại"
+  },
+  {
+    "word": "refundable",
+    "phonetic": "/ri´fʌndəbl/",
+    "meaning": "có thể được trả lại tiền"
+  },
+  {
+    "word": "refuse",
+    "phonetic": "/rɪˈfyuz/",
+    "meaning": "từ chối, khước từ, cự tuyệt"
+  },
+  {
+    "word": "regarding",
+    "phonetic": "/ri´ga:diη/",
+    "meaning": "về ( ai/cái gì), về việc, đối với (vấn đề...)"
+  },
+  {
+    "word": "regardless",
+    "phonetic": "/ri´ga:dlis/",
+    "meaning": "bất chấp, không đếm xỉa tới, không chú ý tới"
+  },
+  {
+    "word": "regional",
+    "phonetic": "/ˈridʒənl/",
+    "meaning": "(thuộc) vùng; địa phương"
+  },
+  {
+    "word": "registration",
+    "phonetic": "/,redʤis'treiʃn/",
+    "meaning": "sự đăng ký, sự ghi vào sổ"
+  },
+  {
+    "word": "regret n,",
+    "phonetic": "/ri'gret/",
+    "meaning": "hối tiếc; sự ân hận"
+  },
+  {
+    "word": "regular",
+    "phonetic": "/ˈreɡ.jə.lɚ/",
+    "meaning": "đều đặn, thường xuyên"
+  },
+  {
+    "word": "regularly",
+    "phonetic": "/´regjuləli/",
+    "meaning": "đều đặn, thường xuyên"
+  },
+  {
+    "word": "regulate",
+    "phonetic": "/ˈreɡ.jə.leɪt/",
+    "meaning": "điều khiển"
+  },
+  {
+    "word": "reject n,",
+    "phonetic": "/'ri:ʤekt/",
+    "meaning": "vật bị loại, vật bỏ đi, vật không được chọn"
+  },
+  {
+    "word": "relax",
+    "phonetic": "/rɪˈlæks/",
+    "meaning": "thư giãn, nghỉ ngơi"
+  },
+  {
+    "word": "relaxation",
+    "phonetic": "/¸ri:læk´seiʃən/",
+    "meaning": "sự dịu đi, sự bớt căng thẳng"
+  },
+  {
+    "word": "release",
+    "phonetic": "/rɪˈliːs/",
+    "meaning": "thả ra, trả lại tự do"
+  },
+  {
+    "word": "relevant",
+    "phonetic": "/´reləvənt/",
+    "meaning": "thích đáng, thích hợp; xác đáng"
+  },
+  {
+    "word": "remain",
+    "phonetic": "/rɪˈmeɪn/",
+    "meaning": "duy trì"
+  },
+  {
+    "word": "remarkable",
+    "phonetic": "/ri'ma:kəb(ə)l/",
+    "meaning": "đáng chú ý, đáng để ý"
+  },
+  {
+    "word": "remind",
+    "phonetic": "/rɪˈmaɪnd/",
+    "meaning": "nhắc lại, nhớ lại"
+  },
+  {
+    "word": "reminder",
+    "phonetic": "/ri´maində/",
+    "meaning": "vật làm nhớ lại, cái làm nhớ lại"
+  },
+  {
+    "word": "remittance",
+    "phonetic": "/ri´mitəns/",
+    "meaning": "sự gửi tiền, sự gửi hàng"
+  },
+  {
+    "word": "remove",
+    "phonetic": "/ri'mu:v/",
+    "meaning": "dời đi, di chuyển, dọn, cất dọn"
+  },
+  {
+    "word": "remuneration",
+    "phonetic": "/rɪˌmjuː.nəˈreɪ.ʃən/",
+    "meaning": "tiền thù lao, tiền trả công"
+  },
+  {
+    "word": "renovate",
+    "phonetic": "/ˈrɛnəˌveɪt/",
+    "meaning": "nâng cấp, cải tiến, đổi mới, sửa chữa lại"
+  },
+  {
+    "word": "renovation",
+    "phonetic": "/ˌren.əˈveɪ.ʃən/",
+    "meaning": "sự nâng cấp, sự cải tiến"
+  },
+  {
+    "word": "rent",
+    "phonetic": "/rent/",
+    "meaning": "sự thuê mướn"
+  },
+  {
+    "word": "repair",
+    "phonetic": "/rɪˈper/",
+    "meaning": "sửa chữa, sửa đổi"
+  },
+  {
+    "word": "repayment",
+    "phonetic": "/ri:´peimənt/",
+    "meaning": "sự trả lại"
+  },
+  {
+    "word": "repetitive",
+    "phonetic": "/rɪˈpet̬.ə.t̬ɪv/",
+    "meaning": "có đặc trưng lặp đi lặp lại"
+  },
+  {
+    "word": "replace",
+    "phonetic": "/rɪpleɪs/",
+    "meaning": "thay thế, thay chỗ ai/cái gì"
+  },
+  {
+    "word": "replacement",
+    "phonetic": "/rɪˈpleɪs.mənt/",
+    "meaning": "sự thay thế, vật thay thế"
+  },
+  {
+    "word": "report",
+    "phonetic": "/ri'pɔ:t/",
+    "meaning": "bản báo cáo, bản tường thuật; biên bản"
+  },
+  {
+    "word": "represent",
+    "phonetic": "/ˌrep.rɪˈzent/",
+    "meaning": "miêu tả, hình dung"
+  },
+  {
+    "word": "representative",
+    "phonetic": "/,repri'zentətiv/",
+    "meaning": "miêu tả, biểu hiện"
+  },
+  {
+    "word": "request",
+    "phonetic": "/rɪˈkwest/",
+    "meaning": "yêu cầu"
+  },
+  {
+    "word": "require",
+    "phonetic": "/ri'kwaiə(r)/",
+    "meaning": "đòi hỏi, yêu cầu; quy định"
+  },
+  {
+    "word": "requirement",
+    "phonetic": "/rɪˈkwaɪr.mənt/",
+    "meaning": "yêu cầu, cần thiết"
+  },
+  {
+    "word": "reschedule",
+    "phonetic": "/ˌriːˈskedʒ.uːl/",
+    "meaning": "lên lịch, sắp xếp lịch"
+  },
+  {
+    "word": "rescue",
+    "phonetic": "/ˈres.kjuː/",
+    "meaning": "cứu ai đó khỏi nguy hiểm"
+  },
+  {
+    "word": "resemble",
+    "phonetic": "/rɪˈzem.bəl/",
+    "meaning": "giống nhau, giống ai đó"
+  },
+  {
+    "word": "reservation",
+    "phonetic": "/ˌrez.ɚˈveɪ.ʃən/",
+    "meaning": "dự phòng"
+  },
+  {
+    "word": "resign",
+    "phonetic": "/rɪˈzaɪn/",
+    "meaning": "bỏ việc, từ chức"
+  },
+  {
+    "word": "resist",
+    "phonetic": "/rɪˈzɪst/",
+    "meaning": "chống lại"
+  },
+  {
+    "word": "respect",
+    "phonetic": "/riˈspekt/",
+    "meaning": "sự kính trọng; sự ngưỡng mộ"
+  },
+  {
+    "word": "respectable",
+    "phonetic": "/ris´pektəbl/",
+    "meaning": "đáng trọng; đáng kính"
+  },
+  {
+    "word": "respond",
+    "phonetic": "/ri'spond/",
+    "meaning": "hưởng ứng"
+  },
+  {
+    "word": "responsible",
+    "phonetic": "/ri'spɔnsəbl/",
+    "meaning": "chịu trách nhiệm"
+  },
+  {
+    "word": "restructure",
+    "phonetic": "/ri:´strʌktʃə/",
+    "meaning": "cơ cấu lại; tổ chức lại; sắp xếp lại"
+  },
+  {
+    "word": "resume",
+    "phonetic": "/ri´zju:m/",
+    "meaning": "lấy lại, chiếm lại, giành lại; hồi phục lại"
+  },
+  {
+    "word": "retail n,",
+    "phonetic": "/ˈriteɪl , rɪˈteɪl/",
+    "meaning": "sự bán lẻ, việc bán lẻ"
+  },
+  {
+    "word": "retirement",
+    "phonetic": "/rɪˈtaɪərmənt/",
+    "meaning": "sự ẩn dật, sự về hưu"
+  },
+  {
+    "word": "revamp",
+    "phonetic": "/ˌriːˈvæmp/",
+    "meaning": "tân trang, sửa chữa"
+  },
+  {
+    "word": "revise v,",
+    "phonetic": "/ri'vaiz/",
+    "meaning": "đọc lại, xem lại, duyệt lại, xét lại"
+  },
+  {
+    "word": "revised v,",
+    "phonetic": "/ri'vaiz/",
+    "meaning": "đọc lại, xem lại, duyệt lại, xét lại"
+  },
+  {
+    "word": "right",
+    "phonetic": "/rait/",
+    "meaning": "điều tốt, điều phải, điều đứng đắn"
+  },
+  {
+    "word": "rival",
+    "phonetic": "/raivl/",
+    "meaning": "đối thủ, địch thủ, đối địch, kình địch"
+  },
+  {
+    "word": "roadside",
+    "phonetic": "/´roud¸said/",
+    "meaning": "bờ đường, lề đường"
+  },
+  {
+    "word": "roughly",
+    "phonetic": "/'rʌfli/",
+    "meaning": "ráp, xù xì, gồ ghề, không bằng phẳng"
+  },
+  {
+    "word": "route",
+    "phonetic": "/raʊt/",
+    "meaning": "tuyến đường; lộ trình; đường đi"
+  },
+  {
+    "word": "runway",
+    "phonetic": "/´rʌn¸wei/",
+    "meaning": "đường băng"
+  },
+  {
+    "word": "salary",
+    "phonetic": "/ˈsæləri/",
+    "meaning": "tiền lương"
+  },
+  {
+    "word": "sale",
+    "phonetic": "/seil/",
+    "meaning": "sự bán, việc bán"
+  },
+  {
+    "word": "sample",
+    "phonetic": "/´sa:mpl/",
+    "meaning": "mẫu; vật mẫu, hàng mẫu"
+  },
+  {
+    "word": "satisfied",
+    "phonetic": "/'sætisfaid/",
+    "meaning": "cảm thấy hài lòng, cảm thấy vừa ý; thoả mãn"
+  },
+  {
+    "word": "satisfy",
+    "phonetic": "/'sætisfai/",
+    "meaning": "làm thoả mãn, làm hài lòng"
+  },
+  {
+    "word": "save",
+    "phonetic": "/seiv/",
+    "meaning": "cứu nguy, cứu vãn"
+  },
+  {
+    "word": "savvy",
+    "phonetic": "/ˈsæv.i/",
+    "meaning": "sự hiểu biết, nắm rõ"
+  },
+  {
+    "word": "scene",
+    "phonetic": "/si:n/",
+    "meaning": "quang cảnh"
+  },
+  {
+    "word": "scenery",
+    "phonetic": "/'si:nəri/",
+    "meaning": "phong cảnh, cảnh vật"
+  },
+  {
+    "word": "schedule",
+    "phonetic": "/'skedʒu:l/",
+    "meaning": "kế hoạch làm việc, tiến độ thi công"
+  },
+  {
+    "word": "scrutinize",
+    "phonetic": "/´skru:ti¸naiz/",
+    "meaning": "chăm chú, nhìn kỹ; xem xét kỹ lưỡng"
+  },
+  {
+    "word": "search",
+    "phonetic": "/sə:t∫/",
+    "meaning": "sự nhìn để tìm, nhìn để tìm, thăm dò"
+  },
+  {
+    "word": "secluded",
+    "phonetic": "/si´klu:did/",
+    "meaning": "hẻo lánh; không có nhiều người trông thấy"
+  },
+  {
+    "word": "secretarial",
+    "phonetic": "/¸sekri´tɛəriəl/",
+    "meaning": "(thuộc) thư ký"
+  },
+  {
+    "word": "secretary",
+    "phonetic": "/'sekrətri/",
+    "meaning": "thư ký"
+  },
+  {
+    "word": "select",
+    "phonetic": "/si´lekt/",
+    "meaning": "lựa chọn, chọn lọc, tuyển chọn"
+  },
+  {
+    "word": "selection",
+    "phonetic": "/si'lekʃn/",
+    "meaning": "sự lựa chọn, sự chọn lọc, sự tuyển lựa"
+  },
+  {
+    "word": "selective",
+    "phonetic": "/si'lektiv/",
+    "meaning": "có tuyển chọn; dựa trên sự tuyển chọn"
+  },
+  {
+    "word": "seminar",
+    "phonetic": "/¸semi´na:/",
+    "meaning": "hội nghị chuyên đề"
+  },
+  {
+    "word": "sequel",
+    "phonetic": "/ˈsiː.kwəl/",
+    "meaning": "sự tiếp tục, nối tiếp, kết quả"
+  },
+  {
+    "word": "serious",
+    "phonetic": "/'siəriəs/",
+    "meaning": "đứng đắn, nghiêm trang, nghiêm nghị"
+  },
+  {
+    "word": "service",
+    "phonetic": "/'sə:vis/",
+    "meaning": "sự phục vụ, sự hầu hạ"
+  },
+  {
+    "word": "several",
+    "phonetic": "/'sevrəl/",
+    "meaning": "vài, riêng, cá nhân; khác nhau"
+  },
+  {
+    "word": "shape",
+    "phonetic": "/ʃeip/",
+    "meaning": "hình, hình dạng, hình thù"
+  },
+  {
+    "word": "sharp",
+    "phonetic": "/ʃɑrp/",
+    "meaning": "sắc, nhọn, bén"
+  },
+  {
+    "word": "shift",
+    "phonetic": "/ʃift/",
+    "meaning": "sự thay đổi (về vị trí, bản chất, hình dáng..)"
+  },
+  {
+    "word": "shine",
+    "phonetic": "/ʃain/",
+    "meaning": "ánh sáng; ánh nắng; sự chói sáng, độ sáng"
+  },
+  {
+    "word": "shipment",
+    "phonetic": "/´ʃipmənt/",
+    "meaning": "việc gửi hàng; việc chất hàng lên tàu"
+  },
+  {
+    "word": "shipping",
+    "phonetic": "/ˈʃɪp.ɪŋ/",
+    "meaning": "đang chuyển hàng"
+  },
+  {
+    "word": "shortage",
+    "phonetic": "/ˈʃɔːr.t̬ɪdʒ/",
+    "meaning": "sự thiếu sót"
+  },
+  {
+    "word": "shuttle",
+    "phonetic": "/ˈʃʌt̬.əl/",
+    "meaning": "xe đưa đón"
+  },
+  {
+    "word": "sightseeing",
+    "phonetic": "/ˈsaɪtˌsiː.ɪŋ/",
+    "meaning": "tham quan"
+  },
+  {
+    "word": "significant",
+    "phonetic": "/sɪɡˈnɪf.ə.kənt/",
+    "meaning": "quan trọng"
+  },
+  {
+    "word": "simplify",
+    "phonetic": "/ˈsɪm.plə.faɪ/",
+    "meaning": "đơn giản hóa"
+  },
+  {
+    "word": "situation",
+    "phonetic": "/ˌsɪtʃ.uˈeɪ.ʃən/",
+    "meaning": "tình hình"
+  },
+  {
+    "word": "slump",
+    "phonetic": "/slʌmp/",
+    "meaning": "sự sụt giảm"
+  },
+  {
+    "word": "software",
+    "phonetic": "/ˈsɑːft.wer/",
+    "meaning": "phần mềm"
+  },
+  {
+    "word": "solar",
+    "phonetic": "/ˈsoʊ.lɚ/",
+    "meaning": "hệ mặt trời"
+  },
+  {
+    "word": "spacious",
+    "phonetic": "/ˈspeɪ.ʃəs/",
+    "meaning": "rộng rãi"
+  },
+  {
+    "word": "spare part",
+    "phonetic": "/ˈspeər ˈpɑrt/",
+    "meaning": "phụ tùng"
+  },
+  {
+    "word": "spare time",
+    "phonetic": "/ˈspeər ˈtɑɪm/",
+    "meaning": "thời gian rảnh"
+  },
+  {
+    "word": "specialize",
+    "phonetic": "/ˈspeʃ.ə.laɪz/",
+    "meaning": "chuyên môn hóa"
+  },
+  {
+    "word": "specialty",
+    "phonetic": "/ˈspeʃ.əl.ti/",
+    "meaning": "chuyên môn"
+  },
+  {
+    "word": "specification",
+    "phonetic": "/ˌspes.ə.fəˈkeɪ.ʃən/",
+    "meaning": "chi tiết, đặc điểm"
+  },
+  {
+    "word": "specify",
+    "phonetic": "/ˈspes.ə.faɪ/",
+    "meaning": "giải thích, miêu tả"
+  },
+  {
+    "word": "spectator",
+    "phonetic": "/spekˈteɪ.t̬ɚ/",
+    "meaning": "khán giả"
+  },
+  {
+    "word": "stable",
+    "phonetic": "/ˈsteɪ.bəl/",
+    "meaning": "ổn định"
+  },
+  {
+    "word": "stadium",
+    "phonetic": "/ˈsteɪ.di.əm/",
+    "meaning": "sân vận động"
+  },
+  {
+    "word": "staff",
+    "phonetic": "/stæf/",
+    "meaning": "nhân viên"
+  },
+  {
+    "word": "stapler",
+    "phonetic": "/ˈsteɪ.plɚ/",
+    "meaning": "người phân loại"
+  },
+  {
+    "word": "stare",
+    "phonetic": "/ster/",
+    "meaning": "nhìn chằm chằm"
+  },
+  {
+    "word": "starter",
+    "phonetic": "/ˈstɑːr.t̬ɚ/",
+    "meaning": "người ra lệnh xuất phát, món khai vị"
+  },
+  {
+    "word": "stationery",
+    "phonetic": "/ˈsteɪ.ʃə.ner.i/",
+    "meaning": "đồ dùng văn phòng"
+  },
+  {
+    "word": "steep",
+    "phonetic": "/stiːp/",
+    "meaning": "quá quắt, không biết điều"
+  },
+  {
+    "word": "stock",
+    "phonetic": "/stɑːk/",
+    "meaning": "kho hàng, kho dự trữ"
+  },
+  {
+    "word": "strategic",
+    "phonetic": "/strəˈtiː.dʒɪk/",
+    "meaning": "mang tính chiến lược"
+  },
+  {
+    "word": "strategy",
+    "phonetic": "/'strætəʤɪ/",
+    "meaning": "chiến lược"
+  },
+  {
+    "word": "streamline",
+    "phonetic": "/ˈstriːm.laɪn/",
+    "meaning": "dòng nước, luồng không khí"
+  },
+  {
+    "word": "strike",
+    "phonetic": "/straɪk/",
+    "meaning": "đánh đập"
+  },
+  {
+    "word": "studio",
+    "phonetic": "/ˈstuː.di.oʊ/",
+    "meaning": "phòng thu âm"
+  },
+  {
+    "word": "stunning",
+    "phonetic": "/ˈstʌn.ɪŋ/",
+    "meaning": "tuyệt vời, lộng lẫy"
+  },
+  {
+    "word": "submit",
+    "phonetic": "/səbˈmɪt/",
+    "meaning": "xác nhận, gửi đi"
+  },
+  {
+    "word": "subscribe",
+    "phonetic": "/səbˈskraɪb/",
+    "meaning": "đăng ký"
+  },
+  {
+    "word": "subscription",
+    "phonetic": "/səbˈskrɪp.ʃən/",
+    "meaning": "sự đăng ký"
+  },
+  {
+    "word": "subsidiary",
+    "phonetic": "/səbˈsɪd.i.er.i/",
+    "meaning": "sự lệ thuộc"
+  },
+  {
+    "word": "suffocate",
+    "phonetic": "/ˈsʌf.ə.keɪt/",
+    "meaning": "làm ngạt, bóp nghẹt"
+  },
+  {
+    "word": "suggest",
+    "phonetic": "/səˈdʒest/",
+    "meaning": "đề xuất"
+  },
+  {
+    "word": "suggestion",
+    "phonetic": "/səˈdʒes.tʃən/",
+    "meaning": "sự đề xuất"
+  },
+  {
+    "word": "suit",
+    "phonetic": "/suːt/",
+    "meaning": "bộ vest"
+  },
+  {
+    "word": "suitability",
+    "phonetic": "/ˌsuː.t̬əˈbɪl.ə.t̬i/",
+    "meaning": "sự thích hợp"
+  },
+  {
+    "word": "suitable",
+    "phonetic": "/ˈsuː.t̬ə.bəl/",
+    "meaning": "phù hợp , thích hợp"
+  },
+  {
+    "word": "supervise",
+    "phonetic": "/ˈsuː.pɚ.vaɪz/",
+    "meaning": "giám sát"
+  },
+  {
+    "word": "supervision",
+    "phonetic": "/ˌsuː.pɚˈvɪʒ.ən/",
+    "meaning": "sự giám sát"
+  },
+  {
+    "word": "supplier",
+    "phonetic": "/səˈplaɪ.ɚ/",
+    "meaning": "nhà cung cấp"
+  },
+  {
+    "word": "supply",
+    "phonetic": "/səˈplaɪ/",
+    "meaning": "cung cấp"
+  },
+  {
+    "word": "support",
+    "phonetic": "/səˈpɔːrt/",
+    "meaning": "trợ giúp"
+  },
+  {
+    "word": "supporter",
+    "phonetic": "/səˈpɔːr.t̬ɚ/",
+    "meaning": "người trợ giúp"
+  },
+  {
+    "word": "surrounding",
+    "phonetic": "/səˈraʊn.dɪŋ/",
+    "meaning": "bao quanh"
+  },
+  {
+    "word": "suspicious",
+    "phonetic": "/səˈspɪʃ.əs/",
+    "meaning": "khả nghi"
+  },
+  {
+    "word": "switchboard",
+    "phonetic": "/ˈswɪtʃ.bɔːrd/",
+    "meaning": "tổng đài"
+  },
+  {
+    "word": "systematic",
+    "phonetic": "/ˌsɪs.təˈmæt̬.ɪk/",
+    "meaning": "có hệ thống"
+  },
+  {
+    "word": "takeover",
+    "phonetic": "/ˈteɪkˌoʊ.vɚ/",
+    "meaning": "tiếp quản"
+  },
+  {
+    "word": "tax",
+    "phonetic": "/tæks/",
+    "meaning": "thuế"
+  },
+  {
+    "word": "technical",
+    "phonetic": "/ˈtek.nɪ.kəl/",
+    "meaning": "có tính kỹ thuật"
+  },
+  {
+    "word": "technician",
+    "phonetic": "/tekˈnɪʃ.ən/",
+    "meaning": "kỹ thuật viên"
+  },
+  {
+    "word": "temporary",
+    "phonetic": "/ˈtem.pə.rer.i/",
+    "meaning": "tạm thời"
+  },
+  {
+    "word": "tenant",
+    "phonetic": "/ˈten.ənt/",
+    "meaning": "người thuê nhà"
+  },
+  {
+    "word": "terminate",
+    "phonetic": "/ˈtɝː.mə.neɪt/",
+    "meaning": "chấm dứt"
+  },
+  {
+    "word": "terrible",
+    "phonetic": "/ˈter.ə.bəl/",
+    "meaning": "kinh khủng"
+  },
+  {
+    "word": "terrific",
+    "phonetic": "/təˈrɪf.ɪk/",
+    "meaning": "khủng khiếp"
+  },
+  {
+    "word": "theoretical",
+    "phonetic": "/ˌθiː.əˈret̬.kəl/",
+    "meaning": "mang tính lý thuyết"
+  },
+  {
+    "word": "theory",
+    "phonetic": "/ˈθɪr.i/",
+    "meaning": "học thuyết"
+  },
+  {
+    "word": "thorough",
+    "phonetic": "/ˈθɝː.ə/",
+    "meaning": "triệt để"
+  },
+  {
+    "word": "tidy",
+    "phonetic": "/ˈtaɪ.di/",
+    "meaning": "ngăn nắp"
+  },
+  {
+    "word": "tip",
+    "phonetic": "/tɪp/",
+    "meaning": "tiền boa"
+  },
+  {
+    "word": "tour",
+    "phonetic": "/tʊr/",
+    "meaning": "chuyến du lịch"
+  },
+  {
+    "word": "tourism",
+    "phonetic": "/ˈtʊr.ɪ.zəm/",
+    "meaning": "du lịch"
+  },
+  {
+    "word": "tourist",
+    "phonetic": "/ˈtʊr.ɪst/",
+    "meaning": "du khách"
+  },
+  {
+    "word": "towel",
+    "phonetic": "/taʊəl/",
+    "meaning": "cái khăn lau"
+  },
+  {
+    "word": "tower",
+    "phonetic": "/ˈtaʊ.ɚ/",
+    "meaning": "tòa nhà, tháp"
+  },
+  {
+    "word": "track",
+    "phonetic": "/træk/",
+    "meaning": "con đường"
+  },
+  {
+    "word": "trade",
+    "phonetic": "/treɪd/",
+    "meaning": "sự trao đổi (hàng hóa, vật phẩm)"
+  },
+  {
+    "word": "tradition",
+    "phonetic": "/trəˈdɪʃ.ən/",
+    "meaning": "sự truyền thống"
+  },
+  {
+    "word": "traffic",
+    "phonetic": "/ˈtræf.ɪk/",
+    "meaning": "giao thông"
+  },
+  {
+    "word": "training",
+    "phonetic": "/ˈtreɪ.nɪŋ/",
+    "meaning": "sự huấn luyện, sự đào tạo"
+  },
+  {
+    "word": "transfer",
+    "phonetic": "/ˈtræns.fɝː/",
+    "meaning": "chuyển khoản"
+  },
+  {
+    "word": "transform",
+    "phonetic": "/trænsˈfɔːrm/",
+    "meaning": "biến đổi"
+  },
+  {
+    "word": "transformation",
+    "phonetic": "/ˌtræns.fɚˈmeɪ.ʃən/",
+    "meaning": "sự biến đổi"
+  },
+  {
+    "word": "transit",
+    "phonetic": "/ˈtræn.zɪt/",
+    "meaning": "vận chuyển"
+  },
+  {
+    "word": "transportation",
+    "phonetic": "/ˌtræn.spɚˈteɪ.ʃən/",
+    "meaning": "sự vận chuyển"
+  },
+  {
+    "word": "trend",
+    "phonetic": "/trend/",
+    "meaning": "xu hướng"
+  },
+  {
+    "word": "trial",
+    "phonetic": "/traɪəl/",
+    "meaning": "thử nghiệm"
+  },
+  {
+    "word": "triumph",
+    "phonetic": "/ˈtraɪ.əmf/",
+    "meaning": "chiến thắng"
+  },
+  {
+    "word": "trust",
+    "phonetic": "/trʌst/",
+    "meaning": "tin, tin tưởng"
+  },
+  {
+    "word": "turnover",
+    "phonetic": "/ˈtɝːnˌoʊ.vɚ/",
+    "meaning": "doanh số, doanh thu"
+  },
+  {
+    "word": "unconditional",
+    "phonetic": "/ˌʌn.kənˈdɪʃ.ən.əl/",
+    "meaning": "vô điều kiện"
+  },
+  {
+    "word": "understand",
+    "phonetic": "/ˌʌn.dɚˈstænd/",
+    "meaning": "hiểu, nắm bắt được"
+  },
+  {
+    "word": "unfavorable",
+    "phonetic": "/ʌnˈfeɪ.vər.ə.bəl/",
+    "meaning": "không thuận lợi"
+  },
+  {
+    "word": "unfortunately",
+    "phonetic": "/ʌnˈfɔːr.tʃən.ət.li/",
+    "meaning": "không may mắn"
+  },
+  {
+    "word": "uniform",
+    "phonetic": "/ˈjuː.nə.fɔːrm/",
+    "meaning": "đồng phục"
+  },
+  {
+    "word": "unspoiled",
+    "phonetic": "/ʌnˈspɔɪld/",
+    "meaning": "hoang sơ"
+  },
+  {
+    "word": "unwrap",
+    "phonetic": "/ʌnˈræp/",
+    "meaning": "bóc, mở"
+  },
+  {
+    "word": "upcoming",
+    "phonetic": "/ˈʌpˌkʌm.ɪŋ/",
+    "meaning": "sắp xảy ra"
+  },
+  {
+    "word": "update",
+    "phonetic": "/ʌpˈdeɪt/",
+    "meaning": "nâng cấp"
+  },
+  {
+    "word": "upgrade",
+    "phonetic": "/ʌpˈɡreɪd/",
+    "meaning": "nâng cấp"
+  },
+  {
+    "word": "upset v,",
+    "phonetic": "/ʌpˈset/",
+    "meaning": "buồn bã, lo lắng"
+  },
+  {
+    "word": "upstairs",
+    "phonetic": "/ʌpˈsterz/",
+    "meaning": "tầng trên"
+  },
+  {
+    "word": "utility bill",
+    "phonetic": "/juːˈtɪl.ə.t̬i/",
+    "meaning": "/bɪl/ hóa đơn điện nước"
+  },
+  {
+    "word": "vacancy",
+    "phonetic": "/ˈveɪ.kən.si/",
+    "meaning": "vị trí bỏ trống"
+  },
+  {
+    "word": "vacant",
+    "phonetic": "/ˈveɪ.kənt/",
+    "meaning": "bỏ trống"
+  },
+  {
+    "word": "vacation",
+    "phonetic": "/veɪˈkeɪ.ʃən/",
+    "meaning": "kì nghỉ"
+  },
+  {
+    "word": "vaccination",
+    "phonetic": "/ˌvæk.səˈneɪ.ʃən/",
+    "meaning": "tiêm chủng"
+  },
+  {
+    "word": "valuables",
+    "phonetic": "/ˈvæl.jə.bəlz/",
+    "meaning": "vật có giá trị"
+  },
+  {
+    "word": "varied",
+    "phonetic": "/ˈver.ɪd/",
+    "meaning": "đa dạng"
+  },
+  {
+    "word": "variety",
+    "phonetic": "/vəˈraɪ.ə.t̬i/",
+    "meaning": "sự đa dạng"
+  },
+  {
+    "word": "various",
+    "phonetic": "/ˈver.i.əs/",
+    "meaning": "đa dạng"
+  },
+  {
+    "word": "vendor",
+    "phonetic": "/ˈven.dɚ/",
+    "meaning": "người bán"
+  },
+  {
+    "word": "venture",
+    "phonetic": "/ˈven.tʃɚ/",
+    "meaning": "liên doanh"
+  },
+  {
+    "word": "venue",
+    "phonetic": "/ˈven.juː/",
+    "meaning": "địa điểm"
+  },
+  {
+    "word": "virus",
+    "phonetic": "/ˈvaɪ.rəs/",
+    "meaning": "virus"
+  },
+  {
+    "word": "vital",
+    "phonetic": "/ˈvaɪ.t̬əl/",
+    "meaning": "thiết yếu"
+  },
+  {
+    "word": "vivid",
+    "phonetic": "/ˈvɪv.ɪd/",
+    "meaning": "chói sáng, rực rỡ, sống động"
+  },
+  {
+    "word": "wage",
+    "phonetic": "/weɪdʒ/",
+    "meaning": "tiền công"
+  },
+  {
+    "word": "walkway",
+    "phonetic": "/ˈwɑː.kweɪ/",
+    "meaning": "lối đi"
+  },
+  {
+    "word": "warehouse",
+    "phonetic": "/ˈwer.haʊs/",
+    "meaning": "kho hàng"
+  },
+  {
+    "word": "warn",
+    "phonetic": "/wɔːrn/",
+    "meaning": "cảnh báo"
+  },
+  {
+    "word": "warning",
+    "phonetic": "/ˈwɔːr.nɪŋ/",
+    "meaning": "sự cảnh báo"
+  },
+  {
+    "word": "warrant",
+    "phonetic": "/ˈwɔːr.ənt/",
+    "meaning": "bảo đảm"
+  },
+  {
+    "word": "warranty",
+    "phonetic": "/ˈwɔːr.ən.t̬i/",
+    "meaning": "sự bảo đảm"
+  },
+  {
+    "word": "wastage",
+    "phonetic": "/ˈweɪ.stɪdʒ/",
+    "meaning": "lãng phí"
+  },
+  {
+    "word": "waterproof",
+    "phonetic": "/ˈwɑː.t̬ɚ.pruːf/",
+    "meaning": "chống nước"
+  },
+  {
+    "word": "wealth",
+    "phonetic": "/welθ/",
+    "meaning": "giàu có"
+  },
+  {
+    "word": "website",
+    "phonetic": "/ˈweb.saɪt/",
+    "meaning": "trang web"
+  },
+  {
+    "word": "weight",
+    "phonetic": "/weɪt/",
+    "meaning": "cân nặng"
+  },
+  {
+    "word": "welfare",
+    "phonetic": "/ˈwel.fer/",
+    "meaning": "phúc lợi"
+  },
+  {
+    "word": "wholesale",
+    "phonetic": "/ˈhoʊl.seɪl/",
+    "meaning": "bán sỉ, bán buôn"
+  },
+  {
+    "word": "win",
+    "phonetic": "/wɪn/",
+    "meaning": "thắng, chiến thắng"
+  },
+  {
+    "word": "withdraw",
+    "phonetic": "/wɪðˈdrɑː/",
+    "meaning": "rút"
+  },
+  {
+    "word": "withdrawal",
+    "phonetic": "/wɪðˈdrɑː.əl/",
+    "meaning": "sự rút ra (tiền)"
+  },
+  {
+    "word": "workplace",
+    "phonetic": "/ˈwɝːk.pleɪs/",
+    "meaning": "nơi làm việc"
+  },
+  {
+    "word": "workshop",
+    "phonetic": "/ˈwɝːk.ʃɑːp/",
+    "meaning": "hội thảo"
+  },
+  {
+    "word": "worth",
+    "phonetic": "/wɝːθ/",
+    "meaning": "giá trị"
+  },
+  {
+    "word": "worthless",
+    "phonetic": "/ˈwɝːθ.ləs/",
+    "meaning": "không có giá trị, vô giá trị"
+  },
+  {
+    "word": "wrap",
+    "phonetic": "/ræp/",
+    "meaning": "gói, bọc lại"
+  },
+  {
+    "word": "write",
+    "phonetic": "/raɪt/",
+    "meaning": "viết, sáng tác"
+  },
+  {
+    "word": "yearly",
+    "phonetic": "/ˈjɪr.li/",
+    "meaning": "hằng năm"
+  },
+  {
+    "word": "yield",
+    "phonetic": "/jiːld/",
+    "meaning": "sản xuất, cung cấp"
+  },
+  {
+    "word": "youth",
+    "phonetic": "/juːθ/",
+    "meaning": "tuổi trẻ, thời thanh xuân"
+  },
+  {
+    "word": "zero",
+    "phonetic": "/ˈzɪr.oʊ/",
+    "meaning": "số 0"
+  },
+  {
+    "word": "zone",
+    "phonetic": "/zoʊn/",
+    "meaning": "vùng, khu vực"
+  }
+]

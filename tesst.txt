@@ -1,0 +1,156 @@
+import { useState } from "react";
+import "./App.css";
+import vocabData from "./data/vocab.json";
+
+// Hàm xáo trộn mảng
+const shuffleArray = (array) => {
+  return [...array].sort(() => Math.random() - 0.5);
+};
+
+// Hàm lấy ngẫu nhiên n đáp án sai từ TOÀN BỘ từ vựng
+const getRandomWrongOptions = (fullData, count, currentWord) => {
+  const wrongOptions = [];
+  while (wrongOptions.length < count) {
+    const randomIndex = Math.floor(Math.random() * fullData.length);
+    const randomItem = fullData[randomIndex];
+    
+    if (randomItem.word !== currentWord && !wrongOptions.includes(randomItem.meaning)) {
+      wrongOptions.push(randomItem.meaning);
+    }
+  }
+  return wrongOptions;
+};
+
+// Tạo câu hỏi từ danh sách từ đã chọn (selectedData), nhưng dùng fullData để bốc đáp án sai
+const generateQuestions = (selectedData, fullData) => {
+  return selectedData.map((item) => {
+    // Vẫn bốc đáp án sai từ fullData để gây nhiễu tốt hơn
+    const wrongOptions = getRandomWrongOptions(fullData, 3, item.word);
+    const options = shuffleArray([...wrongOptions, item.meaning]);
+
+    return {
+      word: item.word,
+      question: `What does "${item.word}" mean?`,
+      phonetic: item.phonetic,
+      usage: item.usage,
+      options,
+      answer: item.meaning,
+    };
+  });
+};
+
+function App() {
+  // CẤU HÌNH: Số lượng từ muốn học trong 1 phiên (bạn có thể đổi thành 20, 30, 50 tùy ý)
+  const QUIZ_LIMIT = 50;
+
+  const [questionsData, setQuestionsData] = useState(() => {
+    // Xáo trộn toàn bộ 950 từ và chỉ cắt lấy 50 từ ngẫu nhiên
+    const randomVocabSubset = shuffleArray(vocabData).slice(0, QUIZ_LIMIT);
+    // Tạo bộ câu hỏi cho 50 từ này
+    return generateQuestions(randomVocabSubset, vocabData);
+  });
+
+  const [current, setCurrent] = useState(0);
+  const [selected, setSelected] = useState(null);
+  const [score, setScore] = useState(0); 
+
+  const handleAnswer = (option) => {
+    setSelected(option);
+    
+    const isCorrect = option === questionsData[current].answer;
+
+    if (isCorrect) {
+      setScore(score + 1);
+    } else {
+      // Nếu chọn sai, nhân bản câu hỏi và đưa vào danh sách chờ hỏi lại
+      setQuestionsData((prevData) => {
+        const newData = [...prevData];
+        const currentQ = newData[current];
+        
+        const remaining = newData.length - current - 1;
+        let insertIndex = newData.length; 
+        
+        if (remaining > 5) {
+          insertIndex = current + 3 + Math.floor(Math.random() * (remaining - 2));
+        }
+
+        newData.splice(insertIndex, 0, currentQ);
+        return newData;
+      });
+    }
+  };
+
+  const nextQuestion = () => {
+    setSelected(null);
+    setCurrent(current + 1);
+  };
+
+  // Màn hình kết thúc cũng được cập nhật lại câu chữ cho phù hợp với 1 phiên học
+  if (current >= questionsData.length) {
+    return (
+      <div className="container">
+        <h1>Hoàn thành 🎉</h1>
+        <h2>
+          Bạn đã ôn tập xong {questionsData.length} từ trong phiên này!
+        </h2>
+        <p>Số câu trả lời đúng từ lần đầu tiên: {score}</p>
+        <button className="next" onClick={() => window.location.reload()}>
+          Bắt đầu phiên học mới
+        </button>
+      </div>
+    );
+  }
+
+  const currentQuestion = questionsData[current];
+
+  return (
+    <div className="container">
+      <h1>TOEIC Quiz</h1>
+      <p style={{ textAlign: "right", color: "#666", fontSize: "14px" }}>
+        Tiến độ: {current + 1} / {questionsData.length}
+      </p>
+
+      <h2>{currentQuestion.question}</h2>
+      <p><i>{currentQuestion.phonetic}</i></p>
+
+      <div className="options">
+        {currentQuestion.options.map((option, index) => (
+          <button
+            key={index}
+            onClick={() => handleAnswer(option)}
+            className={
+              selected
+                ? option === currentQuestion.answer
+                  ? "correct"
+                  : option === selected
+                  ? "wrong"
+                  : ""
+                : ""
+            }
+            disabled={selected}
+          >
+            {option}
+          </button>
+        ))}
+      </div>
+
+      {selected && (
+        <>
+          <p>
+            <strong>Dùng trong:</strong> {currentQuestion.usage}
+          </p>
+          {!selected === currentQuestion.answer && (
+             <p style={{ color: "orange", fontSize: "14px" }}>
+                <i>(Từ này sẽ được hỏi lại sau nhé!)</i>
+             </p>
+          )}
+          <button className="next" onClick={nextQuestion}>
+            Câu tiếp theo
+          </button>
+        </>
+      )}
+    </div>
+  );
+}
+
+export default App;
