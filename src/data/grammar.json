@@ -1,1 +1,1674 @@
-[]
+[
+  {
+    "question": "The new software is ______ than the old one.",
+    "options": [
+      "fast",
+      "faster",
+      "fastest",
+      "more fast"
+    ],
+    "answer": "faster",
+    "explanation": "Có từ 'than' nên dùng so sánh hơn..."
+  },
+  {
+    "question": "We are looking forward ______ you soon.",
+    "options": [
+      "to see",
+      "seeing",
+      "to seeing",
+      "see"
+    ],
+    "answer": "to seeing",
+    "explanation": "Cấu trúc 'look forward to + V-ing'..."
+  },
+  {
+    "question": "The committee will _______ the proposal before making a final decision.",
+    "options": [
+      "examine",
+      "examination",
+      "examined",
+      "examining"
+    ],
+    "answer": "examine",
+    "explanation": "Sau trợ động từ \"will\" cần một động từ nguyên mẫu (V-bare)."
+  },
+  {
+    "question": "All visitors are required to show _______ identification at the front desk.",
+    "options": [
+      "photo",
+      "photograph",
+      "photography",
+      "photographic"
+    ],
+    "answer": "photo",
+    "explanation": "\"Photo identification\" là cụm danh từ ghép phổ biến: Giấy tờ tùy thân có ảnh."
+  },
+  {
+    "question": "The marketing director spoke _______ about the success of the new product.",
+    "options": [
+      "proud",
+      "proudly",
+      "pride",
+      "prided"
+    ],
+    "answer": "proudly",
+    "explanation": "Cần một trạng từ (adv) để bổ nghĩa cho động từ \"spoke\"."
+  },
+  {
+    "question": "Mr. Harrison is _______ for managing the company's international accounts.",
+    "options": [
+      "responsible",
+      "responsibility",
+      "responsibly",
+      "responsiveness"
+    ],
+    "answer": "responsible",
+    "explanation": "Cấu trúc \"be responsible for\": chịu trách nhiệm về việc gì."
+  },
+  {
+    "question": "The new factory is expected to increase _______ by twenty percent.",
+    "options": [
+      "produce",
+      "productive",
+      "productivity",
+      "productively"
+    ],
+    "answer": "productivity",
+    "explanation": "Sau động từ \"increase\" cần một danh từ làm tân ngữ. Productivity: năng suất."
+  },
+  {
+    "question": "Please read the safety manual _______ before operating the machinery.",
+    "options": [
+      "thorough",
+      "thoroughly",
+      "thoroughness",
+      "throughout"
+    ],
+    "answer": "thoroughly",
+    "explanation": "Cần trạng từ bổ nghĩa cho động từ \"read\". Thoroughly: một cách kỹ lưỡng."
+  },
+  {
+    "question": "Although the weather was bad, the outdoor concert _______ as planned.",
+    "options": [
+      "proceeded",
+      "proceeds",
+      "proceeding",
+      "to proceed"
+    ],
+    "answer": "proceeded",
+    "explanation": "Mệnh đề sau \"although\" cần một động từ đã chia thì (quá khứ đơn để hợp ngữ cảnh)."
+  },
+  {
+    "question": "The HR department will conduct _______ for the administrative position today.",
+    "options": [
+      "interview",
+      "interviews",
+      "interviewed",
+      "interviewing"
+    ],
+    "answer": "interviews",
+    "explanation": "Sau động từ \"conduct\" cần một danh từ. Số nhiều \"interviews\" phù hợp nhất."
+  },
+  {
+    "question": "Ms. Sato was _______ promoted to Senior Manager after only one year.",
+    "options": [
+      "quick",
+      "quickly",
+      "quickness",
+      "quicker"
+    ],
+    "answer": "quickly",
+    "explanation": "Trạng từ đứng giữa trợ động từ (was) và phân từ (promoted) để bổ nghĩa."
+  },
+  {
+    "question": "The company's profits have grown _______ over the last fiscal year.",
+    "options": [
+      "steady",
+      "steadiness",
+      "steadily",
+      "steadier"
+    ],
+    "answer": "steadily",
+    "explanation": "Cần trạng từ bổ nghĩa cho động từ \"grown\". Steadily: đều đặn."
+  },
+  {
+    "question": "The CEO _______ that all employees attend the annual workshop.",
+    "options": [
+      "suggests",
+      "suggestion",
+      "suggestive",
+      "suggestibly"
+    ],
+    "answer": "suggests",
+    "explanation": "Câu cần một động từ chính chia theo chủ ngữ số ít \"The CEO\"."
+  },
+  {
+    "question": "We need to find a more _______ way to store our digital files.",
+    "options": [
+      "secure",
+      "securely",
+      "security",
+      "secured"
+    ],
+    "answer": "secure",
+    "explanation": "Cần một tính từ (adj) để bổ nghĩa cho danh từ \"way\"."
+  },
+  {
+    "question": "The flight was delayed _______ to technical difficulties with the engine.",
+    "options": [
+      "because",
+      "since",
+      "due",
+      "as"
+    ],
+    "answer": "due",
+    "explanation": "Cấu trúc \"due to + Noun\": vì/do cái gì đó."
+  },
+  {
+    "question": "Employees who _______ their targets will receive a year-end bonus.",
+    "options": [
+      "exceed",
+      "excess",
+      "excessive",
+      "exceedingly"
+    ],
+    "answer": "exceed",
+    "explanation": "Sau đại từ quan hệ \"who\" cần một động từ chia theo chủ ngữ \"employees\"."
+  },
+  {
+    "question": "The interior designer chose a _______ color scheme for the lobby.",
+    "options": [
+      "modern",
+      "modernize",
+      "modernity",
+      "modernly"
+    ],
+    "answer": "modern",
+    "explanation": "Cần tính từ bổ nghĩa cho cụm danh từ \"color scheme\"."
+  },
+  {
+    "question": "Please notify the manager if there are any _______ to the schedule.",
+    "options": [
+      "change",
+      "changes",
+      "changed",
+      "changing"
+    ],
+    "answer": "changes",
+    "explanation": "Sau \"any\" trong câu điều kiện thường đi với danh từ số nhiều."
+  },
+  {
+    "question": "The new policy is _______ to take effect starting next Monday.",
+    "options": [
+      "schedule",
+      "schedules",
+      "scheduled",
+      "scheduling"
+    ],
+    "answer": "scheduled",
+    "explanation": "Cấu trúc bị động \"be scheduled to do something\": được sắp xếp để làm gì."
+  },
+  {
+    "question": "Construction of the new bridge was _______ by the local government.",
+    "options": [
+      "finance",
+      "financial",
+      "financed",
+      "financially"
+    ],
+    "answer": "financed",
+    "explanation": "Câu bị động: được tài trợ/cấp vốn bởi (be + V3/ed)."
+  },
+  {
+    "question": "The technical support team is available _______ to assist customers.",
+    "options": [
+      "continuous",
+      "continuity",
+      "continuously",
+      "continued"
+    ],
+    "answer": "continuously",
+    "explanation": "Trạng từ bổ nghĩa cho tính từ \"available\" hoặc động từ \"assist\"."
+  },
+  {
+    "question": "Mr. Tan is the most _______ candidate for the position of lead engineer.",
+    "options": [
+      "suit",
+      "suitable",
+      "suitably",
+      "suitability"
+    ],
+    "answer": "suitable",
+    "explanation": "Cấu trúc so sánh nhất \"the most + adj\"."
+  },
+  {
+    "question": "The research team _______ that the new drug is highly effective.",
+    "options": [
+      "conclusion",
+      "concludes",
+      "conclusive",
+      "conclusively"
+    ],
+    "answer": "concludes",
+    "explanation": "Câu cần một động từ chính chia theo chủ ngữ số ít \"The research team\"."
+  },
+  {
+    "question": "Please provide a _______ explanation for the budget increase.",
+    "options": [
+      "detail",
+      "detailed",
+      "detailing",
+      "details"
+    ],
+    "answer": "detailed",
+    "explanation": "\"Detailed explanation\": bản giải thích chi tiết (phân từ làm tính từ)."
+  },
+  {
+    "question": "The presentation was _______ well-received by the potential investors.",
+    "options": [
+      "extreme",
+      "extremely",
+      "extremity",
+      "extremeness"
+    ],
+    "answer": "extremely",
+    "explanation": "Trạng từ chỉ mức độ bổ nghĩa cho tính từ \"well-received\"."
+  },
+  {
+    "question": "All employees are _______ to attend the safety training session.",
+    "options": [
+      "require",
+      "requires",
+      "requiring",
+      "required"
+    ],
+    "answer": "required",
+    "explanation": "Cấu trúc \"be required to do something\": bị bắt buộc/được yêu cầu làm gì."
+  },
+  {
+    "question": "The company will _______ a new line of organic products next month.",
+    "options": [
+      "introduce",
+      "introduction",
+      "introductory",
+      "introduced"
+    ],
+    "answer": "introduce",
+    "explanation": "Sau \"will\" cần động từ nguyên mẫu."
+  },
+  {
+    "question": "The financial report shows a _______ improvement in our cash flow.",
+    "options": [
+      "remark",
+      "remarkable",
+      "remarkably",
+      "remarked"
+    ],
+    "answer": "remarkable",
+    "explanation": "Cần tính từ bổ nghĩa cho danh từ \"improvement\"."
+  },
+  {
+    "question": "The technician _______ repaired the server within an hour.",
+    "options": [
+      "successful",
+      "successfully",
+      "success",
+      "succeed"
+    ],
+    "answer": "successfully",
+    "explanation": "Trạng từ bổ nghĩa cho động từ \"repaired\"."
+  },
+  {
+    "question": "We must take _______ measures to protect our intellectual property.",
+    "options": [
+      "prevent",
+      "prevention",
+      "preventive",
+      "preventively"
+    ],
+    "answer": "preventive",
+    "explanation": "\"Preventive measures\": các biện pháp phòng ngừa (cụm danh từ)."
+  },
+  {
+    "question": "The distribution center is located _______ near the major highway.",
+    "options": [
+      "convenience",
+      "convenient",
+      "conveniently",
+      "convenience"
+    ],
+    "answer": "conveniently",
+    "explanation": "Trạng từ bổ nghĩa cho \"located\"."
+  },
+  {
+    "question": "Please _______ your receipt to the cashier to receive a refund.",
+    "options": [
+      "present",
+      "presentation",
+      "presently",
+      "presentable"
+    ],
+    "answer": "present",
+    "explanation": "Câu mệnh lệnh bắt đầu bằng động từ nguyên mẫu."
+  },
+  {
+    "question": "The manager was _______ about the team's ability to meet the deadline.",
+    "options": [
+      "optimism",
+      "optimistic",
+      "optimistically",
+      "optimize"
+    ],
+    "answer": "optimistic",
+    "explanation": "Sau tobe \"was\" cần một tính từ chỉ thái độ/tính chất."
+  },
+  {
+    "question": "Our company's _______ is based on providing high-quality service.",
+    "options": [
+      "successful",
+      "success",
+      "succeed",
+      "successfully"
+    ],
+    "answer": "success",
+    "explanation": "Sau tính từ sở hữu \"company's\" cần một danh từ làm chủ ngữ."
+  },
+  {
+    "question": "The new software allows users to edit photos _______.",
+    "options": [
+      "easy",
+      "easily",
+      "ease",
+      "easiness"
+    ],
+    "answer": "easily",
+    "explanation": "Trạng từ bổ nghĩa cho động từ \"edit\"."
+  },
+  {
+    "question": "All lab workers must wear protective clothing to ensure their _______.",
+    "options": [
+      "safe",
+      "safely",
+      "safety",
+      "safer"
+    ],
+    "answer": "safety",
+    "explanation": "Sau tính từ sở hữu \"their\" cần một danh từ."
+  },
+  {
+    "question": "The hotel offers a _______ breakfast for all its guests.",
+    "options": [
+      "compliment",
+      "complimentary",
+      "complimenting",
+      "compliments"
+    ],
+    "answer": "complimentary",
+    "explanation": "\"Complimentary breakfast\": bữa sáng miễn phí (tính từ)."
+  },
+  {
+    "question": "Mr. Wu will be _______ for overseeing the merger process.",
+    "options": [
+      "response",
+      "responsible",
+      "responsibly",
+      "responsibility"
+    ],
+    "answer": "responsible",
+    "explanation": "Cấu trúc \"be responsible for\": chịu trách nhiệm cho."
+  },
+  {
+    "question": "The sales team _______ the quarterly goals ahead of schedule.",
+    "options": [
+      "achieved",
+      "achievement",
+      "achievable",
+      "achieving"
+    ],
+    "answer": "achieved",
+    "explanation": "Câu cần một động từ chính để hoàn thiện ý nghĩa (thì quá khứ đơn)."
+  },
+  {
+    "question": "The information in the brochure is _______ and should not be shared.",
+    "options": [
+      "confident",
+      "confidence",
+      "confidential",
+      "confidently"
+    ],
+    "answer": "confidential",
+    "explanation": "\"Confidential\": bảo mật (tính từ mô tả danh từ information)."
+  },
+  {
+    "question": "Please _______ that you have signed the contract on every page.",
+    "options": [
+      "verify",
+      "verification",
+      "verifiable",
+      "verifiably"
+    ],
+    "answer": "verify",
+    "explanation": "Câu mệnh lệnh: Hãy xác minh/kiểm tra rằng... (V-bare)."
+  },
+  {
+    "question": "The renovations will _______ improve the appearance of the building.",
+    "options": [
+      "sign",
+      "signal",
+      "significantly",
+      "significance"
+    ],
+    "answer": "significantly",
+    "explanation": "Trạng từ đứng giữa trợ động từ và động từ chính để bổ nghĩa."
+  },
+  {
+    "question": "The legal department is reviewing the _______ of the agreement.",
+    "options": [
+      "term",
+      "terms",
+      "terminal",
+      "terminate"
+    ],
+    "answer": "terms",
+    "explanation": "\"Terms of the agreement\": các điều khoản của hợp đồng."
+  },
+  {
+    "question": "The applicant has _______ experience in international marketing.",
+    "options": [
+      "extend",
+      "extension",
+      "extensive",
+      "extensively"
+    ],
+    "answer": "extensive",
+    "explanation": "\"Extensive experience\": kinh nghiệm sâu rộng/dày dạn."
+  },
+  {
+    "question": "The CEO _______ thanked the staff for their dedication.",
+    "options": [
+      "personal",
+      "personally",
+      "personality",
+      "personalize"
+    ],
+    "answer": "personally",
+    "explanation": "Trạng từ bổ nghĩa cho hành động \"thanked\". Personally: đích thân."
+  },
+  {
+    "question": "The machine will stop _______ if it detects any abnormalities.",
+    "options": [
+      "automatic",
+      "automatically",
+      "automation",
+      "automatize"
+    ],
+    "answer": "automatically",
+    "explanation": "Trạng từ bổ nghĩa cho động từ \"stop\"."
+  },
+  {
+    "question": "The new regulations will have a _______ effect on the industry.",
+    "options": [
+      "direct",
+      "directly",
+      "direction",
+      "directive"
+    ],
+    "answer": "direct",
+    "explanation": "Cần tính từ bổ nghĩa cho danh từ \"effect\"."
+  },
+  {
+    "question": "Ms. Lopez _______ the budget for the upcoming project yesterday.",
+    "options": [
+      "approved",
+      "approves",
+      "approving",
+      "approval"
+    ],
+    "answer": "approved",
+    "explanation": "Dấu hiệu \"yesterday\" chia thì quá khứ đơn."
+  },
+  {
+    "question": "The office manager ordered _______ supplies for the next month.",
+    "options": [
+      "addition",
+      "additional",
+      "additionally",
+      "additive"
+    ],
+    "answer": "additional",
+    "explanation": "\"Additional supplies\": văn phòng phẩm bổ sung (tính từ)."
+  },
+  {
+    "question": "Customers are _______ to read the terms and conditions carefully.",
+    "options": [
+      "advise",
+      "advised",
+      "advising",
+      "advice"
+    ],
+    "answer": "advised",
+    "explanation": "Cấu trúc bị động \"be advised to do something\": được khuyên nên làm gì."
+  },
+  {
+    "question": "The presentation provided a _______ overview of the company's history.",
+    "options": [
+      "brief",
+      "briefly",
+      "brevity",
+      "briefed"
+    ],
+    "answer": "brief",
+    "explanation": "Cần tính từ bổ nghĩa cho danh từ \"overview\"."
+  },
+  {
+    "question": "The workshop was _______ because the speaker was stuck in traffic.",
+    "options": [
+      "delay",
+      "delayed",
+      "delaying",
+      "delays"
+    ],
+    "answer": "delayed",
+    "explanation": "Câu bị động (be + V3/ed): Buổi hội thảo bị trì hoãn."
+  },
+  {
+    "question": "The report _______ by the consultant contains several helpful suggestions.",
+    "options": [
+      "prepare",
+      "prepared",
+      "preparing",
+      "prepares"
+    ],
+    "answer": "prepared",
+    "explanation": "Mệnh đề quan hệ rút gọn dạng bị động (The report which was prepared...)."
+  },
+  {
+    "question": "Under no circumstances _______ employees leave the building without signing out.",
+    "options": [
+      "should",
+      "will",
+      "must",
+      "shall"
+    ],
+    "answer": "should",
+    "explanation": "Cấu trúc đảo ngữ với cụm từ phủ định (Under no circumstances + trợ động từ + S + V)."
+  },
+  {
+    "question": "The supervisor asked that everyone _______ at the meeting on time.",
+    "options": [
+      "be",
+      "is",
+      "are",
+      "was"
+    ],
+    "answer": "be",
+    "explanation": "Cấu trúc giả định (Subjunctive) sau các động từ như \"ask, suggest, recommend\" + that + S + V-bare."
+  },
+  {
+    "question": "Not only did he finish the project early, _______ he also saved the company money.",
+    "options": [
+      "but",
+      "and",
+      "so",
+      "or"
+    ],
+    "answer": "but",
+    "explanation": "Cấu trúc tương quan \"Not only... but (also)...\"."
+  },
+  {
+    "question": "If the shipment _______ yesterday, we would have been able to finish the order.",
+    "options": [
+      "arrived",
+      "arrives",
+      "had arrived",
+      "has arrived"
+    ],
+    "answer": "had arrived",
+    "explanation": "Câu điều kiện loại 3 (vế If chia quá khứ hoàn thành) diễn tả sự việc trái với quá khứ."
+  },
+  {
+    "question": "The CEO is considering _______ a new branch in the downtown area.",
+    "options": [
+      "opening",
+      "to open",
+      "open",
+      "opened"
+    ],
+    "answer": "opening",
+    "explanation": "Sau động từ \"consider\" thường đi kèm với V-ing (cân nhắc việc gì)."
+  },
+  {
+    "question": "Having _______ the market research, the team began developing the product.",
+    "options": [
+      "complete",
+      "completed",
+      "completing",
+      "completion"
+    ],
+    "answer": "completed",
+    "explanation": "Phân từ hoàn thành (Having + V3/ed) nhấn mạnh hành động đã xong trước khi hành động khác bắt đầu."
+  },
+  {
+    "question": "The merger was canceled _______ the two companies could not agree on terms.",
+    "options": [
+      "due to",
+      "because of",
+      "because",
+      "despite"
+    ],
+    "answer": "because",
+    "explanation": "\"Because\" đi với một mệnh đề (S+V). Due to/Because of đi với cụm danh từ."
+  },
+  {
+    "question": "Ms. Kim is the manager _______ department achieved the highest sales last year.",
+    "options": [
+      "who",
+      "whom",
+      "which",
+      "whose"
+    ],
+    "answer": "whose",
+    "explanation": "Đại từ quan hệ sở hữu \"whose\" đứng trước danh từ \"department\"."
+  },
+  {
+    "question": "It is _______ that all staff members wear their identification badges.",
+    "options": [
+      "imperative",
+      "imperatively",
+      "imperativeness",
+      "imperate"
+    ],
+    "answer": "imperative",
+    "explanation": "\"It is imperative that...\" (Bắt buộc rằng...). Đây là cấu trúc giả định."
+  },
+  {
+    "question": "The new software update makes _______ for users to collaborate in real-time.",
+    "options": [
+      "it possible",
+      "possible",
+      "possibility",
+      "possibly"
+    ],
+    "answer": "it possible",
+    "explanation": "Cấu trúc \"make it + adj + for someone to do something\"."
+  },
+  {
+    "question": "Hardly had the meeting started _______ the fire alarm went off.",
+    "options": [
+      "than",
+      "when",
+      "then",
+      "so"
+    ],
+    "answer": "when",
+    "explanation": "Cấu trúc đảo ngữ: \"Hardly + had + S + V3/ed... when...\"."
+  },
+  {
+    "question": "Please handle the fragile items with _______ care during the relocation.",
+    "options": [
+      "extreme",
+      "extremely",
+      "extremity",
+      "extremeness"
+    ],
+    "answer": "extreme",
+    "explanation": "Cần tính từ bổ nghĩa cho danh từ \"care\". Extreme: cực kỳ/hết sức."
+  },
+  {
+    "question": "The technician is _______ repairing the server to restore access.",
+    "options": [
+      "current",
+      "currently",
+      "currency",
+      "currencies"
+    ],
+    "answer": "currently",
+    "explanation": "Trạng từ bổ nghĩa cho động từ đang ở dạng tiếp diễn \"repairing\"."
+  },
+  {
+    "question": "You should familiarize _______ with the safety procedures in the manual.",
+    "options": [
+      "you",
+      "your",
+      "yourself",
+      "yours"
+    ],
+    "answer": "yourself",
+    "explanation": "Động từ phản thân \"familiarize oneself with\": làm quen với cái gì."
+  },
+  {
+    "question": "The marketing campaign was _______ successful than we had anticipated.",
+    "options": [
+      "far more",
+      "very more",
+      "so more",
+      "much most"
+    ],
+    "answer": "far more",
+    "explanation": "Dùng \"far\" hoặc \"much\" để nhấn mạnh cho cấu trúc so sánh hơn."
+  },
+  {
+    "question": "We will have the contract _______ by our legal team before signing.",
+    "options": [
+      "review",
+      "reviewed",
+      "reviewing",
+      "to review"
+    ],
+    "answer": "reviewed",
+    "explanation": "Cấu trúc nhờ vả dạng bị động: \"have something + V3/ed\"."
+  },
+  {
+    "question": "Small businesses are _______ to apply for the government grant.",
+    "options": [
+      "eligible",
+      "eligibility",
+      "eligibly",
+      "election"
+    ],
+    "answer": "eligible",
+    "explanation": "\"Be eligible to do/for something\": đủ điều kiện làm gì."
+  },
+  {
+    "question": "The manager _______ the employees to voice their concerns during the meeting.",
+    "options": [
+      "encouraged",
+      "encouragement",
+      "encouraging",
+      "encourages"
+    ],
+    "answer": "encouraged",
+    "explanation": "Động từ chính chia thì quá khứ đơn (hoặc hiện tại nếu là sự thật hiển nhiên)."
+  },
+  {
+    "question": "The price of the materials has increased _______ since last quarter.",
+    "options": [
+      "sharp",
+      "sharpen",
+      "sharply",
+      "sharpness"
+    ],
+    "answer": "sharply",
+    "explanation": "Trạng từ bổ nghĩa cho động từ \"increased\". Sharply: một cách mạnh mẽ."
+  },
+  {
+    "question": "There is no _______ that the project will be completed by the deadline.",
+    "options": [
+      "guarantee",
+      "guaranteed",
+      "guaranteeing",
+      "guarantees"
+    ],
+    "answer": "guarantee",
+    "explanation": "Sau \"no\" cần một danh từ. Guarantee: sự đảm bảo/cam kết."
+  },
+  {
+    "question": "The director wants to know _______ the shipment will arrive.",
+    "options": [
+      "what",
+      "where",
+      "when",
+      "which"
+    ],
+    "answer": "when",
+    "explanation": "Trạng từ quan hệ chỉ thời gian phù hợp với ngữ cảnh \"shipment arrive\"."
+  },
+  {
+    "question": "The internal audit was conducted to ensure _______ with federal regulations.",
+    "options": [
+      "comply",
+      "compliance",
+      "compliant",
+      "compliantly"
+    ],
+    "answer": "compliance",
+    "explanation": "\"Ensure compliance with\": đảm bảo sự tuân thủ với (cụm danh từ)."
+  },
+  {
+    "question": "Although it was raining, the workers _______ the construction work.",
+    "options": [
+      "continued",
+      "continues",
+      "continuing",
+      "to continue"
+    ],
+    "answer": "continued",
+    "explanation": "Động từ chính chia quá khứ để hợp logic với \"was raining\"."
+  },
+  {
+    "question": "The keynote speaker is a _______ expert in the field of renewable energy.",
+    "options": [
+      "renown",
+      "renowned",
+      "renowning",
+      "renowns"
+    ],
+    "answer": "renowned",
+    "explanation": "\"Renowned\" là tính từ có nghĩa là nổi tiếng, trứ danh."
+  },
+  {
+    "question": "The office renovation will be finished _______ two weeks.",
+    "options": [
+      "at",
+      "on",
+      "within",
+      "by"
+    ],
+    "answer": "within",
+    "explanation": "\"Within + khoảng thời gian\": trong vòng bao lâu nữa."
+  },
+  {
+    "question": "Please provide a _______ list of all the equipment needed for the event.",
+    "options": [
+      "comprehensive",
+      "comprehensively",
+      "comprehension",
+      "comprehend"
+    ],
+    "answer": "comprehensive",
+    "explanation": "Cần tính từ bổ nghĩa cho \"list\". Comprehensive: toàn diện/đầy đủ."
+  },
+  {
+    "question": "The HR manager is looking for someone _______ in graphic design.",
+    "options": [
+      "skill",
+      "skilled",
+      "skillful",
+      "skillfully"
+    ],
+    "answer": "skilled",
+    "explanation": "\"Skilled in/at\": có kỹ năng/thành thạo trong việc gì."
+  },
+  {
+    "question": "We are _______ to inform you that your application has been accepted.",
+    "options": [
+      "please",
+      "pleased",
+      "pleasing",
+      "pleasure"
+    ],
+    "answer": "pleased",
+    "explanation": "\"Be pleased to do something\": rất vui/hài lòng khi làm gì."
+  },
+  {
+    "question": "The supply room is _______ located next to the main elevator.",
+    "options": [
+      "convenience",
+      "convenient",
+      "conveniently",
+      "convenience"
+    ],
+    "answer": "conveniently",
+    "explanation": "Trạng từ bổ nghĩa cho phân từ/tính từ \"located\"."
+  },
+  {
+    "question": "The budget was _______ to allow for additional marketing expenses.",
+    "options": [
+      "revise",
+      "revised",
+      "revising",
+      "revision"
+    ],
+    "answer": "revised",
+    "explanation": "Câu bị động (be + V3/ed): Ngân sách đã được sửa đổi."
+  },
+  {
+    "question": "Every employee must _______ the safety training before starting work.",
+    "options": [
+      "attend",
+      "attendance",
+      "attendant",
+      "attending"
+    ],
+    "answer": "attend",
+    "explanation": "Sau động từ khuyết thiếu \"must\" là động từ nguyên mẫu."
+  },
+  {
+    "question": "The company decided to _______ the launch of the new product.",
+    "options": [
+      "postpone",
+      "postponement",
+      "postponed",
+      "postponing"
+    ],
+    "answer": "postpone",
+    "explanation": "Cấu trúc \"decide to do something\": quyết định làm gì."
+  },
+  {
+    "question": "Ms. White is known for her _______ and professional attitude.",
+    "options": [
+      "punctual",
+      "punctuality",
+      "punctually",
+      "punctuate"
+    ],
+    "answer": "punctuality",
+    "explanation": "Sau tính từ sở hữu \"her\" cần một danh từ. Punctuality: sự đúng giờ."
+  },
+  {
+    "question": "The air quality in the office has _______ improved since the new filters were installed.",
+    "options": [
+      "sign",
+      "signal",
+      "significantly",
+      "significance"
+    ],
+    "answer": "significantly",
+    "explanation": "Trạng từ bổ nghĩa cho động từ \"improved\"."
+  },
+  {
+    "question": "The survey results were _______ than the marketing team expected.",
+    "options": [
+      "good",
+      "better",
+      "best",
+      "well"
+    ],
+    "answer": "better",
+    "explanation": "Cấu trúc so sánh hơn với tính từ bất quy tắc \"good -> better\"."
+  },
+  {
+    "question": "We need to _______ our efforts to meet the sales target this month.",
+    "options": [
+      "double",
+      "doubled",
+      "doubling",
+      "doubles"
+    ],
+    "answer": "double",
+    "explanation": "Cấu trúc \"need to do something\". \"Double\" ở đây đóng vai trò động từ: gấp đôi."
+  },
+  {
+    "question": "All requests for leave must be _______ by the department head.",
+    "options": [
+      "approve",
+      "approved",
+      "approving",
+      "approval"
+    ],
+    "answer": "approved",
+    "explanation": "Câu bị động với động từ khuyết thiếu (must be + V3/ed)."
+  },
+  {
+    "question": "The presentation was _______ enough to hold everyone's attention.",
+    "options": [
+      "interest",
+      "interested",
+      "interesting",
+      "interestingly"
+    ],
+    "answer": "interesting",
+    "explanation": "Dùng tính từ đuôi -ing để chỉ tính chất của vật (the presentation)."
+  },
+  {
+    "question": "The software allows for _______ communication between different departments.",
+    "options": [
+      "seamless",
+      "seamlessly",
+      "seamlessness",
+      "seamed"
+    ],
+    "answer": "seamless",
+    "explanation": "Cần tính từ bổ nghĩa cho danh từ \"communication\". Seamless: liền mạch."
+  },
+  {
+    "question": "_______ the high cost of the project, the board decided to proceed.",
+    "options": [
+      "Despite",
+      "Although",
+      "Because",
+      "Since"
+    ],
+    "answer": "Despite",
+    "explanation": "\"Despite + cụm danh từ\": Mặc dù (chỉ sự đối lập)."
+  },
+  {
+    "question": "The new employee is _______ to learn and very hardworking.",
+    "options": [
+      "eager",
+      "eagerly",
+      "eagerness",
+      "eagers"
+    ],
+    "answer": "eager",
+    "explanation": "\"Be eager to do something\": háo hức làm gì."
+  },
+  {
+    "question": "Please fill out the form as _______ as possible to avoid mistakes.",
+    "options": [
+      "accurate",
+      "accurately",
+      "accuracy",
+      "accurateness"
+    ],
+    "answer": "accurately",
+    "explanation": "Cấu trúc \"as + adv + as possible\" để bổ nghĩa cho động từ \"fill out\"."
+  },
+  {
+    "question": "The CEO will address the staff _______ following the press release.",
+    "options": [
+      "short",
+      "shortly",
+      "shortness",
+      "shorten"
+    ],
+    "answer": "shortly",
+    "explanation": "\"Shortly after/following\": ngay sau khi (trạng từ chỉ thời gian)."
+  },
+  {
+    "question": "The security guard _______ checked the badges of everyone entering the building.",
+    "options": [
+      "routine",
+      "routinely",
+      "routineness",
+      "routinize"
+    ],
+    "answer": "routinely",
+    "explanation": "Trạng từ bổ nghĩa cho động từ \"checked\". Routinely: một cách thường xuyên."
+  },
+  {
+    "question": "We are currently looking for a _______ to the vacancy in the accounting office.",
+    "options": [
+      "replace",
+      "replacement",
+      "replaceable",
+      "replacing"
+    ],
+    "answer": "replacement",
+    "explanation": "Cần một danh từ sau mạo từ \"a\". Replacement: người/vật thay thế."
+  },
+  {
+    "question": "The manager was _______ with the progress made on the annual report.",
+    "options": [
+      "satisfy",
+      "satisfied",
+      "satisfying",
+      "satisfaction"
+    ],
+    "answer": "satisfied",
+    "explanation": "\"Be satisfied with\": hài lòng với cái gì."
+  },
+  {
+    "question": "Applicants should possess _______ communication skills and a positive attitude.",
+    "options": [
+      "excel",
+      "excellence",
+      "excellent",
+      "excellently"
+    ],
+    "answer": "excellent",
+    "explanation": "Cần tính từ bổ nghĩa cho danh từ \"skills\"."
+  },
+  {
+    "question": "The company provides _______ training for all new staff members.",
+    "options": [
+      "extend",
+      "extension",
+      "extensive",
+      "extensively"
+    ],
+    "answer": "extensive",
+    "explanation": "\"Extensive training\": đào tạo chuyên sâu/rộng rãi."
+  },
+  {
+    "question": "Please notify us _______ if you are unable to attend the workshop.",
+    "options": [
+      "prompt",
+      "promptly",
+      "promptness",
+      "prompting"
+    ],
+    "answer": "promptly",
+    "explanation": "Trạng từ bổ nghĩa cho động từ \"notify\". Promptly: nhanh chóng/ngay lập tức."
+  },
+  {
+    "question": "The new air conditioning system is very _______ and saves us money.",
+    "options": [
+      "economic",
+      "economical",
+      "economy",
+      "economics"
+    ],
+    "answer": "economical",
+    "explanation": "Phân biệt: Economical (tiết kiệm), Economic (thuộc về kinh tế)."
+  },
+  {
+    "question": "Rising fuel prices will _______ affect the cost of shipping.",
+    "options": [
+      "adverse",
+      "adversity",
+      "adversely",
+      "adverseness"
+    ],
+    "answer": "adversely",
+    "explanation": "Trạng từ bổ nghĩa cho động từ \"affect\". Adversely affect: ảnh hưởng bất lợi."
+  },
+  {
+    "question": "The board of directors _______ to increase the budget for research.",
+    "options": [
+      "has decided",
+      "have decided",
+      "deciding",
+      "to decide"
+    ],
+    "answer": "has decided",
+    "explanation": "Chủ ngữ \"The board\" (ban/hội đồng) là danh từ tập hợp, thường đi với động từ số ít."
+  },
+  {
+    "question": "Ms. Watson _______ the office before I could give her the message.",
+    "options": [
+      "leaves",
+      "left",
+      "had left",
+      "leaving"
+    ],
+    "answer": "had left",
+    "explanation": "Hành động xảy ra trước một hành động khác trong quá khứ (dùng Quá khứ hoàn thành)."
+  },
+  {
+    "question": "The marketing team needs to _______ the results of the latest survey.",
+    "options": [
+      "analyze",
+      "analysis",
+      "analyst",
+      "analytical"
+    ],
+    "answer": "analyze",
+    "explanation": "Sau \"need to\" cần động từ nguyên mẫu (V-bare)."
+  },
+  {
+    "question": "High interest rates _______ the number of people buying new homes.",
+    "options": [
+      "raise",
+      "rise",
+      "rose",
+      "risen"
+    ],
+    "answer": "raise",
+    "explanation": "Phân biệt: Raise (ngoại động từ - cần tân ngữ), Rise (nội động từ - không có tân ngữ)."
+  },
+  {
+    "question": "The company is looking for an _______ assistant for the CEO.",
+    "options": [
+      "executive",
+      "execution",
+      "executable",
+      "execute"
+    ],
+    "answer": "executive",
+    "explanation": "\"Executive assistant\": trợ lý điều hành (cụm danh từ cố định)."
+  },
+  {
+    "question": "Please handle the equipment _______ to prevent any malfunctions.",
+    "options": [
+      "proper",
+      "properly",
+      "propriety",
+      "property"
+    ],
+    "answer": "properly",
+    "explanation": "Trạng từ bổ nghĩa cho động từ \"handle\"."
+  },
+  {
+    "question": "Mr. Kim was _______ to the New York branch last month.",
+    "options": [
+      "transfer",
+      "transferred",
+      "transferring",
+      "transfers"
+    ],
+    "answer": "transferred",
+    "explanation": "Câu bị động (be + V3/ed) dựa vào ngữ cảnh \"được thuyên chuyển\"."
+  },
+  {
+    "question": "The building manager is responsible for the _______ of the facility.",
+    "options": [
+      "maintain",
+      "maintenance",
+      "maintained",
+      "maintains"
+    ],
+    "answer": "maintenance",
+    "explanation": "Sau mạo từ \"the\" và giới từ \"of\" cần một danh từ."
+  },
+  {
+    "question": "We cannot accept the application _______ it is submitted by the deadline.",
+    "options": [
+      "if",
+      "unless",
+      "despite",
+      "because"
+    ],
+    "answer": "unless",
+    "explanation": "Unless (trừ khi). Hợp nghĩa: Không chấp nhận trừ khi nộp đúng hạn."
+  },
+  {
+    "question": "The technical manual provides _______ instructions on how to use the software.",
+    "options": [
+      "specify",
+      "specific",
+      "specifically",
+      "specification"
+    ],
+    "answer": "specific",
+    "explanation": "Cần tính từ bổ nghĩa cho danh từ \"instructions\"."
+  },
+  {
+    "question": "The CEO is _______ about the company's growth in the next quarter.",
+    "options": [
+      "optimism",
+      "optimistic",
+      "optimistically",
+      "optimize"
+    ],
+    "answer": "optimistic",
+    "explanation": "Cấu trúc \"be optimistic about\": lạc quan về điều gì."
+  },
+  {
+    "question": "There are _______ reasons why the project was delayed.",
+    "options": [
+      "much",
+      "several",
+      "little",
+      "any"
+    ],
+    "answer": "several",
+    "explanation": "\"Several + danh từ số nhiều\". Much/Little dùng cho danh từ không đếm được."
+  },
+  {
+    "question": "The newly _______ manager has already made several changes to the team.",
+    "options": [
+      "appoint",
+      "appointed",
+      "appointment",
+      "appointing"
+    ],
+    "answer": "appointed",
+    "explanation": "\"The newly appointed manager\": người quản lý mới được bổ nhiệm (phân từ làm tính từ)."
+  },
+  {
+    "question": "Please _______ the document to the email before sending it.",
+    "options": [
+      "attach",
+      "attachment",
+      "attached",
+      "attaching"
+    ],
+    "answer": "attach",
+    "explanation": "Câu mệnh lệnh bắt đầu bằng động từ nguyên mẫu."
+  },
+  {
+    "question": "The presentation was _______ than the one we saw last week.",
+    "options": [
+      "informative",
+      "more informative",
+      "most informative",
+      "informatively"
+    ],
+    "answer": "more informative",
+    "explanation": "So sánh hơn với tính từ dài (more + adj + than)."
+  },
+  {
+    "question": "You should _______ a professional if you have any legal questions.",
+    "options": [
+      "consult",
+      "consultation",
+      "consultant",
+      "consulting"
+    ],
+    "answer": "consult",
+    "explanation": "\"Consult someone\": tham khảo ý kiến/tư vấn ai đó."
+  },
+  {
+    "question": "The company's _______ has doubled since the new product launch.",
+    "options": [
+      "revenue",
+      "revenues",
+      "revenue's",
+      "revenuing"
+    ],
+    "answer": "revenue",
+    "explanation": "Revenue: doanh thu (danh từ không đếm được/tổng thể)."
+  },
+  {
+    "question": "It is important to _______ all the files regularly to avoid data loss.",
+    "options": [
+      "backup",
+      "back up",
+      "backing up",
+      "backed up"
+    ],
+    "answer": "back up",
+    "explanation": "\"Back up\" (động từ): sao lưu. \"Backup\" (danh từ/tính từ): bản sao lưu."
+  },
+  {
+    "question": "The supervisor _______ the team for completing the project on time.",
+    "options": [
+      "complimented",
+      "complement",
+      "complimentary",
+      "complimenting"
+    ],
+    "answer": "complimented",
+    "explanation": "Compliment (khen ngợi). Phân biệt với Complement (bổ sung)."
+  },
+  {
+    "question": "The workshop will be _______ in the main conference room.",
+    "options": [
+      "held",
+      "hold",
+      "holding",
+      "holds"
+    ],
+    "answer": "held",
+    "explanation": "Câu bị động (be + V3/ed): buổi hội thảo được tổ chức."
+  },
+  {
+    "question": "Ms. Lopez is the person _______ you should contact for more information.",
+    "options": [
+      "who",
+      "whom",
+      "which",
+      "whose"
+    ],
+    "answer": "whom",
+    "explanation": "\"Whom\" làm tân ngữ thay thế cho người (Ms. Lopez)."
+  },
+  {
+    "question": "The prices of the products are _______ to change without notice.",
+    "options": [
+      "subject",
+      "subjective",
+      "subjection",
+      "subjected"
+    ],
+    "answer": "subject",
+    "explanation": "Cụm từ \"be subject to change\": có thể thay đổi/tùy thuộc vào."
+  },
+  {
+    "question": "Our team worked _______ to meet the tight deadline.",
+    "options": [
+      "hard",
+      "hardly",
+      "hardness",
+      "hardest"
+    ],
+    "answer": "hard",
+    "explanation": "Hard (trạng từ): chăm chỉ. Hardly (trạng từ): hầu như không."
+  },
+  {
+    "question": "The renovation of the office will _______ take three weeks.",
+    "options": [
+      "approximate",
+      "approximately",
+      "approximation",
+      "approximated"
+    ],
+    "answer": "approximately",
+    "explanation": "Trạng từ bổ nghĩa cho động từ/số lượng (khoảng chừng)."
+  },
+  {
+    "question": "Employees are _______ to participate in the charity event.",
+    "options": [
+      "courage",
+      "encouraged",
+      "encouraging",
+      "encouragement"
+    ],
+    "answer": "encouraged",
+    "explanation": "Cấu trúc bị động \"be encouraged to do something\"."
+  },
+  {
+    "question": "The legal team is reviewing the _______ of the new contract.",
+    "options": [
+      "valid",
+      "validity",
+      "validate",
+      "validly"
+    ],
+    "answer": "validity",
+    "explanation": "Sau \"the\" và trước \"of\" cần danh từ. Validity: tính hiệu lực."
+  },
+  {
+    "question": "The manager _______ that the new policy would be beneficial.",
+    "options": [
+      "belief",
+      "believe",
+      "believed",
+      "believable"
+    ],
+    "answer": "believed",
+    "explanation": "Động từ chính chia thì quá khứ đơn để thuật lại ý kiến."
+  },
+  {
+    "question": "Please make sure the data is _______ before generating the report.",
+    "options": [
+      "accuracy",
+      "accurate",
+      "accurately",
+      "accurateness"
+    ],
+    "answer": "accurate",
+    "explanation": "Sau tobe \"is\" cần một tính từ."
+  },
+  {
+    "question": "The shipment was delayed due to _______ weather conditions.",
+    "options": [
+      "severe",
+      "severely",
+      "severity",
+      "severeness"
+    ],
+    "answer": "severe",
+    "explanation": "Tính từ bổ nghĩa cho cụm danh từ \"weather conditions\"."
+  },
+  {
+    "question": "We need to _______ the problem as soon as possible.",
+    "options": [
+      "address",
+      "addressable",
+      "addressing",
+      "addressed"
+    ],
+    "answer": "address",
+    "explanation": "\"Address a problem/issue\": giải quyết một vấn đề."
+  },
+  {
+    "question": "The sales figures for this month are _______ higher than last month.",
+    "options": [
+      "consider",
+      "considerable",
+      "considerably",
+      "consideration"
+    ],
+    "answer": "considerably",
+    "explanation": "Trạng từ bổ nghĩa cho tính từ so sánh hơn \"higher\"."
+  },
+  {
+    "question": "The CEO is _______ to attend the international trade fair.",
+    "options": [
+      "expect",
+      "expected",
+      "expecting",
+      "expectation"
+    ],
+    "answer": "expected",
+    "explanation": "Cấu trúc bị động \"be expected to do something\": được kỳ vọng làm gì."
+  },
+  {
+    "question": "The application form must be _______ signed by the applicant.",
+    "options": [
+      "person",
+      "personal",
+      "personally",
+      "personality"
+    ],
+    "answer": "personally",
+    "explanation": "Trạng từ bổ nghĩa cho phân từ \"signed\"."
+  },
+  {
+    "question": "There is _______ enough space in the warehouse for the new stock.",
+    "options": [
+      "hard",
+      "hardly",
+      "hardness",
+      "hardest"
+    ],
+    "answer": "hardly",
+    "explanation": "\"Hardly enough\": hầu như không đủ."
+  },
+  {
+    "question": "The company provides a _______ environment for its employees.",
+    "options": [
+      "support",
+      "supportive",
+      "supportively",
+      "supporting"
+    ],
+    "answer": "supportive",
+    "explanation": "Tính từ bổ nghĩa cho danh từ \"environment\"."
+  },
+  {
+    "question": "The software update will _______ the performance of the system.",
+    "options": [
+      "enhance",
+      "enhancement",
+      "enhanced",
+      "enhancing"
+    ],
+    "answer": "enhance",
+    "explanation": "Sau \"will\" là động từ nguyên mẫu. Enhance: nâng cao/cải thiện."
+  },
+  {
+    "question": "Customers can return the product _______ 30 days of purchase.",
+    "options": [
+      "within",
+      "during",
+      "between",
+      "among"
+    ],
+    "answer": "within",
+    "explanation": "\"Within + khoảng thời gian\": trong vòng bao lâu."
+  },
+  {
+    "question": "The report was _______ written and easy to understand.",
+    "options": [
+      "clear",
+      "clearly",
+      "clarity",
+      "cleared"
+    ],
+    "answer": "clearly",
+    "explanation": "Trạng từ bổ nghĩa cho phân từ \"written\"."
+  },
+  {
+    "question": "Mr. Chen is _______ for the overall success of the project.",
+    "options": [
+      "account",
+      "accountable",
+      "accountability",
+      "accountably"
+    ],
+    "answer": "accountable",
+    "explanation": "\"Be accountable for\" = \"Be responsible for\": chịu trách nhiệm cho."
+  },
+  {
+    "question": "The new regulations will go into _______ starting next month.",
+    "options": [
+      "affect",
+      "effect",
+      "effective",
+      "effectively"
+    ],
+    "answer": "effect",
+    "explanation": "Cụm từ \"go into effect\": có hiệu lực."
+  },
+  {
+    "question": "The meeting was _______ because many participants were unavailable.",
+    "options": [
+      "cancel",
+      "canceled",
+      "canceling",
+      "cancellation"
+    ],
+    "answer": "canceled",
+    "explanation": "Câu bị động (be + V3/ed)."
+  },
+  {
+    "question": "We have _______ information regarding the new project.",
+    "options": [
+      "limit",
+      "limited",
+      "limiting",
+      "limitation"
+    ],
+    "answer": "limited",
+    "explanation": "\"Limited information\": thông tin hạn chế (phân từ làm tính từ)."
+  },
+  {
+    "question": "The manager _______ the employees to work together more effectively.",
+    "options": [
+      "urged",
+      "urge",
+      "urging",
+      "urges"
+    ],
+    "answer": "urged",
+    "explanation": "\"Urge someone to do something\": thúc giục ai làm gì."
+  },
+  {
+    "question": "The document is _______ confidential and should not be shared.",
+    "options": [
+      "high",
+      "highly",
+      "height",
+      "higher"
+    ],
+    "answer": "highly",
+    "explanation": "Trạng từ \"highly\" (rất/cao) bổ nghĩa cho tính từ \"confidential\"."
+  },
+  {
+    "question": "Please _______ that all windows are closed before you leave.",
+    "options": [
+      "sure",
+      "ensure",
+      "surely",
+      "ensurance"
+    ],
+    "answer": "ensure",
+    "explanation": "\"Ensure that...\": đảm bảo rằng (động từ mệnh lệnh)."
+  },
+  {
+    "question": "The results of the test will be available _______ Friday.",
+    "options": [
+      "at",
+      "in",
+      "on",
+      "by"
+    ],
+    "answer": "by",
+    "explanation": "\"By + thứ\": trước hoặc vào ngày đó (hạn chót)."
+  },
+  {
+    "question": "The company is _______ a new marketing strategy to boost sales.",
+    "options": [
+      "implement",
+      "implements",
+      "implementing",
+      "implemented"
+    ],
+    "answer": "implementing",
+    "explanation": "Thì hiện tại tiếp diễn (be + V-ing). Implement: triển khai."
+  },
+  {
+    "question": "The service at the hotel was _______ excellent.",
+    "options": [
+      "absolute",
+      "absolutely",
+      "absolution",
+      "absolutist"
+    ],
+    "answer": "absolutely",
+    "explanation": "Trạng từ chỉ mức độ bổ nghĩa cho tính từ \"excellent\"."
+  }
+]
