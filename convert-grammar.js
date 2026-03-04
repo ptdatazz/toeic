@@ -1,6 +1,11 @@
-const xlsx = require('xlsx');
-const fs = require('fs');
-const path = require('path');
+import xlsx from 'xlsx';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+// Cấu hình lại đường dẫn cho chuẩn ES Module
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Đường dẫn tới file Excel và JSON
 const excelFilePath = path.join(__dirname, 'grammar.xlsx'); 
@@ -15,9 +20,6 @@ try {
 
   // Đọc dữ liệu, bỏ qua các ô trống rác
   const rawData = xlsx.utils.sheet_to_json(worksheet, { defval: "" });
-
-  // In thử dòng đầu tiên ra màn hình để kiểm tra xem nó đọc đúng tên cột chưa
-  // console.log("Dòng đầu tiên đọc được:", rawData[0]);
 
   const formattedData = rawData.map(row => {
     // Tự động nhận diện tên cột: Dù bạn dùng 'question' hay 'Câu hỏi' nó đều hiểu
