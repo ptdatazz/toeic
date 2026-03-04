@@ -271,13 +271,17 @@ function VocabQuiz({ onBack, updateGlobal }) {
 }
 
 // --- COMPONENT: ÔN NGỮ PHÁP ---
+// --- COMPONENT: ÔN NGỮ PHÁP ---
 function GrammarQuiz({ onBack, updateGlobal }) {
+  const GRAMMAR_LIMIT = 10; // 👈 BẠN CÓ THỂ ĐỔI SỐ 10 THÀNH 15, 20 TÙY Ý Ở ĐÂY
   const REQUIRED_STREAK = 3; 
 
   const [questionsData] = useState(() => {
     const saved = localStorage.getItem("toeic_grammar_q_temp");
     if (saved) return JSON.parse(saved);
-    return shuffleArray(grammarData).slice(0, 10);
+    
+    // Xáo trộn ngẫu nhiên toàn bộ kho dữ liệu và rút ra đúng 10 câu
+    return shuffleArray(grammarData).slice(0, GRAMMAR_LIMIT);
   });
 
   const [current, setCurrent] = useState(() => parseInt(localStorage.getItem("toeic_grammar_c_temp")) || 0);
@@ -323,7 +327,7 @@ function GrammarQuiz({ onBack, updateGlobal }) {
     return (
       <div className="container" style={{ textAlign: "center" }}>
         <h1>Hoàn thành 🎉</h1>
-        <h2>Bạn đã luyện xong phần Ngữ pháp!</h2>
+        <h2>Bạn đã hoàn thành {questionsData.length} câu Ngữ pháp!</h2>
         <div style={{ margin: "20px auto", padding: "20px", backgroundColor: "#f9f9f9", borderRadius: "12px", maxWidth: "300px", boxShadow: "0 4px 6px rgba(0,0,0,0.05)", border: "1px solid #eee" }}>
           <p style={{ fontSize: "18px", margin: "10px 0", color: "#2196F3", fontWeight: "bold" }}>✅ Trả lời đúng: {score}</p>
           <p style={{ fontSize: "18px", margin: "10px 0", color: "#F44336", fontWeight: "bold" }}>❌ Trả lời sai: {wrongCount}</p>
