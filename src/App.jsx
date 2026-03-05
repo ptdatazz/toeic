@@ -31,10 +31,10 @@ const playSound = (type) => {
 // --- HÀM ĐỌC TỪ VỰNG (TEXT-TO-SPEECH) ---
 const speakWord = (text) => {
   if ('speechSynthesis' in window) {
-    window.speechSynthesis.cancel(); 
+    window.speechSynthesis.cancel(); // Dừng câu trước nếu đang đọc dở
     const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'en-US'; 
-    utterance.rate = 0.85;    
+    utterance.lang = 'en-US'; // Giọng Anh-Mỹ
+    utterance.rate = 0.85;    // Đọc chậm rãi, rõ ràng
     window.speechSynthesis.speak(utterance);
   } else {
     alert("Trình duyệt của bạn không hỗ trợ tính năng đọc âm thanh!");
@@ -412,7 +412,7 @@ function VocabQuiz({ onBack, updateGlobal, settings }) {
       {/* THANH THÔNG TIN: QUAY LẠI - CỤM LOA & ĐỒNG HỒ - TIẾN ĐỘ (ĐÃ TỐI GIẢN) */}
       <div style={{ position: "relative", display: "flex", justifyContent: "center", alignItems: "center", width: "100%", height: "40px", marginBottom: "15px" }}>
         
-        {/* Nút Quay Lại (Cố định góc trái) - Bỏ chữ "Quay lại" */}
+        {/* Nút Quay Lại */}
         <button 
           onClick={() => { 
             if(streak >= REQUIRED_STREAK) {
@@ -441,7 +441,7 @@ function VocabQuiz({ onBack, updateGlobal, settings }) {
           </span>
         </div>
 
-        {/* Tiến độ (Cố định góc phải) - Bỏ chữ "Tiến độ" */}
+        {/* Tiến độ */}
         <span style={{ position: "absolute", right: "0", color: "#666", fontSize: "14px", whiteSpace: "nowrap", fontWeight: "bold" }}>
           {current + 1}/{questionsData.length}
         </span>
@@ -886,13 +886,19 @@ function App() {
           <input type="range" min="0" max="1" step="0.05" value={volume} onChange={(e) => setVolume(parseFloat(e.target.value))} title="Điều chỉnh âm lượng" style={{ width: "60px", cursor: "pointer", marginLeft: "4px" }} />
         </div>
 
-        {/* BÊN PHẢI: Tài khoản */}
+        {/* BÊN PHẢI: Tài khoản (NÚT THOÁT ĐÃ ĐƯỢC CHUYỂN THÀNH ICON) */}
         <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
           <span style={{ fontSize: "12px", color: "#333", fontWeight: "bold", maxWidth: "80px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }} title={currentUser.email}>
             👤 {currentUser.email}
           </span>
-          <button onClick={handleLogout} style={{ padding: "5px 10px", fontSize: "11px", backgroundColor: "#ff4d4f", color: "white", border: "none", borderRadius: "5px", cursor: "pointer", fontWeight: "bold", transition: "0.2s", boxShadow: "0 2px 4px rgba(0,0,0,0.1)" }}>
-            Thoát
+          <button 
+            onClick={handleLogout} 
+            title="Đăng xuất"
+            style={{ width: "32px", height: "32px", borderRadius: "50%", backgroundColor: "#ff4d4f", color: "white", border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "14px", transition: "0.2s", boxShadow: "0 2px 4px rgba(0,0,0,0.1)", padding: 0 }}
+            onMouseOver={(e) => e.currentTarget.style.transform = "scale(1.1)"}
+            onMouseOut={(e) => e.currentTarget.style.transform = "scale(1)"}
+          >
+            🚪
           </button>
         </div>
       </div>
