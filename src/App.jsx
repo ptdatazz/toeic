@@ -15,16 +15,29 @@ import { doc, getDoc, setDoc } from "firebase/firestore";
 // --- ÂM THANH HIỆU ỨNG (SFX) ---
 const playSound = (type) => {
   let url = "";
-  if (type === "correct") url = "https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3"; // Ting ting
-  else if (type === "wrong") url = "https://assets.mixkit.co/active_storage/sfx/2003/2003-preview.mp3"; // Buzzer sai
-  else if (type === "timeout") url = "https://assets.mixkit.co/active_storage/sfx/2570/2570-preview.mp3"; // Hết giờ
-  else if (type === "finish") url = "https://assets.mixkit.co/active_storage/sfx/2018/2018-preview.mp3"; // Tada chiến thắng
-  else if (type === "click") url = "https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3"; // Tiếng click nhẹ
+  if (type === "correct") url = "https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3"; 
+  else if (type === "wrong") url = "https://assets.mixkit.co/active_storage/sfx/2003/2003-preview.mp3"; 
+  else if (type === "timeout") url = "https://assets.mixkit.co/active_storage/sfx/2570/2570-preview.mp3"; 
+  else if (type === "finish") url = "https://assets.mixkit.co/active_storage/sfx/2018/2018-preview.mp3"; 
+  else if (type === "click") url = "https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3"; 
   
   if (url) {
     const audio = new Audio(url);
     audio.volume = type === "finish" ? 0.6 : (type === "click" ? 0.5 : 1.0);
     audio.play().catch(e => console.log("Trình duyệt chặn âm thanh:", e));
+  }
+};
+
+// --- HÀM ĐỌC TỪ VỰNG (TEXT-TO-SPEECH) ---
+const speakWord = (text) => {
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.cancel(); 
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'en-US'; 
+    utterance.rate = 0.85;    
+    window.speechSynthesis.speak(utterance);
+  } else {
+    alert("Trình duyệt của bạn không hỗ trợ tính năng đọc âm thanh!");
   }
 };
 
@@ -155,7 +168,6 @@ function AuthScreen() {
 
 // --- COMPONENT: CÀI ĐẶT TỪ VỰNG TRƯỚC KHI VÀO HỌC ---
 function VocabSettings({ onStart, onBack }) {
-  // Lấy cài đặt cũ từ bộ nhớ, nếu không có thì dùng mặc định
   const [settings, setSettings] = useState(() => {
     const saved = localStorage.getItem("toeic_vocab_settings");
     return saved ? JSON.parse(saved) : { quizLimit: 30, timePerQuestion: 10, requiredStreak: 3 };
@@ -174,7 +186,6 @@ function VocabSettings({ onStart, onBack }) {
 
       <div style={{ backgroundColor: "#f9f9f9", padding: "20px", borderRadius: "12px", border: "1px solid #eee", textAlign: "left", marginBottom: "25px" }}>
         
-        {/* Số câu hỏi */}
         <div style={{ marginBottom: "20px" }}>
           <label style={{ fontWeight: "bold", color: "#333", display: "block", marginBottom: "8px" }}>
             📚 Số lượng từ vựng mỗi lượt: <span style={{ color: "#4CAF50" }}>{settings.quizLimit} câu</span>
@@ -190,7 +201,6 @@ function VocabSettings({ onStart, onBack }) {
           </div>
         </div>
 
-        {/* Thời gian */}
         <div style={{ marginBottom: "20px" }}>
           <label style={{ fontWeight: "bold", color: "#333", display: "block", marginBottom: "8px" }}>
             ⏱️ Thời gian chọn đáp án: <span style={{ color: "#FF9800" }}>{settings.timePerQuestion} giây</span>
@@ -206,10 +216,9 @@ function VocabSettings({ onStart, onBack }) {
           </div>
         </div>
 
-        {/* Streak mở khóa */}
         <div>
           <label style={{ fontWeight: "bold", color: "#333", display: "block", marginBottom: "8px" }}>
-            🔓 Số câu đúng liên tiếp để mở khóa nút "Quay lại": <span style={{ color: "#2196F3" }}>{settings.requiredStreak} câu</span>
+            🔓 Số câu đúng liên tiếp để mở khóa nút Quay lại: <span style={{ color: "#2196F3" }}>{settings.requiredStreak} câu</span>
           </label>
           <input 
             type="range" min="1" max="10" step="1" 
@@ -237,7 +246,6 @@ function VocabSettings({ onStart, onBack }) {
 
 // --- COMPONENT: ÔN TỪ VỰNG CHÍNH ---
 function VocabQuiz({ onBack, updateGlobal, settings }) {
-  // Sử dụng cấu hình từ người dùng thay vì fix cứng
   const QUIZ_LIMIT = settings.quizLimit;
   const TIME_PER_QUESTION = settings.timePerQuestion;
   const REQUIRED_STREAK = settings.requiredStreak; 
@@ -369,7 +377,6 @@ function VocabQuiz({ onBack, updateGlobal, settings }) {
     setCurrent(nextIdx);
     setTimeLeft(TIME_PER_QUESTION); 
     
-    // Phát âm thanh khi hoàn thành toàn bộ
     if (nextIdx >= questionsData.length) playSound("finish");
   };
 
@@ -402,7 +409,10 @@ function VocabQuiz({ onBack, updateGlobal, settings }) {
 
   return (
     <div className="container">
-      <div style={{ position: "relative", display: "flex", justifyContent: "center", alignItems: "center", width: "100%", height: "35px", marginBottom: "10px" }}>
+      {/* THANH THÔNG TIN: QUAY LẠI - CỤM LOA & ĐỒNG HỒ - TIẾN ĐỘ (ĐÃ TỐI GIẢN) */}
+      <div style={{ position: "relative", display: "flex", justifyContent: "center", alignItems: "center", width: "100%", height: "40px", marginBottom: "15px" }}>
+        
+        {/* Nút Quay Lại (Cố định góc trái) - Bỏ chữ "Quay lại" */}
         <button 
           onClick={() => { 
             if(streak >= REQUIRED_STREAK) {
@@ -410,20 +420,40 @@ function VocabQuiz({ onBack, updateGlobal, settings }) {
               clearStorageAndExit();
             }
           }} 
-          style={{ position: "absolute", left: "0", width: "max-content", padding: "4px 10px", fontSize: "12px", cursor: streak >= REQUIRED_STREAK ? "pointer" : "not-allowed", backgroundColor: streak >= REQUIRED_STREAK ? "#e8f5e9" : "#f0f0f0", color: streak >= REQUIRED_STREAK ? "#2e7d32" : "#999", border: "1px solid #ccc", borderRadius: "5px", whiteSpace: "nowrap" }}
+          style={{ position: "absolute", left: "0", width: "max-content", padding: "5px 8px", fontSize: "14px", cursor: streak >= REQUIRED_STREAK ? "pointer" : "not-allowed", backgroundColor: streak >= REQUIRED_STREAK ? "#e8f5e9" : "#f0f0f0", color: streak >= REQUIRED_STREAK ? "#2e7d32" : "#999", border: "1px solid #ccc", borderRadius: "5px", whiteSpace: "nowrap", fontWeight: "bold", zIndex: 10 }}
         >
-          ⬅ Quay lại {streak >= REQUIRED_STREAK ? "🔓" : `🔒 (${streak}/${REQUIRED_STREAK})`}
+          ⬅ {streak >= REQUIRED_STREAK ? "🔓" : `🔒 ${streak}/${REQUIRED_STREAK}`}
         </button>
-        <span style={{ fontWeight: "bold", color: timeLeft <= 3 ? "red" : "#333", whiteSpace: "nowrap" }}>⏱️ {timeLeft}s</span>
-        <span style={{ position: "absolute", right: "0", color: "#666", fontSize: "14px", whiteSpace: "nowrap" }}>Tiến độ: {current + 1}/{questionsData.length}</span>
+
+        {/* Cụm Giữa: Nút Loa Đọc Từ Vựng & Đồng Hồ */}
+        <div style={{ display: "flex", alignItems: "center", gap: "8px", backgroundColor: "#fff", padding: "4px 10px", borderRadius: "20px", boxShadow: "0 2px 5px rgba(0,0,0,0.05)", border: "1px solid #eee", zIndex: 5 }}>
+          <button 
+            onClick={() => speakWord(currentQ.word)}
+            title="Nghe phát âm (Chuẩn Anh-Mỹ)"
+            style={{ width: "32px", height: "32px", borderRadius: "50%", border: "1px solid #bbdefb", backgroundColor: "#e3f2fd", color: "#1976D2", cursor: "pointer", display: "flex", justifyContent: "center", alignItems: "center", fontSize: "16px", padding: 0, margin: 0, transition: "0.2s" }}
+            onMouseOver={(e) => e.currentTarget.style.transform = "scale(1.1)"}
+            onMouseOut={(e) => e.currentTarget.style.transform = "scale(1)"}
+          >
+            🔊
+          </button>
+          <span style={{ fontWeight: "bold", color: timeLeft <= 3 ? "#f44336" : "#333", fontSize: "16px", minWidth: "40px", textAlign: "left" }}>
+            ⏱️ {timeLeft}s
+          </span>
+        </div>
+
+        {/* Tiến độ (Cố định góc phải) - Bỏ chữ "Tiến độ" */}
+        <span style={{ position: "absolute", right: "0", color: "#666", fontSize: "14px", whiteSpace: "nowrap", fontWeight: "bold" }}>
+          {current + 1}/{questionsData.length}
+        </span>
+
       </div>
 
       <div style={{ width: "100%", height: "8px", backgroundColor: "#e0e0e0", borderRadius: "4px", overflow: "hidden", marginBottom: "20px" }}>
         <div style={{ height: "100%", width: `${timePercentage}%`, backgroundColor: timeLeft <= 3 ? "#f44336" : "#4caf50", transition: "width 1s linear" }} />
       </div>
 
-      <h2>What does "{currentQ.word}" mean?</h2>
-      <p><strong><i>{currentQ.phonetic}</i></strong></p>
+      <h2 style={{ fontSize: "24px", color: "#2c3e50" }}>What does "{currentQ.word}" mean?</h2>
+      <p style={{ fontSize: "18px", color: "#555", marginBottom: "20px" }}><strong><i>{currentQ.phonetic}</i></strong></p>
 
       <div className="options">
         {currentQ.options.map((option, idx) => (
@@ -435,11 +465,15 @@ function VocabQuiz({ onBack, updateGlobal, settings }) {
 
       {selected && (
         <>
-          <div style={{ marginTop: "15px", padding: "10px", borderRadius: "8px", backgroundColor: selected === currentQ.answer ? "#e8f5e9" : "#ffebee", color: selected === currentQ.answer ? "#2e7d32" : "#c62828", fontWeight: "bold", fontSize: "18px" }}>
-            {selected === "TIMEOUT" ? "⏰ Hết giờ!" : feedbackMsg}
+          <div style={{ marginTop: "15px", padding: "12px", borderRadius: "8px", backgroundColor: selected === currentQ.answer ? "#e8f5e9" : "#ffebee", color: selected === currentQ.answer ? "#2e7d32" : "#c62828", fontWeight: "bold", fontSize: "18px", boxShadow: "inset 0 2px 4px rgba(0,0,0,0.05)" }}>
+            {selected === "TIMEOUT" ? "⏰ Hết giờ mất rồi!" : feedbackMsg}
           </div>
-          <p style={{ marginTop: "15px", fontSize: "16px" }}><strong>Dùng trong:</strong> {currentQ.usage}</p>
-          <button className="next" onClick={nextQuestion}>Câu tiếp theo</button>
+          <div style={{ marginTop: "15px", padding: "15px", backgroundColor: "#f8f9fa", borderRadius: "8px", borderLeft: "4px solid #90caf9", textAlign: "left" }}>
+            <p style={{ margin: 0, fontSize: "16px", color: "#333", lineHeight: "1.5" }}><strong>📌 Ngữ cảnh dùng:</strong> <br/>{currentQ.usage}</p>
+          </div>
+          <button className="next" onClick={nextQuestion} style={{ marginTop: "20px", width: "100%", padding: "15px", fontSize: "18px", fontWeight: "bold", borderRadius: "10px", boxShadow: "0 4px 6px rgba(0,0,0,0.1)" }}>
+            Câu tiếp theo ➡️
+          </button>
         </>
       )}
     </div>
@@ -562,7 +596,6 @@ function GrammarQuiz({ onBack, updateGlobal }) {
     const nextIdx = current + 1;
     setCurrent(nextIdx);
     
-    // Phát âm thanh khi hoàn thành toàn bộ
     if (nextIdx >= questionsData.length) playSound("finish");
   };
 
@@ -594,7 +627,10 @@ function GrammarQuiz({ onBack, updateGlobal }) {
 
   return (
     <div className="container">
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%", marginBottom: "20px", height: "35px" }}>
+      {/* THANH THÔNG TIN QUAY LẠI - NGỮ PHÁP (TỐI GIẢN) */}
+      <div style={{ position: "relative", display: "flex", justifyContent: "center", alignItems: "center", width: "100%", height: "40px", marginBottom: "20px" }}>
+        
+        {/* Nút Quay Lại */}
         <button 
           onClick={() => { 
             if(streak >= REQUIRED_STREAK) {
@@ -602,11 +638,16 @@ function GrammarQuiz({ onBack, updateGlobal }) {
               clearStorageAndExit();
             }
           }} 
-          style={{ width: "max-content", padding: "4px 10px", fontSize: "12px", cursor: streak >= REQUIRED_STREAK ? "pointer" : "not-allowed", backgroundColor: streak >= REQUIRED_STREAK ? "#e8f5e9" : "#f0f0f0", color: streak >= REQUIRED_STREAK ? "#2e7d32" : "#999", border: "1px solid #ccc", borderRadius: "5px", whiteSpace: "nowrap" }}
+          style={{ position: "absolute", left: "0", width: "max-content", padding: "5px 8px", fontSize: "14px", cursor: streak >= REQUIRED_STREAK ? "pointer" : "not-allowed", backgroundColor: streak >= REQUIRED_STREAK ? "#e8f5e9" : "#f0f0f0", color: streak >= REQUIRED_STREAK ? "#2e7d32" : "#999", border: "1px solid #ccc", borderRadius: "5px", whiteSpace: "nowrap", fontWeight: "bold", zIndex: 10 }}
         >
-          ⬅ Quay lại {streak >= REQUIRED_STREAK ? "🔓" : `🔒 (${streak}/${REQUIRED_STREAK})`}
+          ⬅ {streak >= REQUIRED_STREAK ? "🔓" : `🔒 ${streak}/${REQUIRED_STREAK}`}
         </button>
-        <span style={{ color: "#666", fontSize: "14px", whiteSpace: "nowrap" }}>Câu: {current + 1} / {questionsData.length}</span>
+
+        {/* Tiến độ */}
+        <span style={{ position: "absolute", right: "0", color: "#666", fontSize: "14px", whiteSpace: "nowrap", fontWeight: "bold" }}>
+          {current + 1}/{questionsData.length}
+        </span>
+
       </div>
 
       <h2 style={{ lineHeight: "1.5" }}>{currentQ.question}</h2>
@@ -630,7 +671,7 @@ function GrammarQuiz({ onBack, updateGlobal }) {
   );
 }
 
-// --- ĐƯA BỘ MÁY NHẠC RA NGOÀI ĐỂ SIÊU ỔN ĐỊNH ---
+// --- ĐƯA BỘ MÁY NHẠC RA NGOÀI ---
 const BGM_PLAYLIST = [
   "/music/1.mp3",       
   "/music/2.mp3",    
@@ -650,8 +691,6 @@ globalBgm.loop = false;
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [authChecking, setAuthChecking] = useState(true);
-  
-  // Nâng cấp: Các screen giờ có thêm 'vocab_settings'
   const [screen, setScreen] = useState("home"); 
   const [vocabSettings, setVocabSettings] = useState(null);
   
@@ -665,7 +704,7 @@ function App() {
       if (!globalBgm.src || !globalBgm.src.includes(BGM_PLAYLIST[currentTrackIndex])) {
         globalBgm.src = BGM_PLAYLIST[currentTrackIndex];
       }
-      globalBgm.play().catch(e => console.log("Bị trình duyệt chặn nhẹ:", e));
+      globalBgm.play().catch(e => console.log("Trình duyệt đợi tương tác: ", e));
     }
   };
 
@@ -684,6 +723,21 @@ function App() {
   useEffect(() => {
     globalBgm.volume = volume;
   }, [volume]);
+
+  // Mắt thần tự động dừng nhạc khi thu nhỏ web
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        globalBgm.pause();
+      } else {
+        if (isMusicPlaying && screen === "home" && !showTutorial && currentUser) {
+          globalBgm.play().catch(e => console.log("Lỗi bật lại nhạc: ", e));
+        }
+      }
+    };
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () => document.removeEventListener("visibilitychange", handleVisibilityChange);
+  }, [isMusicPlaying, screen, showTutorial, currentUser]);
 
   useEffect(() => {
     const handleEnded = () => {
@@ -713,7 +767,7 @@ function App() {
     if (isMusicPlaying) {
       globalBgm.pause();
     } else {
-      globalBgm.play().catch(() => alert("Trình duyệt đang chặn. Bạn hãy click chuột ra màn hình 1 phát rồi bật lại nhé!"));
+      globalBgm.play().catch(() => alert("Vui lòng click nhẹ vào màn hình 1 cái rồi bật lại nhạc nhé!"));
     }
     setIsMusicPlaying(!isMusicPlaying);
   };
@@ -780,15 +834,14 @@ function App() {
     );
   }
 
-  // --- HỆ THỐNG ĐIỀU HƯỚNG MỚI (Routing) ---
   if (screen === "vocab_settings") {
     return (
       <div onContextMenu={disableRightClick}>
         <VocabSettings 
           onBack={() => setScreen("home")} 
           onStart={(settingsConfig) => {
-            setVocabSettings(settingsConfig); // Lưu lại thông số đã chọn
-            setScreen("vocab"); // Mở màn hình học thật
+            setVocabSettings(settingsConfig); 
+            setScreen("vocab"); 
           }} 
         />
       </div>
@@ -820,7 +873,7 @@ function App() {
       )}
 
       {/* THANH THÔNG TIN BÊN TRÊN */}
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px", padding: "8px 12px", backgroundColor: "#f0f8ff", borderRadius: "8px", border: "1px solid #cce7ff" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px", padding: "8px 12px", backgroundColor: "#f0f8ff", borderRadius: "8px", border: "1px solid #cce7ff", flexWrap: "wrap", gap: "10px" }}>
         
         {/* BÊN TRÁI: Nhóm nút Nhạc */}
         <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
@@ -849,7 +902,7 @@ function App() {
 
       {/* DASHBOARD THỐNG KÊ */}
       <div style={{ display: "flex", justifyContent: "center", gap: "15px", marginBottom: "35px", flexWrap: "wrap" }}>
-        <div style={{ flex: "1", backgroundColor: "#f9f9f9", padding: "15px", borderRadius: "12px", minWidth: "150px", boxShadow: "0 2px 8px rgba(0,0,0,0.06)", border: "1px solid #eee", textAlign: "left" }}>
+        <div style={{ flex: "1", backgroundColor: "#f9f9f9", padding: "15px", borderRadius: "12px", minWidth: "140px", boxShadow: "0 2px 8px rgba(0,0,0,0.06)", border: "1px solid #eee", textAlign: "left" }}>
           <h3 style={{ margin: "0 0 10px 0", color: "#4CAF50", fontSize: "16px" }}>📚 Từ vựng</h3>
           <p style={{ margin: "4px 0", fontSize: "14px", color: "#555" }}>Đã học: <strong>{vocabTotal}</strong> câu</p>
           <p style={{ margin: "4px 0", fontSize: "14px", color: "#555" }}>Đúng: <strong style={{color: "#4CAF50"}}>{vocabCorrect}</strong> | Sai: <strong style={{color: "#F44336"}}>{vocabTotal - vocabCorrect}</strong></p>
@@ -859,7 +912,7 @@ function App() {
           <p style={{ margin: "6px 0 0 0", fontSize: "13px", fontWeight: "bold", textAlign: "right", color: vocabRatio >= 50 ? "#4CAF50" : "#FF9800" }}>Tỷ lệ: {vocabRatio}%</p>
         </div>
 
-        <div style={{ flex: "1", backgroundColor: "#f9f9f9", padding: "15px", borderRadius: "12px", minWidth: "150px", boxShadow: "0 2px 8px rgba(0,0,0,0.06)", border: "1px solid #eee", textAlign: "left" }}>
+        <div style={{ flex: "1", backgroundColor: "#f9f9f9", padding: "15px", borderRadius: "12px", minWidth: "140px", boxShadow: "0 2px 8px rgba(0,0,0,0.06)", border: "1px solid #eee", textAlign: "left" }}>
           <h3 style={{ margin: "0 0 10px 0", color: "#2196F3", fontSize: "16px" }}>📝 Ngữ pháp</h3>
           <p style={{ margin: "4px 0", fontSize: "14px", color: "#555" }}>Đã học: <strong>{grammarTotal}</strong> câu</p>
           <p style={{ margin: "4px 0", fontSize: "14px", color: "#555" }}>Đúng: <strong style={{color: "#2196F3"}}>{grammarCorrect}</strong> | Sai: <strong style={{color: "#F44336"}}>{grammarTotal - grammarCorrect}</strong></p>
@@ -870,16 +923,12 @@ function App() {
         </div>
       </div>
 
-      {/* MENU CHÍNH - Cập nhật logic khi bấm nút Từ Vựng */}
+      {/* MENU CHÍNH */}
       <div style={{ display: "flex", flexDirection: "column", gap: "15px", maxWidth: "300px", margin: "0 auto" }}>
-        <button 
-          onClick={() => { playSound("click"); setScreen("vocab_settings"); }} 
-          style={{ padding: "15px", fontSize: "18px", backgroundColor: "#4CAF50", color: "white", borderRadius: "10px", border: "none", cursor: "pointer", boxShadow: "0 4px 6px rgba(0,0,0,0.1)", transition: "transform 0.2s" }} onMouseOver={(e) => e.currentTarget.style.transform = "translateY(-3px)"} onMouseOut={(e) => e.currentTarget.style.transform = "translateY(0)"}>
+        <button onClick={() => { playSound("click"); setScreen("vocab_settings"); }} style={{ padding: "15px", fontSize: "18px", backgroundColor: "#4CAF50", color: "white", borderRadius: "10px", border: "none", cursor: "pointer", boxShadow: "0 4px 6px rgba(0,0,0,0.1)", transition: "transform 0.2s" }} onMouseOver={(e) => e.currentTarget.style.transform = "translateY(-3px)"} onMouseOut={(e) => e.currentTarget.style.transform = "translateY(0)"}>
           Bắt đầu luyện Từ Vựng
         </button>
-        <button 
-          onClick={() => { playSound("click"); setScreen("grammar"); }} 
-          style={{ padding: "15px", fontSize: "18px", backgroundColor: "#2196F3", color: "white", borderRadius: "10px", border: "none", cursor: "pointer", boxShadow: "0 4px 6px rgba(0,0,0,0.1)", transition: "transform 0.2s" }} onMouseOver={(e) => e.currentTarget.style.transform = "translateY(-3px)"} onMouseOut={(e) => e.currentTarget.style.transform = "translateY(0)"}>
+        <button onClick={() => { playSound("click"); setScreen("grammar"); }} style={{ padding: "15px", fontSize: "18px", backgroundColor: "#2196F3", color: "white", borderRadius: "10px", border: "none", cursor: "pointer", boxShadow: "0 4px 6px rgba(0,0,0,0.1)", transition: "transform 0.2s" }} onMouseOver={(e) => e.currentTarget.style.transform = "translateY(-3px)"} onMouseOut={(e) => e.currentTarget.style.transform = "translateY(0)"}>
           Bắt đầu luyện Ngữ Pháp
         </button>
       </div>
