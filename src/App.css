@@ -1,43 +1,62 @@
+/* --- Khởi tạo chống tràn viền --- */
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: Arial, sans-serif;
   background: linear-gradient(to right, #4facfe, #00f2fe);
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh; /* SỬA LẠI: Dùng min-height để nó tự giãn ra nếu nội dung dài */
   margin: 0;
+  padding: 20px; /* Thêm lề để hộp không dán sát viền điện thoại */
+  
+  /* Khóa bôi đen văn bản */
+  -webkit-touch-callout: none; 
+  -webkit-user-select: none; 
+  -khtml-user-select: none; 
+  -moz-user-select: none; 
+  -ms-user-select: none; 
+  user-select: none; 
 }
 
 .container {
   background: white;
-  padding: 40px;
+  padding: 30px;
   border-radius: 15px;
   text-align: center;
-  width: 400px;
+  width: 100%; /* SỬA LẠI: Chiếm tối đa không gian màn hình đt */
+  max-width: 450px; /* SỬA LẠI: Trên máy tính thì giữ tối đa 450px cho đẹp */
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1); /* Thêm đổ bóng nhẹ cho sang trọng */
 }
 
 button {
   display: block;
   width: 100%;
   margin: 10px 0;
-  padding: 10px;
+  padding: 12px;
   border-radius: 8px;
   border: none;
   cursor: pointer;
   font-size: 16px;
+  font-weight: 500;
+  transition: all 0.2s; /* Thêm chuyển động mượt */
 }
 
 button:hover {
   opacity: 0.9;
+  transform: translateY(-2px); /* Hiệu ứng nảy nút bấm 3D khi rê chuột */
 }
 
 .correct {
-  background-color: #4caf50;
+  background-color: #4caf50 !important;
   color: white;
 }
 
 .wrong {
-  background-color: #f44336;
+  background-color: #f44336 !important;
   color: white;
 }
 
@@ -46,12 +65,38 @@ button:hover {
   color: white;
 }
 
-/* --- Khóa bôi đen văn bản chống copy/dịch --- */
-body {
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none; /* Safari */
-  -khtml-user-select: none; /* Konqueror HTML */
-  -moz-user-select: none; /* Old versions of Firefox */
-  -ms-user-select: none; /* Internet Explorer/Edge */
-  user-select: none; /* Chống bôi đen trên mọi trình duyệt hiện đại */
+/* ================================================= */
+/* 📱 CHẾ ĐỘ ĐIỆN THOẠI (Màn hình dưới 480px)        */
+/* ================================================= */
+@media screen and (max-width: 480px) {
+  body {
+    padding: 10px; /* Giảm lề ngoài trên điện thoại */
+  }
+  
+  .container {
+    padding: 20px 15px; /* Giảm lề trong để chừa chỗ cho nội dung */
+  }
+  
+  h1 {
+    font-size: 1.8rem !important;
+  }
+  
+  h2 {
+    font-size: 1.3rem !important;
+  }
+  
+  p, span {
+    font-size: 14px !important;
+  }
+
+  button {
+    font-size: 15px;
+    padding: 10px;
+  }
+  
+  /* Thu nhỏ các bảng thống kê cho vừa điện thoại */
+  .container > div[style*="flex-wrap: wrap"] > div {
+    min-width: 130px !important;
+    padding: 12px !important;
+  }
 }

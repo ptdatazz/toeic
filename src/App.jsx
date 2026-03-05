@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import confetti from "canvas-confetti";
 import "./App.css";
-import vocabData from "./data/vocab.json";
-import grammarData from "./data/grammar.json"; 
 
 // Import Firebase
 import { auth, db } from "./firebase";
@@ -13,6 +11,22 @@ import {
   onAuthStateChanged 
 } from "firebase/auth";
 import { doc, getDoc, setDoc } from "firebase/firestore";
+
+// --- ÂM THANH HIỆU ỨNG (SFX) ---
+const playSound = (type) => {
+  let url = "";
+  if (type === "correct") url = "https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3"; // Ting ting
+  else if (type === "wrong") url = "https://assets.mixkit.co/active_storage/sfx/2003/2003-preview.mp3"; // Buzzer sai
+  else if (type === "timeout") url = "https://assets.mixkit.co/active_storage/sfx/2570/2570-preview.mp3"; // Hết giờ
+  else if (type === "finish") url = "https://assets.mixkit.co/active_storage/sfx/2018/2018-preview.mp3"; // Tada chiến thắng
+  else if (type === "click") url = "https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3"; // Tiếng click nhẹ
+  
+  if (url) {
+    const audio = new Audio(url);
+    audio.volume = type === "finish" ? 0.6 : (type === "click" ? 0.5 : 1.0);
+    audio.play().catch(e => console.log("Trình duyệt chặn âm thanh:", e));
+  }
+};
 
 // --- CÁC HÀM HỖ TRỢ CHUNG ---
 const shuffleArray = (array) => [...array].sort(() => Math.random() - 0.5);
@@ -47,6 +61,7 @@ function AuthScreen() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    playSound("click");
     setError("");
     setLoading(true);
 
@@ -57,14 +72,11 @@ function AuthScreen() {
 
     try {
       if (isLoginMode) {
-        // Đăng nhập bằng Firebase
         await signInWithEmailAndPassword(auth, email, password);
       } else {
-        // Đăng ký bằng Firebase
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
         
-        // Tạo sẵn dữ liệu điểm số bằng 0 cho tài khoản mới trên Cloud
         await setDoc(doc(db, "users", user.uid), {
           vocab: { correct: 0, total: 0 },
           grammar: { correct: 0, total: 0 }
@@ -89,34 +101,15 @@ function AuthScreen() {
 
       <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "15px", backgroundColor: "#f9f9f9", padding: "30px", borderRadius: "12px", boxShadow: "0 4px 10px rgba(0,0,0,0.1)" }}>
         <h2 style={{ margin: "0 0 15px 0", color: "#333" }}>{isLoginMode ? "Đăng Nhập" : "Tạo Tài Khoản"}</h2>
-        
         {error && <div style={{ color: "red", backgroundColor: "#ffebee", padding: "10px", borderRadius: "5px", fontSize: "14px" }}>{error}</div>}
-
-        <input 
-          type="email" 
-          placeholder="Nhập Email của bạn" 
-          value={email} 
-          onChange={(e) => setEmail(e.target.value)}
-          style={{ padding: "12px", borderRadius: "8px", border: "1px solid #ccc", fontSize: "16px" }}
-        />
-        <input 
-          type="password" 
-          placeholder="Mật khẩu (ít nhất 6 ký tự)" 
-          value={password} 
-          onChange={(e) => setPassword(e.target.value)}
-          style={{ padding: "12px", borderRadius: "8px", border: "1px solid #ccc", fontSize: "16px" }}
-        />
-
+        <input type="email" placeholder="Nhập Email của bạn" value={email} onChange={(e) => setEmail(e.target.value)} style={{ padding: "12px", borderRadius: "8px", border: "1px solid #ccc", fontSize: "16px" }} />
+        <input type="password" placeholder="Mật khẩu (ít nhất 6 ký tự)" value={password} onChange={(e) => setPassword(e.target.value)} style={{ padding: "12px", borderRadius: "8px", border: "1px solid #ccc", fontSize: "16px" }} />
         <button type="submit" disabled={loading} style={{ padding: "12px", fontSize: "18px", backgroundColor: loading ? "#9e9e9e" : "#4CAF50", color: "white", borderRadius: "8px", border: "none", cursor: loading ? "not-allowed" : "pointer", fontWeight: "bold", marginTop: "10px" }}>
           {loading ? "Đang xử lý..." : (isLoginMode ? "Vào Học Ngay" : "Đăng Ký")}
         </button>
-
         <p style={{ margin: "10px 0 0 0", fontSize: "14px", color: "#666" }}>
           {isLoginMode ? "Chưa có tài khoản?" : "Đã có tài khoản?"}{" "}
-          <span 
-            onClick={() => { setIsLoginMode(!isLoginMode); setError(""); }} 
-            style={{ color: "#2196F3", cursor: "pointer", fontWeight: "bold", textDecoration: "underline" }}
-          >
+          <span onClick={() => { playSound("click"); setIsLoginMode(!isLoginMode); setError(""); }} style={{ color: "#2196F3", cursor: "pointer", fontWeight: "bold", textDecoration: "underline" }}>
             {isLoginMode ? "Đăng ký ngay" : "Đăng nhập"}
           </span>
         </p>
@@ -131,21 +124,67 @@ function VocabQuiz({ onBack, updateGlobal }) {
   const TIME_PER_QUESTION = 10;
   const REQUIRED_STREAK = 3; 
 
-  const [questionsData, setQuestionsData] = useState(() => {
-    const saved = localStorage.getItem("toeic_vocab_q_temp");
-    if (saved) return JSON.parse(saved);
-    const randomSubset = shuffleArray(vocabData).slice(0, QUIZ_LIMIT);
-    return generateVocabQuestions(randomSubset, vocabData);
-  });
+  const [questionsData, setQuestionsData] = useState([]);
+  const [loadingData, setLoadingData] = useState(true);
 
   const [current, setCurrent] = useState(() => parseInt(localStorage.getItem("toeic_vocab_c_temp")) || 0);
   const [score, setScore] = useState(() => parseInt(localStorage.getItem("toeic_vocab_s_temp")) || 0);
 
   useEffect(() => {
-    localStorage.setItem("toeic_vocab_q_temp", JSON.stringify(questionsData));
-    localStorage.setItem("toeic_vocab_c_temp", current);
-    localStorage.setItem("toeic_vocab_s_temp", score);
-  }, [questionsData, current, score]);
+    const fetchVocabFromSheets = async () => {
+      try {
+        const saved = localStorage.getItem("toeic_vocab_q_temp");
+        if (saved) {
+          setQuestionsData(JSON.parse(saved));
+          setLoadingData(false);
+          return; 
+        }
+
+        const SHEET_ID = "1nAdOxZBZ3-Bawh3Ks54KaIYLPgGZfTuchebwbCYW8dU";
+        const SHEET_NAME = "Vocab"; 
+
+        const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&headers=1&sheet=${SHEET_NAME}`;
+        
+        const response = await fetch(url);
+        const text = await response.text();
+        const jsonString = text.substring(text.indexOf('{'), text.lastIndexOf('}') + 1);
+        const result = JSON.parse(jsonString);
+
+        const headers = result.table.cols.map(col => col.label);
+        const fullData = result.table.rows.map(row => {
+          let obj = {};
+          headers.forEach((header, index) => {
+            obj[header] = (row.c[index] && row.c[index].v) ? row.c[index].v.toString() : "";
+          });
+          return obj;
+        });
+
+        if (fullData.length === 0) {
+          alert("Cảnh báo: Không đọc được dòng chữ nào từ Google Sheets! Hãy kiểm tra lại tên Sheet");
+          return;
+        }
+
+        const randomSubset = shuffleArray(fullData).slice(0, QUIZ_LIMIT);
+        const formattedData = generateVocabQuestions(randomSubset, fullData);
+
+        setQuestionsData(formattedData);
+      } catch (error) {
+        console.error("Lỗi đồng bộ từ vựng:", error);
+      } finally {
+        setLoadingData(false);
+      }
+    };
+
+    fetchVocabFromSheets();
+  }, []);
+
+  useEffect(() => {
+    if (!loadingData && questionsData.length > 0) {
+      localStorage.setItem("toeic_vocab_q_temp", JSON.stringify(questionsData));
+      localStorage.setItem("toeic_vocab_c_temp", current);
+      localStorage.setItem("toeic_vocab_s_temp", score);
+    }
+  }, [questionsData, current, score, loadingData]);
 
   const clearStorageAndExit = () => {
     localStorage.removeItem("toeic_vocab_q_temp");
@@ -160,10 +199,10 @@ function VocabQuiz({ onBack, updateGlobal }) {
   const [streak, setStreak] = useState(0);
 
   useEffect(() => {
-    if (selected !== null || timeLeft <= 0) return;
+    if (selected !== null || timeLeft <= 0 || loadingData) return;
     const timer = setInterval(() => setTimeLeft((prev) => prev - 1), 1000);
     return () => clearInterval(timer);
-  }, [timeLeft, selected]);
+  }, [timeLeft, selected, loadingData]);
 
   useEffect(() => {
     if (timeLeft === 0 && selected === null) handleAnswer(null); 
@@ -174,20 +213,24 @@ function VocabQuiz({ onBack, updateGlobal }) {
   const encourages = ["Không sao, thử lại sau nhé! 💪", "Cố lên, sai để nhớ lâu hơn! 🌱", "Gần đúng rồi! 😅"];
 
   const handleAnswer = (option) => {
-    setSelected(option || "TIMEOUT");
-    const isCorrect = option === questionsData[current].answer;
+    const isTimeout = !option || option === "TIMEOUT";
+    const actualOption = isTimeout ? "TIMEOUT" : option;
+    setSelected(actualOption);
 
-    // Đẩy dữ liệu lên Firebase
+    const isCorrect = !isTimeout && actualOption === questionsData[current].answer;
     updateGlobal("vocab", isCorrect);
 
     if (isCorrect) {
+      playSound("correct");
       setScore(score + 1);
       setStreak(prev => prev + 1); 
       setFeedbackMsg(cheers[Math.floor(Math.random() * cheers.length)]);
       confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 } });
     } else {
+      playSound(isTimeout ? "timeout" : "wrong");
       setStreak(0); 
-      setFeedbackMsg(encourages[Math.floor(Math.random() * encourages.length)]);
+      setFeedbackMsg(isTimeout ? "⏰ Hết giờ mất rồi!" : encourages[Math.floor(Math.random() * encourages.length)]);
+      
       setQuestionsData((prev) => {
         const newData = [...prev];
         const remaining = newData.length - current - 1;
@@ -200,11 +243,20 @@ function VocabQuiz({ onBack, updateGlobal }) {
   };
 
   const nextQuestion = () => {
+    playSound("click");
     setSelected(null);
     setFeedbackMsg(""); 
-    setCurrent(current + 1);
+    const nextIdx = current + 1;
+    setCurrent(nextIdx);
     setTimeLeft(TIME_PER_QUESTION); 
+    
+    // Phát âm thanh khi hoàn thành toàn bộ
+    if (nextIdx >= questionsData.length) playSound("finish");
   };
+
+  if (loadingData) {
+    return <div className="container" style={{ textAlign: "center", paddingTop: "50px" }}><h2>Đang kết nối kho từ vựng đám mây... ☁️</h2></div>;
+  }
 
   if (current >= questionsData.length) {
     confetti({ particleCount: 300, spread: 150, origin: { y: 0.4 } });
@@ -221,7 +273,7 @@ function VocabQuiz({ onBack, updateGlobal }) {
           <hr style={{ border: "0", borderTop: "1px solid #ddd", margin: "15px 0" }} />
           <h3 style={{ margin: 0, color: ratio >= 50 ? "#4CAF50" : "#FF9800" }}>🎯 Tỷ lệ chính xác: {ratio}%</h3>
         </div>
-        <button className="next" onClick={clearStorageAndExit}>Về trang chủ</button>
+        <button className="next" onClick={() => { playSound("click"); clearStorageAndExit(); }}>Về trang chủ</button>
       </div>
     );
   }
@@ -233,7 +285,12 @@ function VocabQuiz({ onBack, updateGlobal }) {
     <div className="container">
       <div style={{ position: "relative", display: "flex", justifyContent: "center", alignItems: "center", width: "100%", height: "35px", marginBottom: "10px" }}>
         <button 
-          onClick={() => { if(streak >= REQUIRED_STREAK) clearStorageAndExit() }} 
+          onClick={() => { 
+            if(streak >= REQUIRED_STREAK) {
+              playSound("click");
+              clearStorageAndExit();
+            }
+          }} 
           style={{ position: "absolute", left: "0", width: "max-content", padding: "4px 10px", fontSize: "12px", cursor: streak >= REQUIRED_STREAK ? "pointer" : "not-allowed", backgroundColor: streak >= REQUIRED_STREAK ? "#e8f5e9" : "#f0f0f0", color: streak >= REQUIRED_STREAK ? "#2e7d32" : "#999", border: "1px solid #ccc", borderRadius: "5px", whiteSpace: "nowrap" }}
         >
           ⬅ Quay lại {streak >= REQUIRED_STREAK ? "🔓" : `🔒 (${streak}/${REQUIRED_STREAK})`}
@@ -271,27 +328,87 @@ function VocabQuiz({ onBack, updateGlobal }) {
 }
 
 // --- COMPONENT: ÔN NGỮ PHÁP ---
-// --- COMPONENT: ÔN NGỮ PHÁP ---
 function GrammarQuiz({ onBack, updateGlobal }) {
-  const GRAMMAR_LIMIT = 10; // 👈 BẠN CÓ THỂ ĐỔI SỐ 10 THÀNH 15, 20 TÙY Ý Ở ĐÂY
+  const GRAMMAR_LIMIT = 10; 
   const REQUIRED_STREAK = 3; 
 
-  const [questionsData] = useState(() => {
-    const saved = localStorage.getItem("toeic_grammar_q_temp");
-    if (saved) return JSON.parse(saved);
-    
-    // Xáo trộn ngẫu nhiên toàn bộ kho dữ liệu và rút ra đúng 10 câu
-    return shuffleArray(grammarData).slice(0, GRAMMAR_LIMIT);
-  });
+  const [questionsData, setQuestionsData] = useState([]);
+  const [loadingData, setLoadingData] = useState(true);
 
   const [current, setCurrent] = useState(() => parseInt(localStorage.getItem("toeic_grammar_c_temp")) || 0);
   const [score, setScore] = useState(() => parseInt(localStorage.getItem("toeic_grammar_s_temp")) || 0);
 
   useEffect(() => {
-    localStorage.setItem("toeic_grammar_q_temp", JSON.stringify(questionsData));
-    localStorage.setItem("toeic_grammar_c_temp", current);
-    localStorage.setItem("toeic_grammar_s_temp", score);
-  }, [questionsData, current, score]);
+    const fetchGrammarFromSheets = async () => {
+      try {
+        const saved = localStorage.getItem("toeic_grammar_q_temp");
+        if (saved) {
+          setQuestionsData(JSON.parse(saved));
+          setLoadingData(false);
+          return;
+        }
+
+        const SHEET_ID = "1nAdOxZBZ3-Bawh3Ks54KaIYLPgGZfTuchebwbCYW8dU";
+        const SHEET_NAME = "Grammar"; 
+
+        const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&headers=1&sheet=${SHEET_NAME}`;
+        
+        const response = await fetch(url);
+        const text = await response.text();
+
+        const jsonString = text.substring(text.indexOf('{'), text.lastIndexOf('}') + 1);
+        const result = JSON.parse(jsonString);
+
+        const headers = result.table.cols.map(col => col.label);
+        const rawData = result.table.rows.map(row => {
+          let obj = {};
+          headers.forEach((header, index) => {
+            obj[header] = (row.c[index] && row.c[index].v) ? row.c[index].v.toString() : "";
+          });
+          return obj;
+        });
+
+        const formattedData = rawData.map(item => {
+          const question = item.question || item["Câu hỏi"] || item["Question"] || "";
+          const ansA = item.optA || item["A"] || item["Đáp án A"] || "";
+          const ansB = item.optB || item["B"] || item["Đáp án B"] || "";
+          const ansC = item.optC || item["C"] || item["Đáp án C"] || "";
+          const ansD = item.optD || item["D"] || item["Đáp án D"] || "";
+          const answer = item.answer || item["Đáp án"] || item["Đáp án đúng"] || item["Answer"] || "";
+          const explanation = item.explanation || item["Giải thích"] || item["Explanation"] || "Chưa có giải thích chi tiết.";
+
+          return {
+            question: question.trim(),
+            options: [ansA, ansB, ansC, ansD].map(opt => opt.trim()).filter(Boolean),
+            answer: answer.trim(),
+            explanation: explanation.trim()
+          };
+        }).filter(item => item.question !== "");
+
+        if (formattedData.length === 0) {
+          alert("Chưa có dữ liệu Ngữ pháp! Hãy kiểm tra sheet 'Grammar'.");
+          return;
+        }
+
+        const randomSubset = shuffleArray(formattedData).slice(0, GRAMMAR_LIMIT);
+        setQuestionsData(randomSubset);
+      } catch (error) {
+        console.error("Lỗi đồng bộ ngữ pháp:", error);
+      } finally {
+        setLoadingData(false);
+      }
+    };
+
+    fetchGrammarFromSheets();
+  }, []);
+
+  useEffect(() => {
+    if (!loadingData && questionsData.length > 0) {
+      localStorage.setItem("toeic_grammar_q_temp", JSON.stringify(questionsData));
+      localStorage.setItem("toeic_grammar_c_temp", current);
+      localStorage.setItem("toeic_grammar_s_temp", score);
+    }
+  }, [questionsData, current, score, loadingData]);
 
   const clearStorageAndExit = () => {
     localStorage.removeItem("toeic_grammar_q_temp");
@@ -307,17 +424,32 @@ function GrammarQuiz({ onBack, updateGlobal }) {
     setSelected(option);
     const isCorrect = option === questionsData[current].answer;
     
-    // Đẩy dữ liệu lên Firebase
     updateGlobal("grammar", isCorrect);
 
     if (isCorrect) {
+      playSound("correct");
       setScore(score + 1);
       setStreak(prev => prev + 1); 
       confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
     } else {
+      playSound("wrong");
       setStreak(0); 
     }
   };
+
+  const nextQuestion = () => {
+    playSound("click");
+    setSelected(null);
+    const nextIdx = current + 1;
+    setCurrent(nextIdx);
+    
+    // Phát âm thanh khi hoàn thành toàn bộ
+    if (nextIdx >= questionsData.length) playSound("finish");
+  };
+
+  if (loadingData) {
+    return <div className="container" style={{ textAlign: "center", paddingTop: "50px" }}><h2>Đang tải bộ câu hỏi Ngữ pháp... ☁️</h2></div>;
+  }
 
   if (current >= questionsData.length) {
     confetti({ particleCount: 300, spread: 150, origin: { y: 0.4 } });
@@ -334,7 +466,7 @@ function GrammarQuiz({ onBack, updateGlobal }) {
           <hr style={{ border: "0", borderTop: "1px solid #ddd", margin: "15px 0" }} />
           <h3 style={{ margin: 0, color: ratio >= 50 ? "#2196F3" : "#FF9800" }}>🎯 Tỷ lệ chính xác: {ratio}%</h3>
         </div>
-        <button className="next" onClick={clearStorageAndExit}>Về trang chủ</button>
+        <button className="next" onClick={() => { playSound("click"); clearStorageAndExit(); }}>Về trang chủ</button>
       </div>
     );
   }
@@ -345,7 +477,12 @@ function GrammarQuiz({ onBack, updateGlobal }) {
     <div className="container">
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%", marginBottom: "20px", height: "35px" }}>
         <button 
-          onClick={() => { if(streak >= REQUIRED_STREAK) clearStorageAndExit() }} 
+          onClick={() => { 
+            if(streak >= REQUIRED_STREAK) {
+              playSound("click");
+              clearStorageAndExit();
+            }
+          }} 
           style={{ width: "max-content", padding: "4px 10px", fontSize: "12px", cursor: streak >= REQUIRED_STREAK ? "pointer" : "not-allowed", backgroundColor: streak >= REQUIRED_STREAK ? "#e8f5e9" : "#f0f0f0", color: streak >= REQUIRED_STREAK ? "#2e7d32" : "#999", border: "1px solid #ccc", borderRadius: "5px", whiteSpace: "nowrap" }}
         >
           ⬅ Quay lại {streak >= REQUIRED_STREAK ? "🔓" : `🔒 (${streak}/${REQUIRED_STREAK})`}
@@ -367,18 +504,52 @@ function GrammarQuiz({ onBack, updateGlobal }) {
         <div style={{ marginTop: "20px", textAlign: "left", backgroundColor: "#f9f9f9", padding: "20px", borderRadius: "8px", borderLeft: "5px solid #2196F3" }}>
           <h4 style={{ margin: "0 0 10px 0", color: "#2196F3", fontSize: "20px" }}>💡 Giải thích:</h4>
           <p style={{ margin: 0, fontSize: "18px", lineHeight: "1.6" }}>{currentQ.explanation}</p>
-          <button className="next" onClick={() => { setSelected(null); setCurrent(current + 1); }} style={{ width: "100%", marginTop: "20px", fontSize: "18px" }}>Câu tiếp theo</button>
+          <button className="next" onClick={nextQuestion} style={{ width: "100%", marginTop: "20px", fontSize: "18px" }}>Câu tiếp theo</button>
         </div>
       )}
     </div>
   );
 }
 
-// --- COMPONENT: APP (Điều hướng chính và Firestore) ---
+// --- COMPONENT: APP CHÍNH ---
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [authChecking, setAuthChecking] = useState(true);
   const [screen, setScreen] = useState("home");
+  
+  // 1. Trạng thái quản lý nhạc nền và âm lượng
+  const [bgm] = useState(() => new Audio("https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"));
+  const [isMusicPlaying, setIsMusicPlaying] = useState(true);
+  const [volume, setVolume] = useState(0.2); // Âm lượng mặc định 20%
+
+  // 2. Xử lý bật/tắt nhạc thông minh và đồng bộ âm lượng
+  useEffect(() => {
+    bgm.loop = true;
+    bgm.volume = volume; // Đồng bộ âm lượng
+    
+    if (screen === "home" && isMusicPlaying) {
+      const playPromise = bgm.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Bắt buộc đợi click lần đầu để vượt rào bảo mật autoplay
+          const startMusicOnClick = () => {
+            if (isMusicPlaying && screen === "home") bgm.play();
+            document.removeEventListener("click", startMusicOnClick);
+          };
+          document.addEventListener("click", startMusicOnClick);
+        });
+      }
+    } else {
+      bgm.pause();
+    }
+  }, [screen, isMusicPlaying, bgm, volume]); // Lắng nghe thay đổi của biến volume
+
+  const toggleMusic = () => {
+    playSound("click");
+    if (isMusicPlaying) bgm.pause();
+    else bgm.play().catch(() => console.log("Cần tương tác để phát nhạc"));
+    setIsMusicPlaying(!isMusicPlaying);
+  };
   
   // Dữ liệu Cloud
   const [globalStats, setGlobalStats] = useState({
@@ -386,12 +557,10 @@ function App() {
     grammar: { correct: 0, total: 0 }
   });
 
-  // Kiểm tra trạng thái đăng nhập liên tục
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
         setCurrentUser(user);
-        // Lấy dữ liệu điểm số từ Firebase Firestore
         const docRef = doc(db, "users", user.uid);
         const docSnap = await getDoc(docRef);
         
@@ -410,11 +579,13 @@ function App() {
   const disableRightClick = (e) => e.preventDefault();
 
   const handleLogout = async () => {
+    playSound("click");
     await signOut(auth);
     setCurrentUser(null);
+    bgm.pause(); 
+    setIsMusicPlaying(false);
   };
 
-  // Hàm này vừa cập nhật State hiển thị, vừa Bắn dữ liệu lên máy chủ Firebase
   const updateGlobalStats = async (type, isCorrect) => {
     if (!currentUser) return;
 
@@ -427,9 +598,7 @@ function App() {
         } 
       };
       
-      // LƯU LÊN ĐÁM MÂY (FIRESTORE)
       setDoc(doc(db, "users", currentUser.uid), newStats, { merge: true });
-      
       return newStats;
     });
   };
@@ -438,7 +607,6 @@ function App() {
     return <div style={{textAlign:"center", marginTop:"100px"}}><h2>Đang kết nối hệ thống... ⏳</h2></div>;
   }
 
-  // NẾU CHƯA ĐĂNG NHẬP
   if (!currentUser) {
     return (
       <div onContextMenu={disableRightClick}>
@@ -447,9 +615,8 @@ function App() {
     );
   }
 
-  // CÁC MÀN HÌNH QUIZ
-  if (screen === "vocab") return <VocabQuiz onBack={() => setScreen("home")} updateGlobal={updateGlobalStats} />;
-  if (screen === "grammar") return <GrammarQuiz onBack={() => setScreen("home")} updateGlobal={updateGlobalStats} />;
+  if (screen === "vocab") return <VocabQuiz onBack={() => { playSound("click"); setScreen("home"); }} updateGlobal={updateGlobalStats} />;
+  if (screen === "grammar") return <GrammarQuiz onBack={() => { playSound("click"); setScreen("home"); }} updateGlobal={updateGlobalStats} />;
 
   const vocabTotal = globalStats.vocab.total;
   const vocabCorrect = globalStats.vocab.correct;
@@ -462,11 +629,43 @@ function App() {
   return (
     <div className="container" onContextMenu={disableRightClick} style={{ textAlign: "center", paddingTop: "20px", maxWidth: "450px" }}>
       
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px", padding: "10px", backgroundColor: "#f0f8ff", borderRadius: "8px", border: "1px solid #cce7ff" }}>
-        <span style={{ fontSize: "14px", color: "#333", fontWeight: "bold" }}>👤 {currentUser.email}</span>
-        <button onClick={handleLogout} style={{ padding: "4px 10px", fontSize: "12px", backgroundColor: "#ff4d4f", color: "white", border: "none", borderRadius: "5px", cursor: "pointer" }}>
-          Đăng xuất
-        </button>
+      {/* THANH THÔNG TIN BÊN TRÊN */}
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px", padding: "8px 12px", backgroundColor: "#f0f8ff", borderRadius: "8px", border: "1px solid #cce7ff" }}>
+        
+        {/* BÊN TRÁI: Cụm Âm thanh */}
+        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          <button 
+            onClick={toggleMusic} 
+            title={isMusicPlaying ? "Tắt nhạc nền" : "Bật nhạc nền"}
+            style={{ width: "32px", height: "32px", borderRadius: "50%", backgroundColor: isMusicPlaying ? "#FF9800" : "#E0E0E0", color: isMusicPlaying ? "white" : "#666", border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "15px", transition: "0.2s", boxShadow: "0 2px 4px rgba(0,0,0,0.1)", padding: 0 }}
+          >
+            {isMusicPlaying ? "🔊" : "🔇"}
+          </button>
+
+          {/* THANH TRƯỢT ÂM LƯỢNG */}
+          <input 
+            type="range" 
+            min="0" max="1" step="0.05" 
+            value={volume}
+            onChange={(e) => setVolume(parseFloat(e.target.value))}
+            title="Kéo để chỉnh âm lượng"
+            style={{ width: "60px", cursor: "pointer" }}
+          />
+        </div>
+
+        {/* BÊN PHẢI: Tài khoản & Đăng xuất */}
+        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          <span 
+            style={{ fontSize: "12px", color: "#333", fontWeight: "bold", maxWidth: "100px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }} 
+            title={currentUser.email}
+          >
+            👤 {currentUser.email}
+          </span>
+          <button onClick={handleLogout} style={{ padding: "5px 10px", fontSize: "11px", backgroundColor: "#ff4d4f", color: "white", border: "none", borderRadius: "5px", cursor: "pointer", fontWeight: "bold", transition: "0.2s", boxShadow: "0 2px 4px rgba(0,0,0,0.1)" }}>
+            Đăng xuất
+          </button>
+        </div>
+        
       </div>
 
       <h1 style={{ fontSize: "2.2rem", margin: "10px 0", color: "#2c3e50" }}>TOEIC Master 🚀</h1>
@@ -495,12 +694,12 @@ function App() {
         </div>
       </div>
 
-      {/* MENU */}
+      {/* MENU CHÍNH */}
       <div style={{ display: "flex", flexDirection: "column", gap: "15px", maxWidth: "300px", margin: "0 auto" }}>
-        <button onClick={() => setScreen("vocab")} style={{ padding: "15px", fontSize: "18px", backgroundColor: "#4CAF50", color: "white", borderRadius: "10px", border: "none", cursor: "pointer", boxShadow: "0 4px 6px rgba(0,0,0,0.1)", transition: "transform 0.2s" }} onMouseOver={(e) => e.currentTarget.style.transform = "translateY(-3px)"} onMouseOut={(e) => e.currentTarget.style.transform = "translateY(0)"}>
+        <button onClick={() => { playSound("click"); setScreen("vocab"); }} style={{ padding: "15px", fontSize: "18px", backgroundColor: "#4CAF50", color: "white", borderRadius: "10px", border: "none", cursor: "pointer", boxShadow: "0 4px 6px rgba(0,0,0,0.1)", transition: "transform 0.2s" }} onMouseOver={(e) => e.currentTarget.style.transform = "translateY(-3px)"} onMouseOut={(e) => e.currentTarget.style.transform = "translateY(0)"}>
           Bắt đầu luyện Từ Vựng
         </button>
-        <button onClick={() => setScreen("grammar")} style={{ padding: "15px", fontSize: "18px", backgroundColor: "#2196F3", color: "white", borderRadius: "10px", border: "none", cursor: "pointer", boxShadow: "0 4px 6px rgba(0,0,0,0.1)", transition: "transform 0.2s" }} onMouseOver={(e) => e.currentTarget.style.transform = "translateY(-3px)"} onMouseOut={(e) => e.currentTarget.style.transform = "translateY(0)"}>
+        <button onClick={() => { playSound("click"); setScreen("grammar"); }} style={{ padding: "15px", fontSize: "18px", backgroundColor: "#2196F3", color: "white", borderRadius: "10px", border: "none", cursor: "pointer", boxShadow: "0 4px 6px rgba(0,0,0,0.1)", transition: "transform 0.2s" }} onMouseOver={(e) => e.currentTarget.style.transform = "translateY(-3px)"} onMouseOut={(e) => e.currentTarget.style.transform = "translateY(0)"}>
           Bắt đầu luyện Ngữ Pháp
         </button>
       </div>
