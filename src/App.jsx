@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import confetti from "canvas-confetti";
 import "./App.css";
 
@@ -31,10 +31,10 @@ const playSound = (type) => {
 // --- HÀM ĐỌC TỪ VỰNG (TEXT-TO-SPEECH) ---
 const speakWord = (text) => {
   if ('speechSynthesis' in window) {
-    window.speechSynthesis.cancel(); // Dừng câu trước nếu đang đọc dở
+    window.speechSynthesis.cancel(); 
     const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'en-US'; // Giọng Anh-Mỹ
-    utterance.rate = 0.85;    // Đọc chậm rãi, rõ ràng
+    utterance.lang = 'en-US'; 
+    utterance.rate = 0.85;    
     window.speechSynthesis.speak(utterance);
   } else {
     alert("Trình duyệt của bạn không hỗ trợ tính năng đọc âm thanh!");
@@ -44,23 +44,53 @@ const speakWord = (text) => {
 // --- CÁC HÀM HỖ TRỢ CHUNG ---
 const shuffleArray = (array) => [...array].sort(() => Math.random() - 0.5);
 
-const getRandomWrongOptions = (fullData, count, currentWord) => {
+// Lấy 3 đáp án sai (dựa theo trường dữ liệu cần lấy)
+const getRandomWrongOptions = (fullData, currentItem, fieldToGet) => {
   const wrongOptions = [];
-  while (wrongOptions.length < count) {
-    const randomIndex = Math.floor(Math.random() * fullData.length);
-    const randomItem = fullData[randomIndex];
-    if (randomItem.word !== currentWord && !wrongOptions.includes(randomItem.meaning)) {
-      wrongOptions.push(randomItem.meaning);
+  while (wrongOptions.length < 3) {
+    const randomItem = fullData[Math.floor(Math.random() * fullData.length)];
+    // Đảm bảo không trùng với đáp án đúng và không trùng với các đáp án sai đã lấy
+    if (randomItem[fieldToGet] !== currentItem[fieldToGet] && !wrongOptions.includes(randomItem[fieldToGet])) {
+      wrongOptions.push(randomItem[fieldToGet]);
     }
   }
   return wrongOptions;
 };
 
-const generateVocabQuestions = (selectedData, fullData) => {
+// Hàm tạo câu hỏi đa dạng dựa trên Level
+const generateVocabQuestions = (selectedData, fullData, level) => {
   return selectedData.map((item) => {
-    const wrongOptions = getRandomWrongOptions(fullData, 3, item.word);
-    const options = shuffleArray([...wrongOptions, item.meaning]);
-    return { ...item, options, answer: item.meaning };
+    // Mặc định Level 1: Nhìn Tiếng Anh -> Chọn Tiếng Việt
+    let qType = "en_to_vn"; 
+    
+    // Level 2: 50% Tiếng Anh -> Tiếng Việt, 50% Tiếng Việt -> Tiếng Anh
+    if (level === 2) {
+      const rand = Math.random();
+      if (rand > 0.5) qType = "vn_to_en";
+    } 
+    // Level 3: 33% En->Vn, 33% Vn->En, 33% Gõ từ
+    else if (level === 3) {
+      const rand = Math.random();
+      if (rand < 0.33) qType = "vn_to_en";
+      else if (rand < 0.66) qType = "typing";
+    }
+
+    let questionObj = { ...item, type: qType };
+
+    if (qType === "en_to_vn") {
+      const wrongOptions = getRandomWrongOptions(fullData, item, "meaning");
+      questionObj.options = shuffleArray([...wrongOptions, item.meaning]);
+      questionObj.answer = item.meaning;
+    } else if (qType === "vn_to_en") {
+      const wrongOptions = getRandomWrongOptions(fullData, item, "word");
+      questionObj.options = shuffleArray([...wrongOptions, item.word]);
+      questionObj.answer = item.word;
+    } else if (qType === "typing") {
+      questionObj.answer = item.word;
+      // Kiểu typing không cần mảng options
+    }
+
+    return questionObj;
   });
 };
 
@@ -74,10 +104,10 @@ function WelcomeTutorial({ onDismiss }) {
         <div style={{ textAlign: "left", color: "#444", fontSize: "15px", lineHeight: "1.6", marginBottom: "25px" }}>
           <p><strong>🎯 Luật chơi để trở thành TOEIC Master:</strong></p>
           <ul style={{ paddingLeft: "20px" }}>
-            <li style={{ marginBottom: "10px" }}><strong>Ôn Từ Vựng:</strong> Mỗi lượt 30 câu. Trả lời nhanh trong 10 giây. Làm sai sẽ bị phạt trộn câu đó lại làm đến khi nào đúng thì thôi!</li>
-            <li style={{ marginBottom: "10px" }}><strong>Ôn Ngữ Pháp:</strong> Mỗi lượt 10 câu. Cứ làm từ từ suy nghĩ, chọn xong sẽ có giải thích chi tiết ngay bên dưới.</li>
-            <li style={{ marginBottom: "10px" }}><strong>Nút Quay Lại:</strong> Bị khóa lúc đang làm bài. Bạn phải làm đúng <strong>3 câu liên tiếp</strong> (Streak 3) thì chìa khóa mới mở 🔓.</li>
-            <li><strong>Nhạc Lofi:</strong> Góc trên bên trái dùng để bật nhạc chill chill trong lúc ở sảnh chờ.</li>
+            <li style={{ marginBottom: "10px" }}><strong>Ôn Từ Vựng:</strong> Trả lời nhanh trước khi hết giờ. Làm sai sẽ bị phạt trộn lại từ đó. Có 3 độ khó để thử thách!</li>
+            <li style={{ marginBottom: "10px" }}><strong>Ôn Ngữ Pháp:</strong> Làm từ từ suy nghĩ, chọn xong sẽ có giải thích chi tiết ngay bên dưới.</li>
+            <li style={{ marginBottom: "10px" }}><strong>Nút Quay Lại:</strong> Bị khóa lúc đang làm bài. Bạn phải làm đúng <strong>chuỗi câu (Streak)</strong> thì chìa khóa mới mở 🔓.</li>
+            <li><strong>Nhạc Lofi:</strong> Góc trên bên trái dùng để bật nhạc chill chill trong lúc học.</li>
           </ul>
         </div>
 
@@ -170,7 +200,7 @@ function AuthScreen() {
 function VocabSettings({ onStart, onBack }) {
   const [settings, setSettings] = useState(() => {
     const saved = localStorage.getItem("toeic_vocab_settings");
-    return saved ? JSON.parse(saved) : { quizLimit: 30, timePerQuestion: 10, requiredStreak: 3 };
+    return saved ? JSON.parse(saved) : { quizLimit: 30, timePerQuestion: 10, requiredStreak: 3, difficultyLevel: 1 };
   });
 
   const handleStart = () => {
@@ -186,6 +216,27 @@ function VocabSettings({ onStart, onBack }) {
 
       <div style={{ backgroundColor: "#f9f9f9", padding: "20px", borderRadius: "12px", border: "1px solid #eee", textAlign: "left", marginBottom: "25px" }}>
         
+        {/* ĐỘ KHÓ (LEVEL) */}
+        <div style={{ marginBottom: "25px", backgroundColor: "#fff", padding: "15px", borderRadius: "8px", borderLeft: "4px solid #FF9800", boxShadow: "0 2px 4px rgba(0,0,0,0.05)" }}>
+          <label style={{ fontWeight: "bold", color: "#333", display: "block", marginBottom: "8px" }}>
+            🔥 Độ khó: 
+            <span style={{ color: settings.difficultyLevel === 1 ? "#4CAF50" : settings.difficultyLevel === 2 ? "#FF9800" : "#F44336", marginLeft: "5px" }}>
+              Level {settings.difficultyLevel} {settings.difficultyLevel === 1 ? "(Dễ)" : settings.difficultyLevel === 2 ? "(Vừa)" : "(Khó)"}
+            </span>
+          </label>
+          <input 
+            type="range" min="1" max="3" step="1" 
+            value={settings.difficultyLevel} 
+            onChange={(e) => setSettings({...settings, difficultyLevel: parseInt(e.target.value)})} 
+            style={{ width: "100%", cursor: "pointer" }} 
+          />
+          <div style={{ fontSize: "13px", color: "#666", marginTop: "8px", lineHeight: "1.4" }}>
+            {settings.difficultyLevel === 1 && "🟢 Chỉ hỏi: Nhìn Tiếng Anh -> Chọn Tiếng Việt."}
+            {settings.difficultyLevel === 2 && "🟡 Trộn lẫn: Chọn nghĩa Tiếng Việt & Chọn từ Tiếng Anh."}
+            {settings.difficultyLevel === 3 && "🔴 Thử thách: Có thêm phần Tự gõ từ vựng (Typing)."}
+          </div>
+        </div>
+
         <div style={{ marginBottom: "20px" }}>
           <label style={{ fontWeight: "bold", color: "#333", display: "block", marginBottom: "8px" }}>
             📚 Số lượng từ vựng mỗi lượt: <span style={{ color: "#4CAF50" }}>{settings.quizLimit} câu</span>
@@ -203,7 +254,7 @@ function VocabSettings({ onStart, onBack }) {
 
         <div style={{ marginBottom: "20px" }}>
           <label style={{ fontWeight: "bold", color: "#333", display: "block", marginBottom: "8px" }}>
-            ⏱️ Thời gian chọn đáp án: <span style={{ color: "#FF9800" }}>{settings.timePerQuestion} giây</span>
+            ⏱️ Thời gian trả lời: <span style={{ color: "#FF9800" }}>{settings.timePerQuestion} giây</span>
           </label>
           <input 
             type="range" min="3" max="30" step="1" 
@@ -218,7 +269,7 @@ function VocabSettings({ onStart, onBack }) {
 
         <div>
           <label style={{ fontWeight: "bold", color: "#333", display: "block", marginBottom: "8px" }}>
-            🔓 Số câu đúng liên tiếp để mở khóa nút Quay lại: <span style={{ color: "#2196F3" }}>{settings.requiredStreak} câu</span>
+            🔓 Chuỗi câu đúng để mở khóa nút Quay lại: <span style={{ color: "#2196F3" }}>{settings.requiredStreak} câu</span>
           </label>
           <input 
             type="range" min="1" max="10" step="1" 
@@ -249,12 +300,15 @@ function VocabQuiz({ onBack, updateGlobal, settings }) {
   const QUIZ_LIMIT = settings.quizLimit;
   const TIME_PER_QUESTION = settings.timePerQuestion;
   const REQUIRED_STREAK = settings.requiredStreak; 
+  const DIFFICULTY_LEVEL = settings.difficultyLevel;
 
   const [questionsData, setQuestionsData] = useState([]);
   const [loadingData, setLoadingData] = useState(true);
 
   const [current, setCurrent] = useState(() => parseInt(localStorage.getItem("toeic_vocab_c_temp")) || 0);
   const [score, setScore] = useState(() => parseInt(localStorage.getItem("toeic_vocab_s_temp")) || 0);
+
+  const typingInputRef = useRef(null); // Ref để tự động focus vào ô nhập liệu
 
   useEffect(() => {
     const fetchVocabFromSheets = async () => {
@@ -286,12 +340,13 @@ function VocabQuiz({ onBack, updateGlobal, settings }) {
         });
 
         if (fullData.length === 0) {
-          alert("Cảnh báo: Không đọc được dòng chữ nào từ Google Sheets! Hãy kiểm tra lại tên Sheet");
+          alert("Cảnh báo: Không đọc được dữ liệu từ Google Sheets!");
           return;
         }
 
         const randomSubset = shuffleArray(fullData).slice(0, QUIZ_LIMIT);
-        const formattedData = generateVocabQuestions(randomSubset, fullData);
+        // Truyền thêm Level vào hàm tạo câu hỏi
+        const formattedData = generateVocabQuestions(randomSubset, fullData, DIFFICULTY_LEVEL);
 
         setQuestionsData(formattedData);
       } catch (error) {
@@ -324,12 +379,22 @@ function VocabQuiz({ onBack, updateGlobal, settings }) {
   const [timeLeft, setTimeLeft] = useState(TIME_PER_QUESTION);
   const [feedbackMsg, setFeedbackMsg] = useState("");
   const [streak, setStreak] = useState(0);
+  
+  // Trạng thái cho dạng câu hỏi Typing
+  const [typingValue, setTypingValue] = useState("");
 
   useEffect(() => {
     if (selected !== null || timeLeft <= 0 || loadingData) return;
     const timer = setInterval(() => setTimeLeft((prev) => prev - 1), 1000);
     return () => clearInterval(timer);
   }, [timeLeft, selected, loadingData]);
+
+  useEffect(() => {
+    // Tự động focus vào ô nhập liệu nếu là câu hỏi dạng typing
+    if (!loadingData && current < questionsData.length && questionsData[current].type === "typing" && selected === null) {
+        typingInputRef.current?.focus();
+    }
+  }, [current, loadingData, questionsData, selected]);
 
   useEffect(() => {
     if (timeLeft === 0 && selected === null) handleAnswer(null); 
@@ -339,12 +404,24 @@ function VocabQuiz({ onBack, updateGlobal, settings }) {
   const cheers = ["Tuyệt vời! 🎉", "Chính xác! 🚀", "Giỏi quá! ⭐", "Xuất sắc! 🔥"];
   const encourages = ["Không sao, thử lại sau nhé! 💪", "Cố lên, sai để nhớ lâu hơn! 🌱", "Gần đúng rồi! 😅"];
 
-  const handleAnswer = (option) => {
-    const isTimeout = !option || option === "TIMEOUT";
-    const actualOption = isTimeout ? "TIMEOUT" : option;
+  // Hàm xử lý chung cho cả trắc nghiệm và typing
+  const handleAnswer = (userAnswer) => {
+    const isTimeout = userAnswer === null;
+    const actualOption = isTimeout ? "TIMEOUT" : userAnswer;
     setSelected(actualOption);
 
-    const isCorrect = !isTimeout && actualOption === questionsData[current].answer;
+    const currentQ = questionsData[current];
+    let isCorrect = false;
+
+    if (!isTimeout) {
+       // Nếu là typing, so sánh không phân biệt hoa thường và bỏ khoảng trắng thừa
+       if (currentQ.type === "typing") {
+           isCorrect = actualOption.trim().toLowerCase() === currentQ.answer.trim().toLowerCase();
+       } else {
+           isCorrect = actualOption === currentQ.answer;
+       }
+    }
+    
     updateGlobal("vocab", isCorrect);
 
     if (isCorrect) {
@@ -363,16 +440,33 @@ function VocabQuiz({ onBack, updateGlobal, settings }) {
         const remaining = newData.length - current - 1;
         let insertIndex = newData.length; 
         if (remaining > 5) insertIndex = current + 3 + Math.floor(Math.random() * (remaining - 2));
-        newData.splice(insertIndex, 0, newData[current]);
+        
+        // Khi phạt, nếu là câu typing thì có thể đổi lại thành trắc nghiệm cho dễ thở hơn, hoặc giữ nguyên. Ở đây mình đổi sang vn_to_en cho bớt ức chế.
+        let penaltyItem = {...newData[current]};
+        if(penaltyItem.type === "typing") {
+           penaltyItem.type = "vn_to_en";
+           const wrongOptions = getRandomWrongOptions(newData, penaltyItem, "word");
+           penaltyItem.options = shuffleArray([...wrongOptions, penaltyItem.word]);
+        }
+        
+        newData.splice(insertIndex, 0, penaltyItem);
         return newData;
       });
     }
   };
 
+  const handleTypingSubmit = (e) => {
+      e.preventDefault();
+      if(typingValue.trim() !== "") {
+          handleAnswer(typingValue);
+      }
+  }
+
   const nextQuestion = () => {
     playSound("click");
     setSelected(null);
     setFeedbackMsg(""); 
+    setTypingValue(""); // Reset ô nhập
     const nextIdx = current + 1;
     setCurrent(nextIdx);
     setTimeLeft(TIME_PER_QUESTION); 
@@ -409,10 +503,8 @@ function VocabQuiz({ onBack, updateGlobal, settings }) {
 
   return (
     <div className="container">
-      {/* THANH THÔNG TIN: QUAY LẠI - CỤM LOA & ĐỒNG HỒ - TIẾN ĐỘ (ĐÃ TỐI GIẢN) */}
+      {/* THANH THÔNG TIN TỐI GIẢN */}
       <div style={{ position: "relative", display: "flex", justifyContent: "center", alignItems: "center", width: "100%", height: "40px", marginBottom: "15px" }}>
-        
-        {/* Nút Quay Lại */}
         <button 
           onClick={() => { 
             if(streak >= REQUIRED_STREAK) {
@@ -425,51 +517,107 @@ function VocabQuiz({ onBack, updateGlobal, settings }) {
           ⬅ {streak >= REQUIRED_STREAK ? "🔓" : `🔒 ${streak}/${REQUIRED_STREAK}`}
         </button>
 
-        {/* Cụm Giữa: Nút Loa Đọc Từ Vựng & Đồng Hồ */}
         <div style={{ display: "flex", alignItems: "center", gap: "8px", backgroundColor: "#fff", padding: "4px 10px", borderRadius: "20px", boxShadow: "0 2px 5px rgba(0,0,0,0.05)", border: "1px solid #eee", zIndex: 5 }}>
-          <button 
-            onClick={() => speakWord(currentQ.word)}
-            title="Nghe phát âm (Chuẩn Anh-Mỹ)"
-            style={{ width: "32px", height: "32px", borderRadius: "50%", border: "1px solid #bbdefb", backgroundColor: "#e3f2fd", color: "#1976D2", cursor: "pointer", display: "flex", justifyContent: "center", alignItems: "center", fontSize: "16px", padding: 0, margin: 0, transition: "0.2s" }}
-            onMouseOver={(e) => e.currentTarget.style.transform = "scale(1.1)"}
-            onMouseOut={(e) => e.currentTarget.style.transform = "scale(1)"}
-          >
-            🔊
-          </button>
-          <span style={{ fontWeight: "bold", color: timeLeft <= 3 ? "#f44336" : "#333", fontSize: "16px", minWidth: "40px", textAlign: "left" }}>
+          {/* Chỉ hiện nút đọc nếu đang hiển thị từ Tiếng Anh (không phải kiểu typing hoặc vn_to_en) */}
+          {(currentQ.type === "en_to_vn") && (
+            <button 
+              onClick={() => speakWord(currentQ.word)}
+              title="Nghe phát âm"
+              style={{ width: "32px", height: "32px", borderRadius: "50%", border: "1px solid #bbdefb", backgroundColor: "#e3f2fd", color: "#1976D2", cursor: "pointer", display: "flex", justifyContent: "center", alignItems: "center", fontSize: "16px", padding: 0, margin: 0, transition: "0.2s" }}
+              onMouseOver={(e) => e.currentTarget.style.transform = "scale(1.1)"}
+              onMouseOut={(e) => e.currentTarget.style.transform = "scale(1)"}
+            >
+              🔊
+            </button>
+          )}
+          <span style={{ fontWeight: "bold", color: timeLeft <= 3 ? "#f44336" : "#333", fontSize: "16px", minWidth: "40px", textAlign: "center" }}>
             ⏱️ {timeLeft}s
           </span>
         </div>
 
-        {/* Tiến độ */}
         <span style={{ position: "absolute", right: "0", color: "#666", fontSize: "14px", whiteSpace: "nowrap", fontWeight: "bold" }}>
           {current + 1}/{questionsData.length}
         </span>
-
       </div>
 
       <div style={{ width: "100%", height: "8px", backgroundColor: "#e0e0e0", borderRadius: "4px", overflow: "hidden", marginBottom: "20px" }}>
         <div style={{ height: "100%", width: `${timePercentage}%`, backgroundColor: timeLeft <= 3 ? "#f44336" : "#4caf50", transition: "width 1s linear" }} />
       </div>
 
-      <h2 style={{ fontSize: "24px", color: "#2c3e50" }}>What does "{currentQ.word}" mean?</h2>
-      <p style={{ fontSize: "18px", color: "#555", marginBottom: "20px" }}><strong><i>{currentQ.phonetic}</i></strong></p>
+      {/* KHU VỰC HIỂN THỊ CÂU HỎI DỰA VÀO TYPE */}
+      {currentQ.type === "en_to_vn" && (
+        <>
+          <h2 style={{ fontSize: "24px", color: "#2c3e50" }}>What does "{currentQ.word}" mean?</h2>
+          <p style={{ fontSize: "18px", color: "#555", marginBottom: "20px" }}><strong><i>{currentQ.phonetic}</i></strong></p>
+          <div className="options">
+            {currentQ.options.map((option, idx) => (
+              <button key={idx} onClick={() => handleAnswer(option)} className={selected ? (option === currentQ.answer ? "correct" : option === selected ? "wrong" : "") : ""} disabled={selected !== null}>
+                {option}
+              </button>
+            ))}
+          </div>
+        </>
+      )}
 
-      <div className="options">
-        {currentQ.options.map((option, idx) => (
-          <button key={idx} onClick={() => handleAnswer(option)} className={selected ? (option === currentQ.answer ? "correct" : option === selected ? "wrong" : "") : ""} disabled={selected !== null}>
-            {option}
-          </button>
-        ))}
-      </div>
+      {currentQ.type === "vn_to_en" && (
+        <>
+          <h2 style={{ fontSize: "20px", color: "#2c3e50", lineHeight: "1.4" }}>Từ nào có nghĩa là:<br/><span style={{fontSize: "26px", color: "#FF9800", display: "inline-block", marginTop: "10px"}}>"{currentQ.meaning}"</span> ?</h2>
+          <div className="options" style={{ marginTop: "20px" }}>
+            {currentQ.options.map((option, idx) => (
+              <button key={idx} onClick={() => handleAnswer(option)} className={selected ? (option === currentQ.answer ? "correct" : option === selected ? "wrong" : "") : ""} disabled={selected !== null} style={{ fontWeight: "bold", fontSize: "18px" }}>
+                {option}
+              </button>
+            ))}
+          </div>
+        </>
+      )}
 
+      {currentQ.type === "typing" && (
+        <>
+          <h2 style={{ fontSize: "20px", color: "#2c3e50", lineHeight: "1.4" }}>Hãy gõ từ tiếng Anh có nghĩa là:<br/><span style={{fontSize: "24px", color: "#F44336", display: "inline-block", marginTop: "10px"}}>"{currentQ.meaning}"</span></h2>
+          <form onSubmit={handleTypingSubmit} style={{ marginTop: "20px" }}>
+            <input 
+              ref={typingInputRef}
+              type="text" 
+              value={typingValue}
+              onChange={(e) => setTypingValue(e.target.value)}
+              disabled={selected !== null}
+              placeholder="Nhập từ vựng vào đây..."
+              style={{ width: "100%", padding: "15px", fontSize: "20px", textAlign: "center", borderRadius: "8px", border: "2px solid #ccc", outline: "none", textTransform: "lowercase" }}
+              autoComplete="off"
+              autoCorrect="off"
+              spellCheck="false"
+            />
+            {selected === null && (
+              <button type="submit" style={{ width: "100%", padding: "12px", marginTop: "15px", fontSize: "18px", backgroundColor: "#2196F3", color: "white", borderRadius: "8px", border: "none", cursor: typingValue.trim() ? "pointer" : "not-allowed", opacity: typingValue.trim() ? 1 : 0.5 }}>
+                Kiểm tra
+              </button>
+            )}
+          </form>
+
+          {/* Hiển thị đáp án đúng nếu gõ sai */}
+          {selected !== null && selected !== currentQ.answer && selected !== "TIMEOUT" && (
+            <div style={{ marginTop: "15px", fontSize: "18px", color: "#F44336", fontWeight: "bold" }}>
+              Từ đúng phải là: <span style={{ textDecoration: "underline", color: "#4CAF50" }}>{currentQ.answer}</span>
+            </div>
+          )}
+        </>
+      )}
+
+      {/* FEEDBACK & NEXT BUTTON */}
       {selected && (
         <>
-          <div style={{ marginTop: "15px", padding: "12px", borderRadius: "8px", backgroundColor: selected === currentQ.answer ? "#e8f5e9" : "#ffebee", color: selected === currentQ.answer ? "#2e7d32" : "#c62828", fontWeight: "bold", fontSize: "18px", boxShadow: "inset 0 2px 4px rgba(0,0,0,0.05)" }}>
+          <div style={{ marginTop: "15px", padding: "12px", borderRadius: "8px", backgroundColor: (selected === currentQ.answer || (currentQ.type === 'typing' && selected.toLowerCase() === currentQ.answer.toLowerCase())) ? "#e8f5e9" : "#ffebee", color: (selected === currentQ.answer || (currentQ.type === 'typing' && selected.toLowerCase() === currentQ.answer.toLowerCase())) ? "#2e7d32" : "#c62828", fontWeight: "bold", fontSize: "18px", boxShadow: "inset 0 2px 4px rgba(0,0,0,0.05)" }}>
             {selected === "TIMEOUT" ? "⏰ Hết giờ mất rồi!" : feedbackMsg}
           </div>
+          
           <div style={{ marginTop: "15px", padding: "15px", backgroundColor: "#f8f9fa", borderRadius: "8px", borderLeft: "4px solid #90caf9", textAlign: "left" }}>
-            <p style={{ margin: 0, fontSize: "16px", color: "#333", lineHeight: "1.5" }}><strong>📌 Ngữ cảnh dùng:</strong> <br/>{currentQ.usage}</p>
+            <p style={{ margin: 0, fontSize: "16px", color: "#333", lineHeight: "1.5" }}>
+              <strong>📌 Ngữ cảnh dùng:</strong> <br/>
+              {/* Nếu là kiểu vn_to_en hoặc typing thì hiện thêm cách phát âm cho người dùng biết */}
+              {currentQ.type !== "en_to_vn" && <span style={{color: "#1976D2", display: "block", marginBottom: "5px"}}>Phiên âm: {currentQ.phonetic}</span>}
+              {currentQ.usage}
+            </p>
           </div>
           <button className="next" onClick={nextQuestion} style={{ marginTop: "20px", width: "100%", padding: "15px", fontSize: "18px", fontWeight: "bold", borderRadius: "10px", boxShadow: "0 4px 6px rgba(0,0,0,0.1)" }}>
             Câu tiếp theo ➡️
@@ -627,10 +775,7 @@ function GrammarQuiz({ onBack, updateGlobal }) {
 
   return (
     <div className="container">
-      {/* THANH THÔNG TIN QUAY LẠI - NGỮ PHÁP (TỐI GIẢN) */}
       <div style={{ position: "relative", display: "flex", justifyContent: "center", alignItems: "center", width: "100%", height: "40px", marginBottom: "20px" }}>
-        
-        {/* Nút Quay Lại */}
         <button 
           onClick={() => { 
             if(streak >= REQUIRED_STREAK) {
@@ -643,11 +788,9 @@ function GrammarQuiz({ onBack, updateGlobal }) {
           ⬅ {streak >= REQUIRED_STREAK ? "🔓" : `🔒 ${streak}/${REQUIRED_STREAK}`}
         </button>
 
-        {/* Tiến độ */}
         <span style={{ position: "absolute", right: "0", color: "#666", fontSize: "14px", whiteSpace: "nowrap", fontWeight: "bold" }}>
           {current + 1}/{questionsData.length}
         </span>
-
       </div>
 
       <h2 style={{ lineHeight: "1.5" }}>{currentQ.question}</h2>
@@ -724,7 +867,6 @@ function App() {
     globalBgm.volume = volume;
   }, [volume]);
 
-  // Mắt thần tự động dừng nhạc khi thu nhỏ web
   useEffect(() => {
     const handleVisibilityChange = () => {
       if (document.hidden) {
@@ -873,28 +1015,28 @@ function App() {
       )}
 
       {/* THANH THÔNG TIN BÊN TRÊN */}
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px", padding: "8px 12px", backgroundColor: "#f0f8ff", borderRadius: "8px", border: "1px solid #cce7ff", flexWrap: "wrap", gap: "10px" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px", padding: "8px", backgroundColor: "#f0f8ff", borderRadius: "8px", border: "1px solid #cce7ff", width: "100%" }}>
         
         {/* BÊN TRÁI: Nhóm nút Nhạc */}
-        <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-          <button onClick={toggleMusic} title={isMusicPlaying ? "Tắt nhạc" : "Bật nhạc"} style={{ width: "32px", height: "32px", borderRadius: "50%", backgroundColor: isMusicPlaying ? "#FF9800" : "#E0E0E0", color: isMusicPlaying ? "white" : "#666", border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "14px", transition: "0.2s", boxShadow: "0 2px 4px rgba(0,0,0,0.1)", padding: 0 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+          <button onClick={toggleMusic} title={isMusicPlaying ? "Tắt nhạc" : "Bật nhạc"} style={{ width: "28px", height: "28px", borderRadius: "50%", backgroundColor: isMusicPlaying ? "#FF9800" : "#E0E0E0", color: isMusicPlaying ? "white" : "#666", border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", transition: "0.2s", boxShadow: "0 2px 4px rgba(0,0,0,0.1)", padding: 0 }}>
             {isMusicPlaying ? "🔊" : "🔇"}
           </button>
-          <button onClick={playNextTrack} title="Chuyển sang bài khác" style={{ width: "32px", height: "32px", borderRadius: "50%", backgroundColor: "#4facfe", color: "white", border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "14px", transition: "0.2s", boxShadow: "0 2px 4px rgba(0,0,0,0.1)", padding: 0 }}>
+          <button onClick={playNextTrack} title="Chuyển sang bài khác" style={{ width: "28px", height: "28px", borderRadius: "50%", backgroundColor: "#4facfe", color: "white", border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", transition: "0.2s", boxShadow: "0 2px 4px rgba(0,0,0,0.1)", padding: 0 }}>
             ⏭️
           </button>
-          <input type="range" min="0" max="1" step="0.05" value={volume} onChange={(e) => setVolume(parseFloat(e.target.value))} title="Điều chỉnh âm lượng" style={{ width: "60px", cursor: "pointer", marginLeft: "4px" }} />
+          <input type="range" min="0" max="1" step="0.05" value={volume} onChange={(e) => setVolume(parseFloat(e.target.value))} title="Điều chỉnh âm lượng" style={{ width: "40px", cursor: "pointer", marginLeft: "2px" }} />
         </div>
 
-        {/* BÊN PHẢI: Tài khoản (NÚT THOÁT ĐÃ ĐƯỢC CHUYỂN THÀNH ICON) */}
-        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-          <span style={{ fontSize: "12px", color: "#333", fontWeight: "bold", maxWidth: "80px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }} title={currentUser.email}>
-            👤 {currentUser.email}
+        {/* BÊN PHẢI: Tài khoản & Nút Thoát */}
+        <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+          <span style={{ fontSize: "11px", color: "#333", fontWeight: "bold", maxWidth: "60px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }} title={currentUser.email}>
+            👤 {currentUser.email.split('@')[0]}
           </span>
           <button 
             onClick={handleLogout} 
             title="Đăng xuất"
-            style={{ width: "32px", height: "32px", borderRadius: "50%", backgroundColor: "#ff4d4f", color: "white", border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "14px", transition: "0.2s", boxShadow: "0 2px 4px rgba(0,0,0,0.1)", padding: 0 }}
+            style={{ width: "28px", height: "28px", borderRadius: "50%", backgroundColor: "#ff4d4f", color: "white", border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "14px", transition: "0.2s", boxShadow: "0 2px 4px rgba(0,0,0,0.1)", padding: 0 }}
             onMouseOver={(e) => e.currentTarget.style.transform = "scale(1.1)"}
             onMouseOut={(e) => e.currentTarget.style.transform = "scale(1)"}
           >

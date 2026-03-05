@@ -9,9 +9,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh; /* SỬA LẠI: Dùng min-height để nó tự giãn ra nếu nội dung dài */
+  min-height: 100vh; 
   margin: 0;
-  padding: 20px; /* Thêm lề để hộp không dán sát viền điện thoại */
+  padding: 20px; 
   
   /* Khóa bôi đen văn bản */
   -webkit-touch-callout: none; 
@@ -27,9 +27,18 @@ body {
   padding: 30px;
   border-radius: 15px;
   text-align: center;
-  width: 100%; /* SỬA LẠI: Chiếm tối đa không gian màn hình đt */
-  max-width: 450px; /* SỬA LẠI: Trên máy tính thì giữ tối đa 450px cho đẹp */
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1); /* Thêm đổ bóng nhẹ cho sang trọng */
+  
+  /* SỬA LẠI: Ép chiều rộng cố định để hộp không bị "nhảy múa" */
+  width: 100%; 
+  max-width: 450px; 
+  min-width: 320px; /* Thêm min-width để trên điện thoại nhỏ nó cũng không bị móp quá mức */
+  
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
+}
+
+/* Đảm bảo các thành phần bên trong không làm bung hộp */
+h1, h2, h3, p, span, div {
+  word-wrap: break-word; /* Tự động xuống dòng nếu chữ quá dài */
 }
 
 button {
@@ -42,12 +51,13 @@ button {
   cursor: pointer;
   font-size: 16px;
   font-weight: 500;
-  transition: all 0.2s; /* Thêm chuyển động mượt */
+  transition: all 0.2s; 
+  word-wrap: break-word;
 }
 
 button:hover {
   opacity: 0.9;
-  transform: translateY(-2px); /* Hiệu ứng nảy nút bấm 3D khi rê chuột */
+  transform: translateY(-2px); 
 }
 
 .correct {
@@ -70,11 +80,12 @@ button:hover {
 /* ================================================= */
 @media screen and (max-width: 480px) {
   body {
-    padding: 10px; /* Giảm lề ngoài trên điện thoại */
+    padding: 10px; 
   }
   
   .container {
-    padding: 20px 15px; /* Giảm lề trong để chừa chỗ cho nội dung */
+    padding: 20px 15px; 
+    min-width: 100%; /* Trên đt bé xíu thì ép nó full màn hình trừ mép padding của body */
   }
   
   h1 {
@@ -94,7 +105,6 @@ button:hover {
     padding: 10px;
   }
   
-  /* Thu nhỏ các bảng thống kê cho vừa điện thoại */
   .container > div[style*="flex-wrap: wrap"] > div {
     min-width: 130px !important;
     padding: 12px !important;
