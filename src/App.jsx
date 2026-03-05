@@ -76,7 +76,6 @@ function WelcomeTutorial({ onDismiss }) {
         </button>
       </div>
 
-      {/* Style phụ cho hiệu ứng nảy nhẹ khi bảng hướng dẫn hiện ra */}
       <style>{`
         @keyframes popIn {
           0% { transform: scale(0.8); opacity: 0; }
@@ -87,7 +86,7 @@ function WelcomeTutorial({ onDismiss }) {
   );
 }
 
-// --- COMPONENT: ĐĂNG NHẬP / ĐĂNG KÝ (FIREBASE THẬT) ---
+// --- COMPONENT: ĐĂNG NHẬP / ĐĂNG KÝ ---
 function AuthScreen() {
   const [isLoginMode, setIsLoginMode] = useState(true);
   const [email, setEmail] = useState("");
@@ -154,11 +153,94 @@ function AuthScreen() {
   );
 }
 
-// --- COMPONENT: ÔN TỪ VỰNG ---
-function VocabQuiz({ onBack, updateGlobal }) {
-  const QUIZ_LIMIT = 30;
-  const TIME_PER_QUESTION = 10;
-  const REQUIRED_STREAK = 3; 
+// --- COMPONENT: CÀI ĐẶT TỪ VỰNG TRƯỚC KHI VÀO HỌC ---
+function VocabSettings({ onStart, onBack }) {
+  // Lấy cài đặt cũ từ bộ nhớ, nếu không có thì dùng mặc định
+  const [settings, setSettings] = useState(() => {
+    const saved = localStorage.getItem("toeic_vocab_settings");
+    return saved ? JSON.parse(saved) : { quizLimit: 30, timePerQuestion: 10, requiredStreak: 3 };
+  });
+
+  const handleStart = () => {
+    playSound("click");
+    localStorage.setItem("toeic_vocab_settings", JSON.stringify(settings));
+    onStart(settings);
+  };
+
+  return (
+    <div className="container" style={{ textAlign: "center", paddingTop: "20px" }}>
+      <h2 style={{ color: "#2c3e50", marginBottom: "5px" }}>⚙️ Cài đặt bài học</h2>
+      <p style={{ color: "#7f8c8d", marginBottom: "25px", fontSize: "14px" }}>Tùy chỉnh độ khó cho phù hợp với bạn</p>
+
+      <div style={{ backgroundColor: "#f9f9f9", padding: "20px", borderRadius: "12px", border: "1px solid #eee", textAlign: "left", marginBottom: "25px" }}>
+        
+        {/* Số câu hỏi */}
+        <div style={{ marginBottom: "20px" }}>
+          <label style={{ fontWeight: "bold", color: "#333", display: "block", marginBottom: "8px" }}>
+            📚 Số lượng từ vựng mỗi lượt: <span style={{ color: "#4CAF50" }}>{settings.quizLimit} câu</span>
+          </label>
+          <input 
+            type="range" min="5" max="100" step="5" 
+            value={settings.quizLimit} 
+            onChange={(e) => setSettings({...settings, quizLimit: parseInt(e.target.value)})} 
+            style={{ width: "100%", cursor: "pointer" }} 
+          />
+          <div style={{ display: "flex", justifyContent: "space-between", fontSize: "12px", color: "#888", marginTop: "5px" }}>
+            <span>5 câu</span><span>100 câu</span>
+          </div>
+        </div>
+
+        {/* Thời gian */}
+        <div style={{ marginBottom: "20px" }}>
+          <label style={{ fontWeight: "bold", color: "#333", display: "block", marginBottom: "8px" }}>
+            ⏱️ Thời gian chọn đáp án: <span style={{ color: "#FF9800" }}>{settings.timePerQuestion} giây</span>
+          </label>
+          <input 
+            type="range" min="3" max="30" step="1" 
+            value={settings.timePerQuestion} 
+            onChange={(e) => setSettings({...settings, timePerQuestion: parseInt(e.target.value)})} 
+            style={{ width: "100%", cursor: "pointer" }} 
+          />
+          <div style={{ display: "flex", justifyContent: "space-between", fontSize: "12px", color: "#888", marginTop: "5px" }}>
+            <span>3s (Siêu khó)</span><span>30s (Dễ)</span>
+          </div>
+        </div>
+
+        {/* Streak mở khóa */}
+        <div>
+          <label style={{ fontWeight: "bold", color: "#333", display: "block", marginBottom: "8px" }}>
+            🔓 Số câu đúng liên tiếp để mở khóa nút "Quay lại": <span style={{ color: "#2196F3" }}>{settings.requiredStreak} câu</span>
+          </label>
+          <input 
+            type="range" min="1" max="10" step="1" 
+            value={settings.requiredStreak} 
+            onChange={(e) => setSettings({...settings, requiredStreak: parseInt(e.target.value)})} 
+            style={{ width: "100%", cursor: "pointer" }} 
+          />
+          <div style={{ display: "flex", justifyContent: "space-between", fontSize: "12px", color: "#888", marginTop: "5px" }}>
+            <span>1 câu</span><span>10 câu</span>
+          </div>
+        </div>
+
+      </div>
+
+      <button onClick={handleStart} style={{ width: "100%", padding: "15px", fontSize: "18px", backgroundColor: "#4CAF50", color: "white", borderRadius: "10px", border: "none", cursor: "pointer", fontWeight: "bold", boxShadow: "0 4px 6px rgba(0,0,0,0.1)", marginBottom: "15px" }}>
+        🚀 Bắt đầu học ngay!
+      </button>
+      <button onClick={() => { playSound("click"); onBack(); }} style={{ width: "100%", padding: "10px", fontSize: "16px", backgroundColor: "#e0e0e0", color: "#555", borderRadius: "10px", border: "none", cursor: "pointer", fontWeight: "bold" }}>
+        Trở về sảnh
+      </button>
+    </div>
+  );
+}
+
+
+// --- COMPONENT: ÔN TỪ VỰNG CHÍNH ---
+function VocabQuiz({ onBack, updateGlobal, settings }) {
+  // Sử dụng cấu hình từ người dùng thay vì fix cứng
+  const QUIZ_LIMIT = settings.quizLimit;
+  const TIME_PER_QUESTION = settings.timePerQuestion;
+  const REQUIRED_STREAK = settings.requiredStreak; 
 
   const [questionsData, setQuestionsData] = useState([]);
   const [loadingData, setLoadingData] = useState(true);
@@ -212,6 +294,7 @@ function VocabQuiz({ onBack, updateGlobal }) {
     };
 
     fetchVocabFromSheets();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -547,7 +630,7 @@ function GrammarQuiz({ onBack, updateGlobal }) {
   );
 }
 
-// --- ĐƯA DANH SÁCH NHẠC RA NGOÀI ĐỂ TRÁNH LỖI LOAD LẠI ---
+// --- ĐƯA BỘ MÁY NHẠC RA NGOÀI ĐỂ SIÊU ỔN ĐỊNH ---
 const BGM_PLAYLIST = [
   "/music/1.mp3",       
   "/music/2.mp3",    
@@ -559,73 +642,79 @@ const BGM_PLAYLIST = [
   "/music/8.mp3", 
   "/music/9.mp3"
 ];
+
+const globalBgm = new Audio();
+globalBgm.loop = false;
+
 // --- COMPONENT: APP CHÍNH ---
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [authChecking, setAuthChecking] = useState(true);
-  const [screen, setScreen] = useState("home");
   
-  // Trạng thái hiển thị Bảng hướng dẫn
+  // Nâng cấp: Các screen giờ có thêm 'vocab_settings'
+  const [screen, setScreen] = useState("home"); 
+  const [vocabSettings, setVocabSettings] = useState(null);
+  
   const [showTutorial, setShowTutorial] = useState(false);
-
-  // Trạng thái Playlist Nhạc nền
-  const [bgm] = useState(() => new Audio());
   const [isMusicPlaying, setIsMusicPlaying] = useState(true); 
-  const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
-  const [volume, setVolume] = useState(0.2); 
+  const [currentTrackIndex, setCurrentTrackIndex] = useState(Math.floor(Math.random() * BGM_PLAYLIST.length));
+  const [volume, setVolume] = useState(0.4); 
 
-  // Kiểm tra xem user đã từng đọc hướng dẫn chưa
+  const forcePlayMusic = () => {
+    if (isMusicPlaying) {
+      if (!globalBgm.src || !globalBgm.src.includes(BGM_PLAYLIST[currentTrackIndex])) {
+        globalBgm.src = BGM_PLAYLIST[currentTrackIndex];
+      }
+      globalBgm.play().catch(e => console.log("Bị trình duyệt chặn nhẹ:", e));
+    }
+  };
+
   useEffect(() => {
     if (currentUser) {
       const hasSeenTutorial = localStorage.getItem("toeic_tutorial_seen");
       if (!hasSeenTutorial) {
         setShowTutorial(true);
+      } else {
+        forcePlayMusic();
       }
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentUser]);
 
-  // Cập nhật âm lượng khi kéo thanh trượt
   useEffect(() => {
-    bgm.volume = volume;
-  }, [volume, bgm]);
+    globalBgm.volume = volume;
+  }, [volume]);
 
-  // Tự động chuyển bài khi hát xong
   useEffect(() => {
     const handleEnded = () => {
       setCurrentTrackIndex((prev) => (prev + 1) % BGM_PLAYLIST.length);
     };
-    bgm.addEventListener("ended", handleEnded);
-    return () => bgm.removeEventListener("ended", handleEnded);
-  }, [bgm]);
+    globalBgm.addEventListener("ended", handleEnded);
+    return () => globalBgm.removeEventListener("ended", handleEnded);
+  }, []);
 
-  // Quản lý việc Phát / Dừng nhạc an toàn
   useEffect(() => {
-    if (!bgm.src || !bgm.src.includes(BGM_PLAYLIST[currentTrackIndex])) {
-      bgm.src = BGM_PLAYLIST[currentTrackIndex];
-      bgm.load(); 
+    globalBgm.src = BGM_PLAYLIST[currentTrackIndex];
+    if (isMusicPlaying && screen === "home" && !showTutorial) {
+      globalBgm.play().catch(e => console.log("Đợi tương tác..."));
     }
-    
-    // Nếu đang xem Tutorial thì tạm không phát nhạc để tránh giật mình, vào sảnh mới phát
-    if (screen === "home" && isMusicPlaying && !showTutorial) {
-      const playPromise = bgm.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          const forcePlayAudio = () => {
-            if (isMusicPlaying && screen === "home" && !showTutorial) bgm.play().catch(e => console.log(e));
-            document.removeEventListener("click", forcePlayAudio);
-            document.removeEventListener("touchstart", forcePlayAudio);
-          };
-          document.addEventListener("click", forcePlayAudio);
-          document.addEventListener("touchstart", forcePlayAudio);
-        });
-      }
+  }, [currentTrackIndex, isMusicPlaying, screen, showTutorial]);
+
+  useEffect(() => {
+    if (screen === "home" && isMusicPlaying && !showTutorial && currentUser) {
+      globalBgm.play().catch(e => console.log("Đợi tương tác..."));
     } else {
-      bgm.pause();
+      globalBgm.pause();
     }
-  }, [screen, isMusicPlaying, currentTrackIndex, bgm, showTutorial]);
+  }, [screen, isMusicPlaying, showTutorial, currentUser]);
 
   const toggleMusic = () => {
     playSound("click");
+    if (isMusicPlaying) {
+      globalBgm.pause();
+    } else {
+      globalBgm.play().catch(() => alert("Trình duyệt đang chặn. Bạn hãy click chuột ra màn hình 1 phát rồi bật lại nhé!"));
+    }
     setIsMusicPlaying(!isMusicPlaying);
   };
 
@@ -635,7 +724,6 @@ function App() {
     if (!isMusicPlaying) setIsMusicPlaying(true);
   };
   
-  // Dữ liệu Cloud Firestore
   const [globalStats, setGlobalStats] = useState({
     vocab: { correct: 0, total: 0 },
     grammar: { correct: 0, total: 0 }
@@ -647,7 +735,6 @@ function App() {
         setCurrentUser(user);
         const docRef = doc(db, "users", user.uid);
         const docSnap = await getDoc(docRef);
-        
         if (docSnap.exists()) {
           setGlobalStats(docSnap.data());
         }
@@ -656,7 +743,6 @@ function App() {
       }
       setAuthChecking(false);
     });
-
     return () => unsubscribe();
   }, []);
 
@@ -666,22 +752,17 @@ function App() {
     playSound("click");
     await signOut(auth);
     setCurrentUser(null);
-    bgm.pause(); 
+    globalBgm.pause(); 
     setIsMusicPlaying(false);
   };
 
   const updateGlobalStats = async (type, isCorrect) => {
     if (!currentUser) return;
-
     setGlobalStats(prev => {
       const newStats = { 
         ...prev, 
-        [type]: { 
-          correct: prev[type].correct + (isCorrect ? 1 : 0), 
-          total: prev[type].total + 1 
-        } 
+        [type]: { correct: prev[type].correct + (isCorrect ? 1 : 0), total: prev[type].total + 1 } 
       };
-      
       setDoc(doc(db, "users", currentUser.uid), newStats, { merge: true });
       return newStats;
     });
@@ -693,13 +774,28 @@ function App() {
 
   if (!currentUser) {
     return (
-      <div onContextMenu={disableRightClick}>
+      <div onContextMenu={disableRightClick} onClick={forcePlayMusic}>
         <AuthScreen />
       </div>
     );
   }
 
-  if (screen === "vocab") return <VocabQuiz onBack={() => { playSound("click"); setScreen("home"); }} updateGlobal={updateGlobalStats} />;
+  // --- HỆ THỐNG ĐIỀU HƯỚNG MỚI (Routing) ---
+  if (screen === "vocab_settings") {
+    return (
+      <div onContextMenu={disableRightClick}>
+        <VocabSettings 
+          onBack={() => setScreen("home")} 
+          onStart={(settingsConfig) => {
+            setVocabSettings(settingsConfig); // Lưu lại thông số đã chọn
+            setScreen("vocab"); // Mở màn hình học thật
+          }} 
+        />
+      </div>
+    );
+  }
+
+  if (screen === "vocab") return <VocabQuiz onBack={() => { playSound("click"); setScreen("home"); }} updateGlobal={updateGlobalStats} settings={vocabSettings} />;
   if (screen === "grammar") return <GrammarQuiz onBack={() => { playSound("click"); setScreen("home"); }} updateGlobal={updateGlobalStats} />;
 
   const vocabTotal = globalStats.vocab.total;
@@ -713,14 +809,12 @@ function App() {
   return (
     <div className="container" onContextMenu={disableRightClick} style={{ textAlign: "center", paddingTop: "20px", maxWidth: "450px" }}>
       
-      {/* HIỂN THỊ BẢNG HƯỚNG DẪN NẾU LÀ LẦN ĐẦU VÀO WEB */}
       {showTutorial && (
         <WelcomeTutorial 
           onDismiss={() => {
             localStorage.setItem("toeic_tutorial_seen", "true");
             setShowTutorial(false);
-            // Kích nhạc luôn sau khi tắt hướng dẫn
-            if(isMusicPlaying) bgm.play().catch(e => console.log(e)); 
+            forcePlayMusic(); 
           }} 
         />
       )}
@@ -728,40 +822,20 @@ function App() {
       {/* THANH THÔNG TIN BÊN TRÊN */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px", padding: "8px 12px", backgroundColor: "#f0f8ff", borderRadius: "8px", border: "1px solid #cce7ff" }}>
         
-        {/* BÊN TRÁI: Nhóm nút Nhạc, Chuyển bài & Âm lượng */}
+        {/* BÊN TRÁI: Nhóm nút Nhạc */}
         <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-          <button 
-            onClick={toggleMusic} 
-            title={isMusicPlaying ? "Tắt nhạc" : "Bật nhạc"}
-            style={{ width: "32px", height: "32px", borderRadius: "50%", backgroundColor: isMusicPlaying ? "#FF9800" : "#E0E0E0", color: isMusicPlaying ? "white" : "#666", border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "14px", transition: "0.2s", boxShadow: "0 2px 4px rgba(0,0,0,0.1)", padding: 0 }}
-          >
+          <button onClick={toggleMusic} title={isMusicPlaying ? "Tắt nhạc" : "Bật nhạc"} style={{ width: "32px", height: "32px", borderRadius: "50%", backgroundColor: isMusicPlaying ? "#FF9800" : "#E0E0E0", color: isMusicPlaying ? "white" : "#666", border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "14px", transition: "0.2s", boxShadow: "0 2px 4px rgba(0,0,0,0.1)", padding: 0 }}>
             {isMusicPlaying ? "🔊" : "🔇"}
           </button>
-
-          <button 
-            onClick={playNextTrack} 
-            title="Chuyển sang bài khác"
-            style={{ width: "32px", height: "32px", borderRadius: "50%", backgroundColor: "#4facfe", color: "white", border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "14px", transition: "0.2s", boxShadow: "0 2px 4px rgba(0,0,0,0.1)", padding: 0 }}
-          >
+          <button onClick={playNextTrack} title="Chuyển sang bài khác" style={{ width: "32px", height: "32px", borderRadius: "50%", backgroundColor: "#4facfe", color: "white", border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "14px", transition: "0.2s", boxShadow: "0 2px 4px rgba(0,0,0,0.1)", padding: 0 }}>
             ⏭️
           </button>
-
-          <input 
-            type="range" 
-            min="0" max="1" step="0.05" 
-            value={volume}
-            onChange={(e) => setVolume(parseFloat(e.target.value))}
-            title="Điều chỉnh âm lượng"
-            style={{ width: "60px", cursor: "pointer", marginLeft: "4px" }}
-          />
+          <input type="range" min="0" max="1" step="0.05" value={volume} onChange={(e) => setVolume(parseFloat(e.target.value))} title="Điều chỉnh âm lượng" style={{ width: "60px", cursor: "pointer", marginLeft: "4px" }} />
         </div>
 
-        {/* BÊN PHẢI: Tài khoản & Đăng xuất */}
+        {/* BÊN PHẢI: Tài khoản */}
         <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-          <span 
-            style={{ fontSize: "12px", color: "#333", fontWeight: "bold", maxWidth: "80px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }} 
-            title={currentUser.email}
-          >
+          <span style={{ fontSize: "12px", color: "#333", fontWeight: "bold", maxWidth: "80px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }} title={currentUser.email}>
             👤 {currentUser.email}
           </span>
           <button onClick={handleLogout} style={{ padding: "5px 10px", fontSize: "11px", backgroundColor: "#ff4d4f", color: "white", border: "none", borderRadius: "5px", cursor: "pointer", fontWeight: "bold", transition: "0.2s", boxShadow: "0 2px 4px rgba(0,0,0,0.1)" }}>
@@ -796,12 +870,16 @@ function App() {
         </div>
       </div>
 
-      {/* MENU CHÍNH */}
+      {/* MENU CHÍNH - Cập nhật logic khi bấm nút Từ Vựng */}
       <div style={{ display: "flex", flexDirection: "column", gap: "15px", maxWidth: "300px", margin: "0 auto" }}>
-        <button onClick={() => { playSound("click"); setScreen("vocab"); }} style={{ padding: "15px", fontSize: "18px", backgroundColor: "#4CAF50", color: "white", borderRadius: "10px", border: "none", cursor: "pointer", boxShadow: "0 4px 6px rgba(0,0,0,0.1)", transition: "transform 0.2s" }} onMouseOver={(e) => e.currentTarget.style.transform = "translateY(-3px)"} onMouseOut={(e) => e.currentTarget.style.transform = "translateY(0)"}>
+        <button 
+          onClick={() => { playSound("click"); setScreen("vocab_settings"); }} 
+          style={{ padding: "15px", fontSize: "18px", backgroundColor: "#4CAF50", color: "white", borderRadius: "10px", border: "none", cursor: "pointer", boxShadow: "0 4px 6px rgba(0,0,0,0.1)", transition: "transform 0.2s" }} onMouseOver={(e) => e.currentTarget.style.transform = "translateY(-3px)"} onMouseOut={(e) => e.currentTarget.style.transform = "translateY(0)"}>
           Bắt đầu luyện Từ Vựng
         </button>
-        <button onClick={() => { playSound("click"); setScreen("grammar"); }} style={{ padding: "15px", fontSize: "18px", backgroundColor: "#2196F3", color: "white", borderRadius: "10px", border: "none", cursor: "pointer", boxShadow: "0 4px 6px rgba(0,0,0,0.1)", transition: "transform 0.2s" }} onMouseOver={(e) => e.currentTarget.style.transform = "translateY(-3px)"} onMouseOut={(e) => e.currentTarget.style.transform = "translateY(0)"}>
+        <button 
+          onClick={() => { playSound("click"); setScreen("grammar"); }} 
+          style={{ padding: "15px", fontSize: "18px", backgroundColor: "#2196F3", color: "white", borderRadius: "10px", border: "none", cursor: "pointer", boxShadow: "0 4px 6px rgba(0,0,0,0.1)", transition: "transform 0.2s" }} onMouseOver={(e) => e.currentTarget.style.transform = "translateY(-3px)"} onMouseOut={(e) => e.currentTarget.style.transform = "translateY(0)"}>
           Bắt đầu luyện Ngữ Pháp
         </button>
       </div>
