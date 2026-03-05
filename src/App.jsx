@@ -493,6 +493,15 @@ function VocabQuiz({ onBack, updateGlobal, settings }) {
     if (nextIdx >= questionsData.length && DIFFICULTY_LEVEL < 3) playSound("finish");
   };
 
+  // --- HÀM CLEAR SỬA LỖI MÀN HÌNH HOÀN THÀNH ---
+  const handleBackToHome = () => {
+    playSound("click");
+    localStorage.removeItem("toeic_vocab_q_temp");
+    localStorage.removeItem("toeic_vocab_c_temp");
+    localStorage.removeItem("toeic_vocab_s_temp");
+    onBack(); // Đảm bảo gọi thẳng onBack() để chuyển hướng
+  };
+
   if (loadingData) {
     return <div className="container" style={{ textAlign: "center", paddingTop: "50px" }}><h2>Đang tải bộ dữ liệu chiến đấu... ☁️</h2></div>;
   }
@@ -515,7 +524,7 @@ function VocabQuiz({ onBack, updateGlobal, settings }) {
           <p style={{ fontSize: "18px", margin: "10px 0", color: "#4CAF50", fontWeight: "bold" }}>✅ Trả lời đúng: {score}</p>
           {DIFFICULTY_LEVEL < 3 && <p style={{ fontSize: "18px", margin: "10px 0", color: "#F44336", fontWeight: "bold" }}>❌ Trả lời sai: {current - score}</p>}
         </div>
-        <button className="next" onClick={() => { playSound("click"); clearStorageAndExit(); }}>Về trang chủ</button>
+        <button className="next" onClick={handleBackToHome}>Về trang chủ</button>
       </div>
     );
   }
@@ -528,14 +537,10 @@ function VocabQuiz({ onBack, updateGlobal, settings }) {
       {/* THANH THÔNG TIN TỐI GIẢN */}
       <div style={{ position: "relative", display: "flex", justifyContent: "center", alignItems: "center", width: "100%", height: "40px", marginBottom: "15px" }}>
         
-        {/* NÚT QUAY LẠI TỪ VỰNG - SỬA LỖI KHÔNG BACK ĐƯỢC */}
         {DIFFICULTY_LEVEL < 3 && (
           <button 
             onClick={() => { 
-              if(streak >= REQUIRED_STREAK) { 
-                playSound("click"); 
-                onBack(); // Gọi thẳng hàm onBack() truyền từ App vào
-              }
+              if(streak >= REQUIRED_STREAK) { handleBackToHome(); }
             }} 
             style={{ position: "absolute", left: "0", padding: "5px 8px", fontSize: "14px", cursor: streak >= REQUIRED_STREAK ? "pointer" : "not-allowed", backgroundColor: streak >= REQUIRED_STREAK ? "#e8f5e9" : "#f0f0f0", color: streak >= REQUIRED_STREAK ? "#2e7d32" : "#999", border: "1px solid #ccc", borderRadius: "5px", fontWeight: "bold", zIndex: 10 }}
           >
@@ -823,7 +828,7 @@ function GrammarQuiz({ onBack, updateGlobal }) {
           onClick={() => { 
             if(streak >= REQUIRED_STREAK) {
               playSound("click");
-              onBack(); // Gọi thẳng onBack()
+              clearStorageAndExit();
             }
           }} 
           style={{ position: "absolute", left: "0", width: "max-content", padding: "5px 8px", fontSize: "14px", cursor: streak >= REQUIRED_STREAK ? "pointer" : "not-allowed", backgroundColor: streak >= REQUIRED_STREAK ? "#e8f5e9" : "#f0f0f0", color: streak >= REQUIRED_STREAK ? "#2e7d32" : "#999", border: "1px solid #ccc", borderRadius: "5px", whiteSpace: "nowrap", fontWeight: "bold", zIndex: 10 }}
@@ -910,7 +915,6 @@ function App() {
     globalBgm.volume = volume;
   }, [volume]);
 
-  // Mắt thần tự động dừng nhạc khi thu nhỏ web
   useEffect(() => {
     const handleVisibilityChange = () => {
       if (document.hidden) {
