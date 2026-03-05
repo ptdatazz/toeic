@@ -528,10 +528,14 @@ function VocabQuiz({ onBack, updateGlobal, settings }) {
       {/* THANH THÔNG TIN TỐI GIẢN */}
       <div style={{ position: "relative", display: "flex", justifyContent: "center", alignItems: "center", width: "100%", height: "40px", marginBottom: "15px" }}>
         
+        {/* NÚT QUAY LẠI TỪ VỰNG - SỬA LỖI KHÔNG BACK ĐƯỢC */}
         {DIFFICULTY_LEVEL < 3 && (
           <button 
             onClick={() => { 
-              if(streak >= REQUIRED_STREAK) { playSound("click"); clearStorageAndExit(); }
+              if(streak >= REQUIRED_STREAK) { 
+                playSound("click"); 
+                onBack(); // Gọi thẳng hàm onBack() truyền từ App vào
+              }
             }} 
             style={{ position: "absolute", left: "0", padding: "5px 8px", fontSize: "14px", cursor: streak >= REQUIRED_STREAK ? "pointer" : "not-allowed", backgroundColor: streak >= REQUIRED_STREAK ? "#e8f5e9" : "#f0f0f0", color: streak >= REQUIRED_STREAK ? "#2e7d32" : "#999", border: "1px solid #ccc", borderRadius: "5px", fontWeight: "bold", zIndex: 10 }}
           >
@@ -819,7 +823,7 @@ function GrammarQuiz({ onBack, updateGlobal }) {
           onClick={() => { 
             if(streak >= REQUIRED_STREAK) {
               playSound("click");
-              clearStorageAndExit();
+              onBack(); // Gọi thẳng onBack()
             }
           }} 
           style={{ position: "absolute", left: "0", width: "max-content", padding: "5px 8px", fontSize: "14px", cursor: streak >= REQUIRED_STREAK ? "pointer" : "not-allowed", backgroundColor: streak >= REQUIRED_STREAK ? "#e8f5e9" : "#f0f0f0", color: streak >= REQUIRED_STREAK ? "#2e7d32" : "#999", border: "1px solid #ccc", borderRadius: "5px", whiteSpace: "nowrap", fontWeight: "bold", zIndex: 10 }}

@@ -11,7 +11,7 @@ body {
   align-items: center;
   min-height: 100vh; 
   margin: 0;
-  padding: 20px; 
+  padding: 15px; 
   
   /* Khóa bôi đen văn bản */
   -webkit-touch-callout: none; 
@@ -22,30 +22,33 @@ body {
   user-select: none; 
 }
 
+/* --- ĐÓNG ĐINH KHUNG TRẮNG --- */
 .container {
   background: white;
-  padding: 30px;
+  padding: 30px 20px;
   border-radius: 15px;
   text-align: center;
   
-  /* SỬA LẠI: Ép chiều rộng cố định để hộp không bị "nhảy múa" */
-  width: 100%; 
-  max-width: 450px; 
-  min-width: 320px; /* Thêm min-width để trên điện thoại nhỏ nó cũng không bị móp quá mức */
+  /* Ép chết chiều rộng, tuyệt đối không co giãn theo chữ */
+  width: 450px; 
+  max-width: 100%; /* Để khi vào đt màn hình nhỏ nó không bị tràn viền */
   
   box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
 }
 
-/* Đảm bảo các thành phần bên trong không làm bung hộp */
+/* Đảm bảo chữ dài không chọc thủng hộp */
 h1, h2, h3, p, span, div {
-  word-wrap: break-word; /* Tự động xuống dòng nếu chữ quá dài */
+  word-wrap: break-word; 
+  overflow-wrap: break-word;
 }
 
-button {
+/* --- CHỈ ÁP DỤNG CHO NÚT ĐÁP ÁN VÀ NÚT NEXT --- 
+   (Không làm hỏng nút Quay lại và nút Loa) */
+.options button, .next {
   display: block;
   width: 100%;
   margin: 10px 0;
-  padding: 12px;
+  padding: 15px; /* Làm nút to ra một chút để dễ bấm trên điện thoại */
   border-radius: 8px;
   border: none;
   cursor: pointer;
@@ -53,21 +56,28 @@ button {
   font-weight: 500;
   transition: all 0.2s; 
   word-wrap: break-word;
+  background-color: #f4f6f8; /* Màu nền mặc định của nút đáp án */
+  color: #333;
 }
 
-button:hover {
+.options button:hover, .next:hover {
   opacity: 0.9;
   transform: translateY(-2px); 
 }
 
+.options button:disabled {
+  transform: none; /* Khóa hiệu ứng nảy khi đã chọn đáp án */
+}
+
+/* Màu sắc khi đúng/sai */
 .correct {
   background-color: #4caf50 !important;
-  color: white;
+  color: white !important;
 }
 
 .wrong {
   background-color: #f44336 !important;
-  color: white;
+  color: white !important;
 }
 
 .next {
@@ -81,11 +91,12 @@ button:hover {
 @media screen and (max-width: 480px) {
   body {
     padding: 10px; 
+    align-items: flex-start; /* Giữ hộp ở phía trên, không bị trôi lơ lửng */
   }
   
   .container {
     padding: 20px 15px; 
-    min-width: 100%; /* Trên đt bé xíu thì ép nó full màn hình trừ mép padding của body */
+    margin-top: 15px;
   }
   
   h1 {
@@ -93,20 +104,11 @@ button:hover {
   }
   
   h2 {
-    font-size: 1.3rem !important;
+    font-size: 1.2rem !important;
   }
   
-  p, span {
-    font-size: 14px !important;
-  }
-
-  button {
+  .options button, .next {
     font-size: 15px;
-    padding: 10px;
-  }
-  
-  .container > div[style*="flex-wrap: wrap"] > div {
-    min-width: 130px !important;
-    padding: 12px !important;
+    padding: 12px;
   }
 }
