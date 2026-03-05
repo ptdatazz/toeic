@@ -11,7 +11,7 @@ body {
   align-items: center;
   min-height: 100vh; 
   margin: 0;
-  padding: 15px; 
+  padding: 15px; /* Giữ khoảng cách để khung không chạm viền điện thoại */
   
   /* Khóa bôi đen văn bản */
   -webkit-touch-callout: none; 
@@ -22,16 +22,16 @@ body {
   user-select: none; 
 }
 
-/* --- ĐÓNG ĐINH KHUNG TRẮNG --- */
+/* --- ĐÓNG ĐINH KHUNG TRẮNG CHUẨN NHẤT --- */
 .container {
   background: white;
   padding: 30px 20px;
   border-radius: 15px;
   text-align: center;
   
-  /* Ép chết chiều rộng, tuyệt đối không co giãn theo chữ */
-  width: 450px; 
-  max-width: 100%; /* Để khi vào đt màn hình nhỏ nó không bị tràn viền */
+  /* QUAN TRỌNG: Ép khung luôn rộng tối đa nhưng không vượt quá màn hình đt */
+  width: 100% !important;        
+  max-width: 450px !important;   
   
   box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
 }
@@ -42,13 +42,12 @@ h1, h2, h3, p, span, div {
   overflow-wrap: break-word;
 }
 
-/* --- CHỈ ÁP DỤNG CHO NÚT ĐÁP ÁN VÀ NÚT NEXT --- 
-   (Không làm hỏng nút Quay lại và nút Loa) */
+/* Nút đáp án và Nút Next */
 .options button, .next {
   display: block;
   width: 100%;
   margin: 10px 0;
-  padding: 15px; /* Làm nút to ra một chút để dễ bấm trên điện thoại */
+  padding: 15px;
   border-radius: 8px;
   border: none;
   cursor: pointer;
@@ -56,7 +55,7 @@ h1, h2, h3, p, span, div {
   font-weight: 500;
   transition: all 0.2s; 
   word-wrap: break-word;
-  background-color: #f4f6f8; /* Màu nền mặc định của nút đáp án */
+  background-color: #f4f6f8; 
   color: #333;
 }
 
@@ -66,7 +65,7 @@ h1, h2, h3, p, span, div {
 }
 
 .options button:disabled {
-  transform: none; /* Khóa hiệu ứng nảy khi đã chọn đáp án */
+  transform: none; 
 }
 
 /* Màu sắc khi đúng/sai */
@@ -90,13 +89,13 @@ h1, h2, h3, p, span, div {
 /* ================================================= */
 @media screen and (max-width: 480px) {
   body {
-    padding: 10px; 
-    align-items: flex-start; /* Giữ hộp ở phía trên, không bị trôi lơ lửng */
+    padding: 12px; 
+    align-items: flex-start; /* Giúp hộp neo lên phía trên, không trôi lơ lửng giữa màn hình */
   }
   
   .container {
     padding: 20px 15px; 
-    margin-top: 15px;
+    margin-top: 10px;
   }
   
   h1 {
