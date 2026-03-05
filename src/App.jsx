@@ -499,7 +499,7 @@ function VocabQuiz({ onBack, updateGlobal, settings }) {
     localStorage.removeItem("toeic_vocab_q_temp");
     localStorage.removeItem("toeic_vocab_c_temp");
     localStorage.removeItem("toeic_vocab_s_temp");
-    onBack(); // Đảm bảo gọi thẳng onBack() để chuyển hướng
+    onBack(); 
   };
 
   if (loadingData) {
@@ -654,16 +654,36 @@ function VocabQuiz({ onBack, updateGlobal, settings }) {
             {feedbackMsg}
           </div>
           
-          {selected !== "TIMEOUT" && selected.toLowerCase() !== currentQ.answer.toLowerCase() && (
+          {/* HIỂN THỊ TỪ VỰNG, PHIÊN ÂM VÀ LOA CHO CÁC DẠNG HỎI NGHĨA (vn_to_en, typing, scramble) */}
+          {(currentQ.type === "vn_to_en" || currentQ.type === "typing" || currentQ.type === "scramble") && (
+            <div style={{ marginTop: "15px", display: "flex", flexDirection: "column", alignItems: "center", gap: "8px", padding: "15px", backgroundColor: "#f0f8ff", borderRadius: "10px", border: "2px dashed #4facfe" }}>
+               <span style={{ fontSize: "14px", color: "#555", fontWeight: "bold", textTransform: "uppercase" }}>Từ tiếng Anh chính xác</span>
+               <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                   <span style={{ fontSize: "26px", fontWeight: "bold", color: "#1976D2" }}>{currentQ.word}</span>
+                   <button 
+                       onClick={() => speakWord(currentQ.word)}
+                       title="Nghe phát âm"
+                       style={{ width: "36px", height: "36px", borderRadius: "50%", border: "none", backgroundColor: "#4facfe", color: "white", cursor: "pointer", display: "flex", justifyContent: "center", alignItems: "center", fontSize: "16px", padding: 0, margin: 0, boxShadow: "0 2px 5px rgba(0,0,0,0.2)", transition: "0.2s" }}
+                       onMouseOver={(e) => e.currentTarget.style.transform = "scale(1.1)"}
+                       onMouseOut={(e) => e.currentTarget.style.transform = "scale(1)"}
+                   >
+                       🔊
+                   </button>
+               </div>
+               <span style={{ fontSize: "18px", color: "#666" }}><i>{currentQ.phonetic}</i></span>
+            </div>
+          )}
+
+          {/* NẾU LÀ DẠNG en_to_vn HOẶC listening MÀ CHỌN SAI THÌ VẪN PHẢI BÁO NGHĨA ĐÚNG */}
+          {(currentQ.type === "en_to_vn" || currentQ.type === "listening") && selected !== "TIMEOUT" && selected !== currentQ.answer && (
              <div style={{ marginTop: "10px", fontSize: "18px", color: "#F44336", fontWeight: "bold" }}>
-               Từ đúng: <span style={{ textDecoration: "underline", color: "#4CAF50" }}>{currentQ.answer}</span>
+               Nghĩa đúng: <span style={{ textDecoration: "underline", color: "#4CAF50" }}>{currentQ.answer}</span>
              </div>
           )}
 
           <div style={{ marginTop: "15px", padding: "15px", backgroundColor: "#f8f9fa", borderRadius: "8px", borderLeft: "4px solid #90caf9", textAlign: "left" }}>
             <p style={{ margin: 0, fontSize: "16px", color: "#333", lineHeight: "1.5" }}>
               <strong>📌 Ngữ cảnh:</strong> <br/>
-              {currentQ.type !== "en_to_vn" && <span style={{color: "#1976D2", display: "block", marginBottom: "5px"}}>Phát âm: {currentQ.phonetic}</span>}
               {currentQ.usage}
             </p>
           </div>
@@ -828,7 +848,7 @@ function GrammarQuiz({ onBack, updateGlobal }) {
           onClick={() => { 
             if(streak >= REQUIRED_STREAK) {
               playSound("click");
-              clearStorageAndExit();
+              onBack(); // Gọi thẳng onBack()
             }
           }} 
           style={{ position: "absolute", left: "0", width: "max-content", padding: "5px 8px", fontSize: "14px", cursor: streak >= REQUIRED_STREAK ? "pointer" : "not-allowed", backgroundColor: streak >= REQUIRED_STREAK ? "#e8f5e9" : "#f0f0f0", color: streak >= REQUIRED_STREAK ? "#2e7d32" : "#999", border: "1px solid #ccc", borderRadius: "5px", whiteSpace: "nowrap", fontWeight: "bold", zIndex: 10 }}
@@ -915,6 +935,7 @@ function App() {
     globalBgm.volume = volume;
   }, [volume]);
 
+  // Mắt thần tự động dừng nhạc khi thu nhỏ web
   useEffect(() => {
     const handleVisibilityChange = () => {
       if (document.hidden) {
