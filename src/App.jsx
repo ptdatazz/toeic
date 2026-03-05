@@ -51,6 +51,42 @@ const generateVocabQuestions = (selectedData, fullData) => {
   });
 };
 
+// --- COMPONENT: BẢNG HƯỚNG DẪN SỬ DỤNG ---
+function WelcomeTutorial({ onDismiss }) {
+  return (
+    <div style={{ position: "fixed", top: 0, left: 0, width: "100%", height: "100%", backgroundColor: "rgba(0,0,0,0.6)", zIndex: 999, display: "flex", justifyContent: "center", alignItems: "center", padding: "20px", boxSizing: "border-box" }}>
+      <div style={{ backgroundColor: "white", padding: "30px", borderRadius: "15px", maxWidth: "450px", width: "100%", textAlign: "center", boxShadow: "0 10px 30px rgba(0,0,0,0.2)", animation: "popIn 0.3s ease-out" }}>
+        <h2 style={{ color: "#2c3e50", marginTop: 0, fontSize: "1.8rem" }}>Chào mừng bạn mới! 👋</h2>
+        
+        <div style={{ textAlign: "left", color: "#444", fontSize: "15px", lineHeight: "1.6", marginBottom: "25px" }}>
+          <p><strong>🎯 Luật chơi để trở thành TOEIC Master:</strong></p>
+          <ul style={{ paddingLeft: "20px" }}>
+            <li style={{ marginBottom: "10px" }}><strong>Ôn Từ Vựng:</strong> Mỗi lượt 30 câu. Trả lời nhanh trong 10 giây. Làm sai sẽ bị phạt trộn câu đó lại làm đến khi nào đúng thì thôi!</li>
+            <li style={{ marginBottom: "10px" }}><strong>Ôn Ngữ Pháp:</strong> Mỗi lượt 10 câu. Cứ làm từ từ suy nghĩ, chọn xong sẽ có giải thích chi tiết ngay bên dưới.</li>
+            <li style={{ marginBottom: "10px" }}><strong>Nút Quay Lại:</strong> Bị khóa lúc đang làm bài. Bạn phải làm đúng <strong>3 câu liên tiếp</strong> (Streak 3) thì chìa khóa mới mở 🔓.</li>
+            <li><strong>Nhạc Lofi:</strong> Góc trên bên trái dùng để bật nhạc chill chill trong lúc ở sảnh chờ.</li>
+          </ul>
+        </div>
+
+        <button 
+          onClick={() => { playSound("click"); onDismiss(); }} 
+          style={{ width: "100%", padding: "12px", fontSize: "16px", backgroundColor: "#4CAF50", color: "white", borderRadius: "8px", border: "none", cursor: "pointer", fontWeight: "bold" }}
+        >
+          🚀 Đã hiểu, Vào học ngay!
+        </button>
+      </div>
+
+      {/* Style phụ cho hiệu ứng nảy nhẹ khi bảng hướng dẫn hiện ra */}
+      <style>{`
+        @keyframes popIn {
+          0% { transform: scale(0.8); opacity: 0; }
+          100% { transform: scale(1); opacity: 1; }
+        }
+      `}</style>
+    </div>
+  );
+}
+
 // --- COMPONENT: ĐĂNG NHẬP / ĐĂNG KÝ (FIREBASE THẬT) ---
 function AuthScreen() {
   const [isLoginMode, setIsLoginMode] = useState(true);
@@ -511,47 +547,95 @@ function GrammarQuiz({ onBack, updateGlobal }) {
   );
 }
 
+// --- ĐƯA DANH SÁCH NHẠC RA NGOÀI ĐỂ TRÁNH LỖI LOAD LẠI ---
+const BGM_PLAYLIST = [
+  "/music/1.mp3",       
+  "/music/2.mp3",    
+  "/music/3.mp3",    
+  "/music/4.mp3",        
+  "/music/5.mp3",     
+  "/music/6.mp3",     
+  "/music/7.mp3",     
+  "/music/8.mp3", 
+  "/music/9.mp3"
+];
 // --- COMPONENT: APP CHÍNH ---
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [authChecking, setAuthChecking] = useState(true);
   const [screen, setScreen] = useState("home");
   
-  // 1. Trạng thái quản lý nhạc nền và âm lượng
-  const [bgm] = useState(() => new Audio("https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"));
-  const [isMusicPlaying, setIsMusicPlaying] = useState(true);
-  const [volume, setVolume] = useState(0.2); // Âm lượng mặc định 20%
+  // Trạng thái hiển thị Bảng hướng dẫn
+  const [showTutorial, setShowTutorial] = useState(false);
 
-  // 2. Xử lý bật/tắt nhạc thông minh và đồng bộ âm lượng
+  // Trạng thái Playlist Nhạc nền
+  const [bgm] = useState(() => new Audio());
+  const [isMusicPlaying, setIsMusicPlaying] = useState(true); 
+  const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
+  const [volume, setVolume] = useState(0.2); 
+
+  // Kiểm tra xem user đã từng đọc hướng dẫn chưa
   useEffect(() => {
-    bgm.loop = true;
-    bgm.volume = volume; // Đồng bộ âm lượng
+    if (currentUser) {
+      const hasSeenTutorial = localStorage.getItem("toeic_tutorial_seen");
+      if (!hasSeenTutorial) {
+        setShowTutorial(true);
+      }
+    }
+  }, [currentUser]);
+
+  // Cập nhật âm lượng khi kéo thanh trượt
+  useEffect(() => {
+    bgm.volume = volume;
+  }, [volume, bgm]);
+
+  // Tự động chuyển bài khi hát xong
+  useEffect(() => {
+    const handleEnded = () => {
+      setCurrentTrackIndex((prev) => (prev + 1) % BGM_PLAYLIST.length);
+    };
+    bgm.addEventListener("ended", handleEnded);
+    return () => bgm.removeEventListener("ended", handleEnded);
+  }, [bgm]);
+
+  // Quản lý việc Phát / Dừng nhạc an toàn
+  useEffect(() => {
+    if (!bgm.src || !bgm.src.includes(BGM_PLAYLIST[currentTrackIndex])) {
+      bgm.src = BGM_PLAYLIST[currentTrackIndex];
+      bgm.load(); 
+    }
     
-    if (screen === "home" && isMusicPlaying) {
+    // Nếu đang xem Tutorial thì tạm không phát nhạc để tránh giật mình, vào sảnh mới phát
+    if (screen === "home" && isMusicPlaying && !showTutorial) {
       const playPromise = bgm.play();
       if (playPromise !== undefined) {
         playPromise.catch(() => {
-          // Bắt buộc đợi click lần đầu để vượt rào bảo mật autoplay
-          const startMusicOnClick = () => {
-            if (isMusicPlaying && screen === "home") bgm.play();
-            document.removeEventListener("click", startMusicOnClick);
+          const forcePlayAudio = () => {
+            if (isMusicPlaying && screen === "home" && !showTutorial) bgm.play().catch(e => console.log(e));
+            document.removeEventListener("click", forcePlayAudio);
+            document.removeEventListener("touchstart", forcePlayAudio);
           };
-          document.addEventListener("click", startMusicOnClick);
+          document.addEventListener("click", forcePlayAudio);
+          document.addEventListener("touchstart", forcePlayAudio);
         });
       }
     } else {
       bgm.pause();
     }
-  }, [screen, isMusicPlaying, bgm, volume]); // Lắng nghe thay đổi của biến volume
+  }, [screen, isMusicPlaying, currentTrackIndex, bgm, showTutorial]);
 
   const toggleMusic = () => {
     playSound("click");
-    if (isMusicPlaying) bgm.pause();
-    else bgm.play().catch(() => console.log("Cần tương tác để phát nhạc"));
     setIsMusicPlaying(!isMusicPlaying);
   };
+
+  const playNextTrack = () => {
+    playSound("click");
+    setCurrentTrackIndex((prev) => (prev + 1) % BGM_PLAYLIST.length);
+    if (!isMusicPlaying) setIsMusicPlaying(true);
+  };
   
-  // Dữ liệu Cloud
+  // Dữ liệu Cloud Firestore
   const [globalStats, setGlobalStats] = useState({
     vocab: { correct: 0, total: 0 },
     grammar: { correct: 0, total: 0 }
@@ -629,43 +713,61 @@ function App() {
   return (
     <div className="container" onContextMenu={disableRightClick} style={{ textAlign: "center", paddingTop: "20px", maxWidth: "450px" }}>
       
+      {/* HIỂN THỊ BẢNG HƯỚNG DẪN NẾU LÀ LẦN ĐẦU VÀO WEB */}
+      {showTutorial && (
+        <WelcomeTutorial 
+          onDismiss={() => {
+            localStorage.setItem("toeic_tutorial_seen", "true");
+            setShowTutorial(false);
+            // Kích nhạc luôn sau khi tắt hướng dẫn
+            if(isMusicPlaying) bgm.play().catch(e => console.log(e)); 
+          }} 
+        />
+      )}
+
       {/* THANH THÔNG TIN BÊN TRÊN */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px", padding: "8px 12px", backgroundColor: "#f0f8ff", borderRadius: "8px", border: "1px solid #cce7ff" }}>
         
-        {/* BÊN TRÁI: Cụm Âm thanh */}
-        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+        {/* BÊN TRÁI: Nhóm nút Nhạc, Chuyển bài & Âm lượng */}
+        <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
           <button 
             onClick={toggleMusic} 
-            title={isMusicPlaying ? "Tắt nhạc nền" : "Bật nhạc nền"}
-            style={{ width: "32px", height: "32px", borderRadius: "50%", backgroundColor: isMusicPlaying ? "#FF9800" : "#E0E0E0", color: isMusicPlaying ? "white" : "#666", border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "15px", transition: "0.2s", boxShadow: "0 2px 4px rgba(0,0,0,0.1)", padding: 0 }}
+            title={isMusicPlaying ? "Tắt nhạc" : "Bật nhạc"}
+            style={{ width: "32px", height: "32px", borderRadius: "50%", backgroundColor: isMusicPlaying ? "#FF9800" : "#E0E0E0", color: isMusicPlaying ? "white" : "#666", border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "14px", transition: "0.2s", boxShadow: "0 2px 4px rgba(0,0,0,0.1)", padding: 0 }}
           >
             {isMusicPlaying ? "🔊" : "🔇"}
           </button>
 
-          {/* THANH TRƯỢT ÂM LƯỢNG */}
+          <button 
+            onClick={playNextTrack} 
+            title="Chuyển sang bài khác"
+            style={{ width: "32px", height: "32px", borderRadius: "50%", backgroundColor: "#4facfe", color: "white", border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "14px", transition: "0.2s", boxShadow: "0 2px 4px rgba(0,0,0,0.1)", padding: 0 }}
+          >
+            ⏭️
+          </button>
+
           <input 
             type="range" 
             min="0" max="1" step="0.05" 
             value={volume}
             onChange={(e) => setVolume(parseFloat(e.target.value))}
-            title="Kéo để chỉnh âm lượng"
-            style={{ width: "60px", cursor: "pointer" }}
+            title="Điều chỉnh âm lượng"
+            style={{ width: "60px", cursor: "pointer", marginLeft: "4px" }}
           />
         </div>
 
         {/* BÊN PHẢI: Tài khoản & Đăng xuất */}
         <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
           <span 
-            style={{ fontSize: "12px", color: "#333", fontWeight: "bold", maxWidth: "100px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }} 
+            style={{ fontSize: "12px", color: "#333", fontWeight: "bold", maxWidth: "80px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }} 
             title={currentUser.email}
           >
             👤 {currentUser.email}
           </span>
           <button onClick={handleLogout} style={{ padding: "5px 10px", fontSize: "11px", backgroundColor: "#ff4d4f", color: "white", border: "none", borderRadius: "5px", cursor: "pointer", fontWeight: "bold", transition: "0.2s", boxShadow: "0 2px 4px rgba(0,0,0,0.1)" }}>
-            Đăng xuất
+            Thoát
           </button>
         </div>
-        
       </div>
 
       <h1 style={{ fontSize: "2.2rem", margin: "10px 0", color: "#2c3e50" }}>TOEIC Master 🚀</h1>
