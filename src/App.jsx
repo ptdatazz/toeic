@@ -29,10 +29,11 @@ const playSound = (type) => {
 };
 
 // --- HÀM ĐỌC TỪ VỰNG (TEXT-TO-SPEECH) ---
-const speakWord = (text) => {
+const speakWord = (rawText) => {
   if ('speechSynthesis' in window) {
     window.speechSynthesis.cancel(); 
-    const utterance = new SpeechSynthesisUtterance(text);
+    const cleanText = rawText.replace(/\s*\(.*?\)\s*/g, '').trim();
+    const utterance = new SpeechSynthesisUtterance(cleanText);
     utterance.lang = 'en-US'; 
     utterance.rate = 0.85;    
     window.speechSynthesis.speak(utterance);
@@ -44,7 +45,6 @@ const speakWord = (text) => {
 // --- CÁC HÀM HỖ TRỢ CHUNG ---
 const shuffleArray = (array) => [...array].sort(() => Math.random() - 0.5);
 
-// Lấy 3 đáp án sai (dựa theo trường dữ liệu cần lấy)
 const getRandomWrongOptions = (fullData, currentItem, fieldToGet) => {
   const wrongOptions = [];
   while (wrongOptions.length < 3) {
@@ -61,11 +61,9 @@ const generateVocabQuestions = (selectedData, fullData, level) => {
   return selectedData.map((item) => {
     let qType = "en_to_vn"; 
     
-    // Level 1: 50% Anh -> Việt, 50% Việt -> Anh
     if (level === 1) {
       if (Math.random() > 0.5) qType = "vn_to_en";
     }
-    // Level 2, 3, 4: Đa dạng tất cả các thể loại
     else if (level >= 2) {
       const types = ["en_to_vn", "vn_to_en", "typing", "listening", "scramble"];
       qType = types[Math.floor(Math.random() * types.length)];
@@ -82,7 +80,8 @@ const generateVocabQuestions = (selectedData, fullData, level) => {
       questionObj.options = shuffleArray([...wrongOptions, item.word]);
       questionObj.answer = item.word;
     } else if (qType === "typing" || qType === "scramble") {
-      questionObj.answer = item.word;
+      const cleanAnswer = item.word.replace(/\s*\(.*?\)\s*/g, '').trim();
+      questionObj.answer = cleanAnswer;
     }
 
     return questionObj;
@@ -113,13 +112,6 @@ function WelcomeTutorial({ onDismiss }) {
           🚀 Đã hiểu, Vào học ngay!
         </button>
       </div>
-
-      <style>{`
-        @keyframes popIn {
-          0% { transform: scale(0.8); opacity: 0; }
-          100% { transform: scale(1); opacity: 1; }
-        }
-      `}</style>
     </div>
   );
 }
@@ -197,9 +189,8 @@ function VocabSettings({ onStart, onBack }) {
     const saved = localStorage.getItem("toeic_vocab_settings");
     if (saved) {
         const parsedSettings = JSON.parse(saved);
-        return { ...parsedSettings, difficultyLevel: 1 }; // Mặc định reset về Level 1
+        return { ...parsedSettings, difficultyLevel: 1 };
     }
-    // Mặc định cho người mới
     return { quizLimit: 30, timePerQuestion: 10, requiredStreak: 3, difficultyLevel: 1, survivalLives: 3, timeAttackSeconds: 30 };
   });
 
@@ -305,7 +296,6 @@ function VocabQuiz({ onBack, updateGlobal, settings }) {
   const [score, setScore] = useState(0);
   const [isGameOver, setIsGameOver] = useState(false);
 
-  // States đặc biệt cho Mode 3 & 4
   const [lives, setLives] = useState(DIFFICULTY_LEVEL === 3 ? settings.survivalLives : null);
   const [globalTime, setGlobalTime] = useState(DIFFICULTY_LEVEL === 4 ? settings.timeAttackSeconds : null);
 
@@ -493,7 +483,6 @@ function VocabQuiz({ onBack, updateGlobal, settings }) {
     if (nextIdx >= questionsData.length && DIFFICULTY_LEVEL < 3) playSound("finish");
   };
 
-  // --- HÀM CLEAR SỬA LỖI MÀN HÌNH HOÀN THÀNH ---
   const handleBackToHome = () => {
     playSound("click");
     localStorage.removeItem("toeic_vocab_q_temp");
@@ -535,52 +524,57 @@ function VocabQuiz({ onBack, updateGlobal, settings }) {
   return (
     <div className="container">
       {/* THANH THÔNG TIN TỐI GIẢN */}
-      <div style={{ position: "relative", display: "flex", justifyContent: "center", alignItems: "center", width: "100%", height: "40px", marginBottom: "15px" }}>
+      <div style={{ position: "relative", display: "flex", justifyContent: "center", alignItems: "center", width: "100%", height: "40px", marginBottom: "15px", gap: "5px" }}>
         
-        {DIFFICULTY_LEVEL < 3 && (
-          <button 
-            onClick={() => { 
-              if(streak >= REQUIRED_STREAK) { handleBackToHome(); }
-            }} 
-            style={{ position: "absolute", left: "0", padding: "5px 8px", fontSize: "14px", cursor: streak >= REQUIRED_STREAK ? "pointer" : "not-allowed", backgroundColor: streak >= REQUIRED_STREAK ? "#e8f5e9" : "#f0f0f0", color: streak >= REQUIRED_STREAK ? "#2e7d32" : "#999", border: "1px solid #ccc", borderRadius: "5px", fontWeight: "bold", zIndex: 10 }}
-          >
-            ⬅ {streak >= REQUIRED_STREAK ? "🔓" : `🔒 ${streak}/${REQUIRED_STREAK}`}
-          </button>
-        )}
+        <div style={{ flex: 1, display: "flex", justifyContent: "flex-start", overflow: "hidden" }}>
+          {DIFFICULTY_LEVEL < 3 && (
+            <button 
+              onClick={() => { 
+                if(streak >= REQUIRED_STREAK) { handleBackToHome(); }
+              }} 
+              style={{ width: "max-content", padding: "6px 10px", fontSize: "13px", cursor: streak >= REQUIRED_STREAK ? "pointer" : "not-allowed", backgroundColor: streak >= REQUIRED_STREAK ? "#e8f5e9" : "#f0f0f0", color: streak >= REQUIRED_STREAK ? "#2e7d32" : "#999", border: "1px solid #ccc", borderRadius: "6px", fontWeight: "bold", whiteSpace: "nowrap", margin: 0, flexShrink: 0 }}
+            >
+              ⬅ {streak >= REQUIRED_STREAK ? "🔓" : `🔒 ${streak}/${REQUIRED_STREAK}`}
+            </button>
+          )}
+        </div>
 
-        <div style={{ display: "flex", alignItems: "center", gap: "8px", backgroundColor: "#fff", padding: "4px 10px", borderRadius: "20px", boxShadow: "0 2px 5px rgba(0,0,0,0.05)", border: "1px solid #eee", zIndex: 5 }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "6px", backgroundColor: "#fff", padding: "4px 10px", borderRadius: "20px", boxShadow: "0 2px 5px rgba(0,0,0,0.05)", border: "1px solid #eee", flexShrink: 0 }}>
           {(currentQ.type === "en_to_vn" || currentQ.type === "listening") && (
             <button 
               onClick={() => speakWord(currentQ.word)}
-              style={{ width: "32px", height: "32px", borderRadius: "50%", border: "1px solid #bbdefb", backgroundColor: "#e3f2fd", color: "#1976D2", cursor: "pointer", display: "flex", justifyContent: "center", alignItems: "center", fontSize: "16px", padding: 0, margin: 0, transition: "0.2s" }}
+              style={{ width: "30px", height: "30px", borderRadius: "50%", border: "1px solid #bbdefb", backgroundColor: "#e3f2fd", color: "#1976D2", cursor: "pointer", display: "flex", justifyContent: "center", alignItems: "center", fontSize: "16px", padding: 0, margin: 0, flexShrink: 0 }}
             >
               🔊
             </button>
           )}
-          <span style={{ fontWeight: "bold", color: (DIFFICULTY_LEVEL===4 ? globalTime : timeLeft) <= 5 ? "#f44336" : "#333", fontSize: "16px", minWidth: "40px", textAlign: "center" }}>
+          <span style={{ fontWeight: "bold", color: (DIFFICULTY_LEVEL===4 ? globalTime : timeLeft) <= 5 ? "#f44336" : "#333", fontSize: "15px", minWidth: "35px", textAlign: "center", flexShrink: 0 }}>
             ⏱️ {DIFFICULTY_LEVEL === 4 ? globalTime : timeLeft}s
           </span>
         </div>
 
-        {DIFFICULTY_LEVEL === 3 ? (
-          <span style={{ position: "absolute", right: "0", fontSize: "16px", whiteSpace: "nowrap" }}>
-             {"❤️".repeat(Math.max(0, lives))}
-          </span>
-        ) : (
-          <span style={{ position: "absolute", right: "0", color: "#666", fontSize: "14px", whiteSpace: "nowrap", fontWeight: "bold" }}>
-            {DIFFICULTY_LEVEL === 4 ? `Đúng: ${score}` : `${current + 1}/${questionsData.length}`}
-          </span>
-        )}
+        <div style={{ flex: 1, display: "flex", justifyContent: "flex-end", overflow: "hidden" }}>
+          {DIFFICULTY_LEVEL === 3 ? (
+            <span style={{ fontSize: "15px", whiteSpace: "nowrap", flexShrink: 0 }}>
+               {"❤️".repeat(Math.max(0, lives))}
+            </span>
+          ) : (
+            <span style={{ color: "#666", fontSize: "13px", whiteSpace: "nowrap", fontWeight: "bold", flexShrink: 0 }}>
+              {DIFFICULTY_LEVEL === 4 ? `Đúng: ${score}` : `${current + 1}/${questionsData.length}`}
+            </span>
+          )}
+        </div>
+
       </div>
 
       {DIFFICULTY_LEVEL < 4 && <div style={{ width: "100%", height: "8px", backgroundColor: "#e0e0e0", borderRadius: "4px", overflow: "hidden", marginBottom: "20px" }}>
         <div style={{ height: "100%", width: `${timePercentage}%`, backgroundColor: timeLeft <= 3 ? "#f44336" : "#4caf50", transition: "width 1s linear" }} />
       </div>}
 
-      {/* --- CÁC KIỂU CÂU HỎI --- */}
+      {/* --- CÁC KIỂU CÂU HỎI (ĐÃ CHỈNH SỬA BỎ <br/> LÀM PHẲNG CÂU HỎI TRÊN 1 DÒNG) --- */}
       {currentQ.type === "en_to_vn" && (
         <>
-          <h2 style={{ fontSize: "24px", color: "#2c3e50" }}>What does "{currentQ.word}" mean?</h2>
+          <h2 style={{ fontSize: "22px", color: "#2c3e50" }}>What does <span style={{color: "#2196F3"}}>"{currentQ.word}"</span> mean?</h2>
           <p style={{ fontSize: "18px", color: "#555", marginBottom: "20px" }}><strong><i>{currentQ.phonetic}</i></strong></p>
           <div className="options">
             {currentQ.options.map((opt, idx) => (
@@ -604,7 +598,7 @@ function VocabQuiz({ onBack, updateGlobal, settings }) {
 
       {currentQ.type === "vn_to_en" && (
         <>
-          <h2 style={{ fontSize: "18px", color: "#2c3e50", lineHeight: "1.4" }}>Từ nào có nghĩa là:<br/><span style={{fontSize: "26px", color: "#2196F3", display: "inline-block", marginTop: "10px"}}>"{currentQ.meaning}"</span> ?</h2>
+          <h2 style={{ fontSize: "22px", color: "#2c3e50", lineHeight: "1.4" }}>Từ nào có nghĩa là <span style={{color: "#2196F3"}}>"{currentQ.meaning}"</span>?</h2>
           <div className="options" style={{ marginTop: "20px" }}>
             {currentQ.options.map((opt, idx) => (
               <button key={idx} onClick={() => handleAnswer(opt)} className={selected ? (opt === currentQ.answer ? "correct" : opt === selected ? "wrong" : "") : ""} disabled={selected !== null} style={{ fontWeight: "bold", fontSize: "18px" }}>{opt}</button>
@@ -615,7 +609,7 @@ function VocabQuiz({ onBack, updateGlobal, settings }) {
 
       {currentQ.type === "typing" && (
         <>
-          <h2 style={{ fontSize: "18px", color: "#2c3e50", lineHeight: "1.4" }}>Gõ từ tiếng Anh có nghĩa là:<br/><span style={{fontSize: "24px", color: "#9C27B0", display: "inline-block", marginTop: "10px"}}>"{currentQ.meaning}"</span></h2>
+          <h2 style={{ fontSize: "22px", color: "#2c3e50", lineHeight: "1.4" }}>Gõ từ có nghĩa là <span style={{color: "#9C27B0"}}>"{currentQ.meaning}"</span></h2>
           <form onSubmit={handleTypingSubmit} style={{ marginTop: "20px" }}>
             <input ref={typingInputRef} type="text" value={typingValue} onChange={(e) => setTypingValue(e.target.value)} disabled={selected !== null} placeholder="Nhập từ vựng..." style={{ width: "100%", padding: "15px", fontSize: "20px", textAlign: "center", borderRadius: "8px", border: "2px solid #ccc", outline: "none", textTransform: "lowercase" }} autoComplete="off" autoCorrect="off" spellCheck="false" />
             {selected === null && (
@@ -627,7 +621,7 @@ function VocabQuiz({ onBack, updateGlobal, settings }) {
 
       {currentQ.type === "scramble" && (
         <>
-          <h2 style={{ fontSize: "18px", color: "#2c3e50", lineHeight: "1.4" }}>Sắp xếp thành từ có nghĩa là:<br/><span style={{fontSize: "24px", color: "#E91E63", display: "inline-block", marginTop: "10px"}}>"{currentQ.meaning}"</span></h2>
+          <h2 style={{ fontSize: "22px", color: "#2c3e50", lineHeight: "1.4" }}>Xếp chữ có nghĩa là <span style={{color: "#E91E63"}}>"{currentQ.meaning}"</span></h2>
           
           <div style={{ minHeight: "50px", display: "flex", flexWrap: "wrap", gap: "6px", justifyContent: "center", padding: "15px 0", borderBottom: "2px dashed #eee", marginBottom: "15px" }}>
               {scrambleSelected.map(item => (
@@ -654,7 +648,6 @@ function VocabQuiz({ onBack, updateGlobal, settings }) {
             {feedbackMsg}
           </div>
           
-          {/* HIỂN THỊ TỪ VỰNG, PHIÊN ÂM VÀ LOA CHO CÁC DẠNG HỎI NGHĨA (vn_to_en, typing, scramble) */}
           {(currentQ.type === "vn_to_en" || currentQ.type === "typing" || currentQ.type === "scramble") && (
             <div style={{ marginTop: "15px", display: "flex", flexDirection: "column", alignItems: "center", gap: "8px", padding: "15px", backgroundColor: "#f0f8ff", borderRadius: "10px", border: "2px dashed #4facfe" }}>
                <span style={{ fontSize: "14px", color: "#555", fontWeight: "bold", textTransform: "uppercase" }}>Từ tiếng Anh chính xác</span>
@@ -674,7 +667,6 @@ function VocabQuiz({ onBack, updateGlobal, settings }) {
             </div>
           )}
 
-          {/* NẾU LÀ DẠNG en_to_vn HOẶC listening MÀ CHỌN SAI THÌ VẪN PHẢI BÁO NGHĨA ĐÚNG */}
           {(currentQ.type === "en_to_vn" || currentQ.type === "listening") && selected !== "TIMEOUT" && selected !== currentQ.answer && (
              <div style={{ marginTop: "10px", fontSize: "18px", color: "#F44336", fontWeight: "bold" }}>
                Nghĩa đúng: <span style={{ textDecoration: "underline", color: "#4CAF50" }}>{currentQ.answer}</span>
@@ -843,22 +835,26 @@ function GrammarQuiz({ onBack, updateGlobal }) {
 
   return (
     <div className="container">
-      <div style={{ position: "relative", display: "flex", justifyContent: "center", alignItems: "center", width: "100%", height: "40px", marginBottom: "20px" }}>
-        <button 
-          onClick={() => { 
-            if(streak >= REQUIRED_STREAK) {
-              playSound("click");
-              onBack(); // Gọi thẳng onBack()
-            }
-          }} 
-          style={{ position: "absolute", left: "0", width: "max-content", padding: "5px 8px", fontSize: "14px", cursor: streak >= REQUIRED_STREAK ? "pointer" : "not-allowed", backgroundColor: streak >= REQUIRED_STREAK ? "#e8f5e9" : "#f0f0f0", color: streak >= REQUIRED_STREAK ? "#2e7d32" : "#999", border: "1px solid #ccc", borderRadius: "5px", whiteSpace: "nowrap", fontWeight: "bold", zIndex: 10 }}
-        >
-          ⬅ {streak >= REQUIRED_STREAK ? "🔓" : `🔒 ${streak}/${REQUIRED_STREAK}`}
-        </button>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%", height: "40px", marginBottom: "20px", gap: "10px" }}>
+        <div style={{ flex: 1, display: "flex", justifyContent: "flex-start" }}>
+          <button 
+            onClick={() => { 
+              if(streak >= REQUIRED_STREAK) {
+                playSound("click");
+                onBack(); 
+              }
+            }} 
+            style={{ width: "max-content", padding: "6px 10px", fontSize: "13px", cursor: streak >= REQUIRED_STREAK ? "pointer" : "not-allowed", backgroundColor: streak >= REQUIRED_STREAK ? "#e8f5e9" : "#f0f0f0", color: streak >= REQUIRED_STREAK ? "#2e7d32" : "#999", border: "1px solid #ccc", borderRadius: "6px", whiteSpace: "nowrap", fontWeight: "bold", margin: 0, flexShrink: 0 }}
+          >
+            ⬅ {streak >= REQUIRED_STREAK ? "🔓" : `🔒 ${streak}/${REQUIRED_STREAK}`}
+          </button>
+        </div>
 
-        <span style={{ position: "absolute", right: "0", color: "#666", fontSize: "14px", whiteSpace: "nowrap", fontWeight: "bold" }}>
-          {current + 1}/{questionsData.length}
-        </span>
+        <div style={{ flex: 1, display: "flex", justifyContent: "flex-end" }}>
+          <span style={{ color: "#666", fontSize: "13px", whiteSpace: "nowrap", fontWeight: "bold", flexShrink: 0 }}>
+            {current + 1}/{questionsData.length}
+          </span>
+        </div>
       </div>
 
       <h2 style={{ lineHeight: "1.5" }}>{currentQ.question}</h2>
