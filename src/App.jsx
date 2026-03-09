@@ -793,7 +793,7 @@ function GrammarQuiz({ onBack, updateGlobal, settings, learnedQuestions }) {
   const REQUIRED_STREAK = settings.requiredStreak; 
   
   // 👇👇👇 DÁN MÃ API KEY CỦA BẠN VÀO GIỮA 2 DẤU NGOẶC KÉP Ở DÒNG DƯỚI 👇👇👇
-  const GEMINI_API_KEY = "DÁN_MÃ_AIzaSy..._CỦA_BẠN_VÀO_ĐÂY";
+  const GEMINI_API_KEY = "AIzaSyDAAmCewi4Jw1YFEmwVCdsZuIq1o0aCxFk";
   // 👆👆👆 VÍ DỤ: const GEMINI_API_KEY = "AIzaSyCwAbCdEfGHIJ_123456789"; 👆👆👆
 
   const [questionsData, setQuestionsData] = useState([]);
