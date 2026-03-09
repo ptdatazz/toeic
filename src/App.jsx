@@ -10,16 +10,22 @@ import {
   signOut, 
   onAuthStateChanged 
 } from "firebase/auth";
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc, updateDoc, arrayUnion } from "firebase/firestore";
 
-// --- ÂM THANH HIỆU ỨNG (SFX) ---
+// --- ÂM THANH HIỆU ỨNG (SFX) LÊN ĐỈNH THEO COMBO ---
 const playSound = (type) => {
   let url = "";
-  if (type === "correct") url = "https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3"; 
-  else if (type === "wrong") url = "https://assets.mixkit.co/active_storage/sfx/2003/2003-preview.mp3"; 
+  // Âm thanh cơ bản
+  if (type === "wrong") url = "https://assets.mixkit.co/active_storage/sfx/2003/2003-preview.mp3"; 
   else if (type === "timeout") url = "https://assets.mixkit.co/active_storage/sfx/2570/2570-preview.mp3"; 
   else if (type === "finish") url = "https://assets.mixkit.co/active_storage/sfx/2018/2018-preview.mp3"; 
   else if (type === "click") url = "https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3"; 
+  // Âm thanh Combo nâng cấp dần
+  else if (type === "combo_1") url = "https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3"; // Tinh (nhẹ)
+  else if (type === "combo_2") url = "https://assets.mixkit.co/active_storage/sfx/2014/2014-preview.mp3"; // Tinh Tinh (sáng)
+  else if (type === "combo_3") url = "https://assets.mixkit.co/active_storage/sfx/1435/1435-preview.mp3"; // Chuông ma thuật
+  else if (type === "combo_4") url = "https://assets.mixkit.co/active_storage/sfx/2019/2019-preview.mp3"; // Tăng level
+  else if (type === "combo_max") url = "https://assets.mixkit.co/active_storage/sfx/1434/1434-preview.mp3"; // Fanfare Jackpot
   
   if (url) {
     const audio = new Audio(url);
@@ -47,11 +53,13 @@ const shuffleArray = (array) => [...array].sort(() => Math.random() - 0.5);
 
 const getRandomWrongOptions = (fullData, currentItem, fieldToGet) => {
   const wrongOptions = [];
-  while (wrongOptions.length < 3) {
+  let attempts = 0; 
+  while (wrongOptions.length < 3 && attempts < 100) {
     const randomItem = fullData[Math.floor(Math.random() * fullData.length)];
     if (randomItem[fieldToGet] !== currentItem[fieldToGet] && !wrongOptions.includes(randomItem[fieldToGet])) {
       wrongOptions.push(randomItem[fieldToGet]);
     }
+    attempts++;
   }
   return wrongOptions;
 };
@@ -143,7 +151,7 @@ function AuthScreen() {
         const user = userCredential.user;
         
         await setDoc(doc(db, "users", user.uid), {
-          vocab: { correct: 0, total: 0 },
+          vocab: { correct: 0, total: 0, learnedWords: [] },
           grammar: { correct: 0, total: 0 }
         });
         alert("Đăng ký thành công!");
@@ -189,7 +197,7 @@ function VocabSettings({ onStart, onBack }) {
     const saved = localStorage.getItem("toeic_vocab_settings");
     if (saved) {
         const parsedSettings = JSON.parse(saved);
-        return { ...parsedSettings, difficultyLevel: 1 };
+        return { ...parsedSettings, difficultyLevel: 1 }; 
     }
     return { quizLimit: 30, timePerQuestion: 10, requiredStreak: 3, difficultyLevel: 1, survivalLives: 3, timeAttackSeconds: 30 };
   });
@@ -283,7 +291,7 @@ function VocabSettings({ onStart, onBack }) {
 }
 
 // --- COMPONENT: ÔN TỪ VỰNG CHÍNH ---
-function VocabQuiz({ onBack, updateGlobal, settings }) {
+function VocabQuiz({ onBack, updateGlobal, settings, learnedWords }) {
   const DIFFICULTY_LEVEL = settings.difficultyLevel;
   const QUIZ_LIMIT = DIFFICULTY_LEVEL >= 3 ? 999 : settings.quizLimit; 
   const TIME_PER_QUESTION = settings.timePerQuestion;
@@ -323,11 +331,47 @@ function VocabQuiz({ onBack, updateGlobal, settings }) {
           return obj;
         });
 
-        let pool = fullData;
-        if (DIFFICULTY_LEVEL >= 3) pool = [...fullData, ...fullData, ...fullData, ...fullData];
-        const randomSubset = shuffleArray(pool).slice(0, QUIZ_LIMIT);
-        
-        setQuestionsData(generateVocabQuestions(randomSubset, fullData, DIFFICULTY_LEVEL));
+        // THUẬT TOÁN SPACED REPETITION
+        const learnedSet = new Set(learnedWords || []);
+        const newWords = [];
+        const oldWords = [];
+
+        fullData.forEach(item => {
+           if (learnedSet.has(item.word)) {
+               oldWords.push(item);
+           } else {
+               newWords.push(item);
+           }
+        });
+
+        const shuffledNew = shuffleArray(newWords);
+        const shuffledOld = shuffleArray(oldWords);
+
+        let finalPool = [];
+
+        if (DIFFICULTY_LEVEL >= 3) {
+            finalPool = [...shuffledNew, ...shuffledOld, ...shuffledNew, ...shuffledOld, ...fullData];
+            finalPool = finalPool.slice(0, QUIZ_LIMIT);
+        } else {
+            const NEW_PERCENT = 0.8;
+            let targetNewCount = Math.floor(QUIZ_LIMIT * NEW_PERCENT);
+            let targetOldCount = QUIZ_LIMIT - targetNewCount;
+
+            if (shuffledNew.length < targetNewCount) {
+                targetNewCount = shuffledNew.length;
+                targetOldCount = QUIZ_LIMIT - targetNewCount;
+            } else if (shuffledOld.length < targetOldCount) {
+                targetOldCount = shuffledOld.length;
+                targetNewCount = QUIZ_LIMIT - targetOldCount;
+            }
+
+            const pickNew = shuffledNew.slice(0, targetNewCount);
+            const pickOld = shuffledOld.slice(0, targetOldCount);
+
+            finalPool = shuffleArray([...pickNew, ...pickOld]);
+        }
+
+        setQuestionsData(generateVocabQuestions(finalPool, fullData, DIFFICULTY_LEVEL));
       } catch (error) {
         console.error("Lỗi đồng bộ từ vựng:", error);
       } finally {
@@ -340,7 +384,8 @@ function VocabQuiz({ onBack, updateGlobal, settings }) {
 
   const [selected, setSelected] = useState(null);
   const [timeLeft, setTimeLeft] = useState(TIME_PER_QUESTION);
-  const [feedbackMsg, setFeedbackMsg] = useState("");
+  // Thay string cũ bằng object chứa streak để kích hoạt class CSS
+  const [answerStatus, setAnswerStatus] = useState(null); 
   const [streak, setStreak] = useState(0);
 
   useEffect(() => {
@@ -388,8 +433,28 @@ function VocabQuiz({ onBack, updateGlobal, settings }) {
       if (DIFFICULTY_LEVEL === 3 && lives !== null && lives <= 0) setIsGameOver(true);
   }, [lives, DIFFICULTY_LEVEL]);
 
-  const cheers = ["Tuyệt vời! 🎉", "Chính xác! 🚀", "Giỏi quá! ⭐", "Quá bén! 🔥"];
-  const encourages = ["Không sao, thử lại nhé! 💪", "Cẩn thận xíu nào! 🌱", "Gần đúng rồi! 😅"];
+  // HÀM TẠO LỜI KHEN VÀ ÂM THANH THEO COMBO
+  const handleComboRewards = (newStreak) => {
+    if (newStreak === 1) {
+      playSound("combo_1");
+      return "Tuyệt vời! 👍";
+    } else if (newStreak === 2) {
+      playSound("combo_2");
+      return "COMBO x2! Khá lắm! ⭐";
+    } else if (newStreak === 3) {
+      playSound("combo_3");
+      confetti({ particleCount: 80, spread: 60, origin: { y: 0.6 } }); // Nổ pháo sương sương
+      return "🔥 COMBO x3! Đang đà xông lên! 🔥";
+    } else if (newStreak === 4) {
+      playSound("combo_4");
+      confetti({ particleCount: 150, spread: 80, origin: { y: 0.5 } }); 
+      return "⚡ COMBO x4! Quá nhạy bén! ⚡";
+    } else {
+      playSound("combo_max");
+      confetti({ particleCount: 300, spread: 120, origin: { y: 0.4 } }); // Nổ rợp trời
+      return `👑 UNSTOPPABLE x${newStreak}! Thần đồng! 👑`;
+    }
+  };
 
   const handleAnswer = (userAnswer) => {
     if (isGameOver) return;
@@ -408,13 +473,15 @@ function VocabQuiz({ onBack, updateGlobal, settings }) {
        }
     }
     
-    updateGlobal("vocab", isCorrect);
+    updateGlobal("vocab", isCorrect, currentQ.word);
 
     if (isCorrect) {
-      playSound("correct");
+      const newStreak = streak + 1;
       setScore(score + 1);
-      setStreak(prev => prev + 1); 
-      setFeedbackMsg(cheers[Math.floor(Math.random() * cheers.length)]);
+      setStreak(newStreak); 
+      
+      const msg = handleComboRewards(newStreak);
+      setAnswerStatus({ type: "correct", streak: newStreak, text: msg });
       
       if (DIFFICULTY_LEVEL === 4) setGlobalTime(t => t + 3); 
     } else {
@@ -423,12 +490,13 @@ function VocabQuiz({ onBack, updateGlobal, settings }) {
       
       if (DIFFICULTY_LEVEL === 3) {
           setLives(l => l - 1); 
-          setFeedbackMsg(isTimeout ? "⏰ Hết giờ! -1 ❤️" : "❌ Sai rồi! -1 ❤️");
+          setAnswerStatus({ type: "wrong", streak: 0, text: isTimeout ? "⏰ Hết giờ! -1 ❤️" : "❌ Sai rồi! -1 ❤️" });
       } else if (DIFFICULTY_LEVEL === 4) {
           setGlobalTime(t => t - 5); 
-          setFeedbackMsg("❌ Sai rồi! Bị trừ 5 giây!");
+          setAnswerStatus({ type: "wrong", streak: 0, text: "❌ Sai rồi! Bị trừ 5 giây!" });
       } else {
-          setFeedbackMsg(isTimeout ? "⏰ Hết giờ mất rồi!" : encourages[Math.floor(Math.random() * encourages.length)]);
+          setAnswerStatus({ type: "wrong", streak: 0, text: isTimeout ? "⏰ Hết giờ mất rồi!" : "Không sao, thử lại sau nhé! 💪" });
+          
           setQuestionsData((prev) => {
             const newData = [...prev];
             const remaining = newData.length - current - 1;
@@ -436,11 +504,25 @@ function VocabQuiz({ onBack, updateGlobal, settings }) {
             if (remaining > 5) insertIndex = current + 3 + Math.floor(Math.random() * (remaining - 2));
             
             let penaltyItem = {...newData[current]};
-            if(penaltyItem.type === "typing" || penaltyItem.type === "scramble" || penaltyItem.type === "listening") {
+            
+            if (penaltyItem.type === "en_to_vn") {
                penaltyItem.type = "vn_to_en";
+            } else if (penaltyItem.type === "vn_to_en" || penaltyItem.type === "listening") {
+               penaltyItem.type = "en_to_vn";
+            } else { 
+               penaltyItem.type = Math.random() > 0.5 ? "en_to_vn" : "vn_to_en";
+            }
+
+            if (penaltyItem.type === "en_to_vn") {
+               penaltyItem.answer = penaltyItem.meaning;
+               const wrongOptions = getRandomWrongOptions(newData, penaltyItem, "meaning");
+               penaltyItem.options = shuffleArray([...wrongOptions, penaltyItem.meaning]);
+            } else if (penaltyItem.type === "vn_to_en") {
+               penaltyItem.answer = penaltyItem.word;
                const wrongOptions = getRandomWrongOptions(newData, penaltyItem, "word");
                penaltyItem.options = shuffleArray([...wrongOptions, penaltyItem.word]);
             }
+            
             newData.splice(insertIndex, 0, penaltyItem);
             return newData;
           });
@@ -475,7 +557,7 @@ function VocabQuiz({ onBack, updateGlobal, settings }) {
   const nextQuestion = () => {
     playSound("click");
     setSelected(null);
-    setFeedbackMsg(""); 
+    setAnswerStatus(null); 
     setTypingValue(""); 
     const nextIdx = current + 1;
     setCurrent(nextIdx);
@@ -521,10 +603,21 @@ function VocabQuiz({ onBack, updateGlobal, settings }) {
   const currentQ = questionsData[current];
   const timePercentage = (timeLeft / TIME_PER_QUESTION) * 100;
 
+  // Lấy class CSS tương ứng cho hộp thông báo
+  let comboClass = "";
+  if (answerStatus) {
+      if (answerStatus.type === "wrong" || answerStatus.type === "timeout") comboClass = "feedback-wrong";
+      else if (answerStatus.streak >= 5) comboClass = "combo-max";
+      else if (answerStatus.streak === 4) comboClass = "combo-4";
+      else if (answerStatus.streak === 3) comboClass = "combo-3";
+      else if (answerStatus.streak === 2) comboClass = "combo-2";
+      else comboClass = "combo-1";
+  }
+
   return (
     <div className="container">
       {/* THANH THÔNG TIN TỐI GIẢN */}
-      <div style={{ position: "relative", display: "flex", justifyContent: "center", alignItems: "center", width: "100%", height: "40px", marginBottom: "15px", gap: "5px" }}>
+      <div style={{ position: "relative", display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%", height: "40px", marginBottom: "15px", gap: "10px" }}>
         
         <div style={{ flex: 1, display: "flex", justifyContent: "flex-start", overflow: "hidden" }}>
           {DIFFICULTY_LEVEL < 3 && (
@@ -532,14 +625,14 @@ function VocabQuiz({ onBack, updateGlobal, settings }) {
               onClick={() => { 
                 if(streak >= REQUIRED_STREAK) { handleBackToHome(); }
               }} 
-              style={{ width: "max-content", padding: "6px 10px", fontSize: "13px", cursor: streak >= REQUIRED_STREAK ? "pointer" : "not-allowed", backgroundColor: streak >= REQUIRED_STREAK ? "#e8f5e9" : "#f0f0f0", color: streak >= REQUIRED_STREAK ? "#2e7d32" : "#999", border: "1px solid #ccc", borderRadius: "6px", fontWeight: "bold", whiteSpace: "nowrap", margin: 0, flexShrink: 0 }}
+              style={{ padding: "6px 10px", fontSize: "13px", cursor: streak >= REQUIRED_STREAK ? "pointer" : "not-allowed", backgroundColor: streak >= REQUIRED_STREAK ? "#e8f5e9" : "#f0f0f0", color: streak >= REQUIRED_STREAK ? "#2e7d32" : "#999", border: "1px solid #ccc", borderRadius: "6px", fontWeight: "bold", whiteSpace: "nowrap", margin: 0, flexShrink: 0 }}
             >
               ⬅ {streak >= REQUIRED_STREAK ? "🔓" : `🔒 ${streak}/${REQUIRED_STREAK}`}
             </button>
           )}
         </div>
 
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "6px", backgroundColor: "#fff", padding: "4px 10px", borderRadius: "20px", boxShadow: "0 2px 5px rgba(0,0,0,0.05)", border: "1px solid #eee", flexShrink: 0 }}>
+        <div style={{ flex: "0 0 auto", display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", backgroundColor: "#fff", padding: "4px 12px", borderRadius: "20px", boxShadow: "0 2px 5px rgba(0,0,0,0.05)", border: "1px solid #eee", flexShrink: 0 }}>
           {(currentQ.type === "en_to_vn" || currentQ.type === "listening") && (
             <button 
               onClick={() => speakWord(currentQ.word)}
@@ -548,7 +641,7 @@ function VocabQuiz({ onBack, updateGlobal, settings }) {
               🔊
             </button>
           )}
-          <span style={{ fontWeight: "bold", color: (DIFFICULTY_LEVEL===4 ? globalTime : timeLeft) <= 5 ? "#f44336" : "#333", fontSize: "15px", minWidth: "35px", textAlign: "center", flexShrink: 0 }}>
+          <span style={{ fontWeight: "bold", color: (DIFFICULTY_LEVEL===4 ? globalTime : timeLeft) <= 5 ? "#f44336" : "#333", fontSize: "15px", minWidth: "35px", textAlign: "center", whiteSpace: "nowrap", flexShrink: 0 }}>
             ⏱️ {DIFFICULTY_LEVEL === 4 ? globalTime : timeLeft}s
           </span>
         </div>
@@ -571,7 +664,7 @@ function VocabQuiz({ onBack, updateGlobal, settings }) {
         <div style={{ height: "100%", width: `${timePercentage}%`, backgroundColor: timeLeft <= 3 ? "#f44336" : "#4caf50", transition: "width 1s linear" }} />
       </div>}
 
-      {/* --- CÁC KIỂU CÂU HỎI (ĐÃ CHỈNH SỬA BỎ <br/> LÀM PHẲNG CÂU HỎI TRÊN 1 DÒNG) --- */}
+      {/* --- CÁC KIỂU CÂU HỎI --- */}
       {currentQ.type === "en_to_vn" && (
         <>
           <h2 style={{ fontSize: "22px", color: "#2c3e50" }}>What does <span style={{color: "#2196F3"}}>"{currentQ.word}"</span> mean?</h2>
@@ -641,11 +734,11 @@ function VocabQuiz({ onBack, updateGlobal, settings }) {
         </>
       )}
 
-      {/* FEEDBACK & NEXT BUTTON */}
-      {selected && (
+      {/* FEEDBACK & NEXT BUTTON (UI MỚI KHI CÓ COMBO) */}
+      {selected && answerStatus && (
         <>
-          <div style={{ marginTop: "15px", padding: "12px", borderRadius: "8px", backgroundColor: (selected.toLowerCase() === currentQ.answer.toLowerCase() || selected === currentQ.answer) ? "#e8f5e9" : "#ffebee", color: (selected.toLowerCase() === currentQ.answer.toLowerCase() || selected === currentQ.answer) ? "#2e7d32" : "#c62828", fontWeight: "bold", fontSize: "18px", boxShadow: "inset 0 2px 4px rgba(0,0,0,0.05)" }}>
-            {feedbackMsg}
+          <div className={`feedback-box ${comboClass}`}>
+            {answerStatus.text}
           </div>
           
           {(currentQ.type === "vn_to_en" || currentQ.type === "typing" || currentQ.type === "scramble") && (
@@ -674,7 +767,7 @@ function VocabQuiz({ onBack, updateGlobal, settings }) {
           )}
 
           <div style={{ marginTop: "15px", padding: "15px", backgroundColor: "#f8f9fa", borderRadius: "8px", borderLeft: "4px solid #90caf9", textAlign: "left" }}>
-            <p style={{ margin: 0, fontSize: "16px", color: "#333", lineHeight: "1.5" }}>
+            <p style={{ margin: "0 0 8px 0", fontSize: "16px", color: "#333", lineHeight: "1.5" }}>
               <strong>📌 Ngữ cảnh:</strong> <br/>
               {currentQ.usage}
             </p>
@@ -788,7 +881,7 @@ function GrammarQuiz({ onBack, updateGlobal }) {
     updateGlobal("grammar", isCorrect);
 
     if (isCorrect) {
-      playSound("correct");
+      playSound("combo_1");
       setScore(score + 1);
       setStreak(prev => prev + 1); 
       confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
@@ -901,6 +994,9 @@ function App() {
   const [screen, setScreen] = useState("home"); 
   const [vocabSettings, setVocabSettings] = useState(null);
   
+  // STATE ĐỂ LƯU TỔNG SỐ TỪ VỰNG TRÊN GOOGLE SHEET
+  const [totalDbWords, setTotalDbWords] = useState(() => parseInt(localStorage.getItem("toeic_total_db_words")) || 0);
+
   const [showTutorial, setShowTutorial] = useState(false);
   const [isMusicPlaying, setIsMusicPlaying] = useState(true); 
   const [currentTrackIndex, setCurrentTrackIndex] = useState(Math.floor(Math.random() * BGM_PLAYLIST.length));
@@ -986,9 +1082,30 @@ function App() {
   };
   
   const [globalStats, setGlobalStats] = useState({
-    vocab: { correct: 0, total: 0 },
+    vocab: { correct: 0, total: 0, learnedWords: [] },
     grammar: { correct: 0, total: 0 }
   });
+
+  // HÀM LẤY TỔNG SỐ TỪ VỰNG TỪ GOOGLE SHEET CHẠY NGẦM
+  useEffect(() => {
+    const fetchTotalWords = async () => {
+      try {
+        const SHEET_ID = "1nAdOxZBZ3-Bawh3Ks54KaIYLPgGZfTuchebwbCYW8dU";
+        const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&headers=1&sheet=Vocab`;
+        const res = await fetch(url);
+        const text = await res.text();
+        const jsonString = text.substring(text.indexOf('{'), text.lastIndexOf('}') + 1);
+        const result = JSON.parse(jsonString);
+        const totalRows = result.table.rows.length;
+        setTotalDbWords(totalRows);
+        localStorage.setItem("toeic_total_db_words", totalRows);
+      } catch (e) {
+        console.error("Lỗi đếm tổng số từ vựng:", e);
+      }
+    };
+
+    if (totalDbWords === 0) fetchTotalWords();
+  }, [totalDbWords]);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -997,7 +1114,9 @@ function App() {
         const docRef = doc(db, "users", user.uid);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
-          setGlobalStats(docSnap.data());
+          const data = docSnap.data();
+          if (!data.vocab.learnedWords) data.vocab.learnedWords = [];
+          setGlobalStats(data);
         }
       } else {
         setCurrentUser(null);
@@ -1017,15 +1136,42 @@ function App() {
     setIsMusicPlaying(false);
   };
 
-  const updateGlobalStats = async (type, isCorrect) => {
+  const updateGlobalStats = async (type, isCorrect, word = null) => {
     if (!currentUser) return;
+    
+    const newCorrect = globalStats[type].correct + (isCorrect ? 1 : 0);
+    const newTotal = globalStats[type].total + 1;
+
+    const updatePayload = {
+      [`${type}.correct`]: newCorrect,
+      [`${type}.total`]: newTotal
+    };
+
+    if (type === "vocab" && word) {
+      updatePayload["vocab.learnedWords"] = arrayUnion(word);
+    }
+
+    try {
+      await updateDoc(doc(db, "users", currentUser.uid), updatePayload);
+    } catch(e) {
+      console.error("Lỗi cập nhật tiến độ:", e);
+    }
+
     setGlobalStats(prev => {
-      const newStats = { 
-        ...prev, 
-        [type]: { correct: prev[type].correct + (isCorrect ? 1 : 0), total: prev[type].total + 1 } 
+      const newState = { ...prev };
+      newState[type] = {
+        ...newState[type],
+        correct: newCorrect,
+        total: newTotal
       };
-      setDoc(doc(db, "users", currentUser.uid), newStats, { merge: true });
-      return newStats;
+      
+      if (type === "vocab" && word) {
+        const currentWords = prev.vocab.learnedWords || [];
+        if (!currentWords.includes(word)) {
+           newState.vocab.learnedWords = [...currentWords, word];
+        }
+      }
+      return newState;
     });
   };
 
@@ -1055,12 +1201,15 @@ function App() {
     );
   }
 
-  if (screen === "vocab") return <VocabQuiz onBack={() => { playSound("click"); setScreen("home"); }} updateGlobal={updateGlobalStats} settings={vocabSettings} />;
+  if (screen === "vocab") return <VocabQuiz onBack={() => { playSound("click"); setScreen("home"); }} updateGlobal={updateGlobalStats} settings={vocabSettings} learnedWords={globalStats.vocab.learnedWords || []} />;
   if (screen === "grammar") return <GrammarQuiz onBack={() => { playSound("click"); setScreen("home"); }} updateGlobal={updateGlobalStats} />;
 
   const vocabTotal = globalStats.vocab.total;
   const vocabCorrect = globalStats.vocab.correct;
   const vocabRatio = vocabTotal > 0 ? Math.round((vocabCorrect / vocabTotal) * 100) : 0;
+
+  const uniqueLearnedCount = globalStats.vocab.learnedWords?.length || 0;
+  const learnedPercentage = totalDbWords > 0 ? Math.round((uniqueLearnedCount / totalDbWords) * 100) : 0;
 
   const grammarTotal = globalStats.grammar.total;
   const grammarCorrect = globalStats.grammar.correct;
@@ -1113,18 +1262,27 @@ function App() {
       <h1 style={{ fontSize: "2.2rem", margin: "10px 0", color: "#2c3e50" }}>TOEIC Master 🚀</h1>
       <p style={{ color: "#7f8c8d", marginBottom: "25px" }}>Đã đồng bộ dữ liệu đám mây ☁️</p>
 
-      {/* DASHBOARD THỐNG KÊ */}
+      {/* DASHBOARD THỐNG KÊ (ĐÃ CẬP NHẬT GIAO DIỆN TỪ VỰNG MỚI) */}
       <div style={{ display: "flex", justifyContent: "center", gap: "15px", marginBottom: "35px", flexWrap: "wrap" }}>
+        
+        {/* CARD TỪ VỰNG */}
         <div style={{ flex: "1", backgroundColor: "#f9f9f9", padding: "15px", borderRadius: "12px", minWidth: "140px", boxShadow: "0 2px 8px rgba(0,0,0,0.06)", border: "1px solid #eee", textAlign: "left" }}>
           <h3 style={{ margin: "0 0 10px 0", color: "#4CAF50", fontSize: "16px" }}>📚 Từ vựng</h3>
-          <p style={{ margin: "4px 0", fontSize: "14px", color: "#555" }}>Đã học: <strong>{vocabTotal}</strong> câu</p>
-          <p style={{ margin: "4px 0", fontSize: "14px", color: "#555" }}>Đúng: <strong style={{color: "#4CAF50"}}>{vocabCorrect}</strong> | Sai: <strong style={{color: "#F44336"}}>{vocabTotal - vocabCorrect}</strong></p>
-          <div style={{ width: "100%", height: "6px", backgroundColor: "#e0e0e0", borderRadius: "3px", marginTop: "12px" }}>
-            <div style={{ width: `${vocabRatio}%`, height: "100%", backgroundColor: vocabRatio >= 50 ? "#4CAF50" : "#FF9800", borderRadius: "3px" }}></div>
+          <p style={{ margin: "4px 0", fontSize: "14px", color: "#555" }}>
+            Trả lời: <strong>{vocabTotal}</strong> (Đúng: <strong style={{color: "#4CAF50"}}>{vocabCorrect}</strong>)
+          </p>
+          <div style={{ margin: "8px 0 0 0", padding: "8px", backgroundColor: "#e8f5e9", borderRadius: "8px", border: "1px dashed #4CAF50" }}>
+             <p style={{ margin: "0 0 5px 0", fontSize: "13px", color: "#2e7d32", fontWeight: "bold" }}>
+               Chinh phục: {uniqueLearnedCount} / {totalDbWords || "..."} từ
+             </p>
+             <div style={{ width: "100%", height: "6px", backgroundColor: "#c8e6c9", borderRadius: "3px" }}>
+               <div style={{ width: `${learnedPercentage}%`, height: "100%", backgroundColor: "#4CAF50", borderRadius: "3px" }}></div>
+             </div>
+             <p style={{ margin: "4px 0 0 0", fontSize: "11px", textAlign: "right", color: "#2e7d32" }}>{learnedPercentage}% kho từ</p>
           </div>
-          <p style={{ margin: "6px 0 0 0", fontSize: "13px", fontWeight: "bold", textAlign: "right", color: vocabRatio >= 50 ? "#4CAF50" : "#FF9800" }}>Tỷ lệ: {vocabRatio}%</p>
         </div>
 
+        {/* CARD NGỮ PHÁP */}
         <div style={{ flex: "1", backgroundColor: "#f9f9f9", padding: "15px", borderRadius: "12px", minWidth: "140px", boxShadow: "0 2px 8px rgba(0,0,0,0.06)", border: "1px solid #eee", textAlign: "left" }}>
           <h3 style={{ margin: "0 0 10px 0", color: "#2196F3", fontSize: "16px" }}>📝 Ngữ pháp</h3>
           <p style={{ margin: "4px 0", fontSize: "14px", color: "#555" }}>Đã học: <strong>{grammarTotal}</strong> câu</p>
