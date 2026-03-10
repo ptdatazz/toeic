@@ -819,7 +819,7 @@ function GrammarQuiz({ onBack, updateGlobal, settings, learnedQuestions }) {
   const TOEIC_PART = settings.toeicPart || "part5";
   
   // 👇👇👇 DÁN MÃ API KEY CỦA BẠN VÀO ĐÂY 👇👇👇
-  const GEMINI_API_KEY = "AIzaSyClS6Fw3X6pyqaBud5cvCcwUgk6n8rUyuA";
+  const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
 
   const [questionsData, setQuestionsData] = useState([]);
   const [loadingData, setLoadingData] = useState(true);
@@ -840,8 +840,9 @@ function GrammarQuiz({ onBack, updateGlobal, settings, learnedQuestions }) {
   // HÀM GỌI AI ĐỂ SOẠN ĐỀ THEO TỪNG PART (ĐÃ FIX LỖI LỘ ĐÁP ÁN PART 6, 7)
   useEffect(() => {
     const fetchGrammarFromAI = async () => {
-      if (GEMINI_API_KEY === "DÁN_MÃ_AIzaSy..._CỦA_BẠN_VÀO_ĐÂY" || GEMINI_API_KEY === "" || GEMINI_API_KEY.includes("ĐIỀN_API_KEY")) {
-          alert("LỖI: Bạn chưa điền mã API Key của Google Gemini vào code!");
+      // Bẫy lỗi an toàn không lo crash web
+      if (!GEMINI_API_KEY || String(GEMINI_API_KEY).includes("DÁN_MÃ") || String(GEMINI_API_KEY).includes("ĐIỀN_API_KEY")) {
+          alert("LỖI: Không tìm thấy API Key!\n\nNếu đang chạy trên máy tính: Hãy kiểm tra file .env và nhớ tắt terminal đi chạy lại lệnh 'npm run dev'.\nNếu trên Vercel: Hãy kiểm tra mục Environment Variables.");
           onBack();
           return;
       }
