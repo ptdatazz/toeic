@@ -200,9 +200,9 @@ function QuizSettings({ mode, onStart, onBack }) {
     const saved = localStorage.getItem(storageKey);
     if (saved) {
         const parsedSettings = JSON.parse(saved);
-        return { ...parsedSettings, difficultyLevel: 1 }; 
+        return { ...parsedSettings, difficultyLevel: 1, toeicPart: parsedSettings.toeicPart || "part5" }; 
     }
-    return { quizLimit: mode === "grammar" ? 5 : 30, timePerQuestion: mode === "grammar" ? 30 : 10, requiredStreak: 3, difficultyLevel: 1, survivalLives: 3, timeAttackSeconds: mode === "grammar" ? 60 : 30 };
+    return { quizLimit: mode === "grammar" ? 5 : 30, timePerQuestion: mode === "grammar" ? 30 : 10, requiredStreak: 3, difficultyLevel: 1, survivalLives: 3, timeAttackSeconds: mode === "grammar" ? 60 : 30, toeicPart: "part5" };
   });
 
   const handleStart = () => {
@@ -215,13 +215,36 @@ function QuizSettings({ mode, onStart, onBack }) {
     <div className="container" style={{ textAlign: "center", paddingTop: "20px" }}>
       <h2 style={{ color: "#2c3e50", marginBottom: "5px" }}>⚙️ Cài Đặt {modeName}</h2>
       {mode === "grammar" ? (
-         <p style={{ color: "#2196F3", marginBottom: "25px", fontSize: "14px", fontWeight: "bold" }}>✨ Tự động tạo đề và giải thích bằng AI ✨</p>
+         <p style={{ color: "#2196F3", marginBottom: "25px", fontSize: "14px", fontWeight: "bold" }}>✨ Tự động tạo đề chuẩn TOEIC bằng AI ✨</p>
       ) : (
          <p style={{ color: "#7f8c8d", marginBottom: "25px", fontSize: "14px" }}>Hãy thử thách bản thân với các Mode khác nhau</p>
       )}
 
       <div style={{ backgroundColor: "#f9f9f9", padding: "20px", borderRadius: "12px", border: "1px solid #eee", textAlign: "left", marginBottom: "25px" }}>
         
+        {/* LỰA CHỌN PART TOEIC (CHỈ DÀNH CHO NGỮ PHÁP) */}
+        {mode === "grammar" && (
+          <div style={{ marginBottom: "25px", backgroundColor: "#e3f2fd", padding: "15px", borderRadius: "8px", border: "1px solid #bbdefb" }}>
+            <label style={{ fontWeight: "bold", color: "#1565c0", display: "block", marginBottom: "12px", fontSize: "16px" }}>
+              🎯 Chọn phần thi (TOEIC Part):
+            </label>
+            <div style={{ display: "flex", gap: "10px", flexDirection: "column" }}>
+              <label style={{ display: "flex", alignItems: "center", gap: "10px", cursor: "pointer", fontSize: "15px", color: "#333" }}>
+                <input type="radio" name="toeicPart" value="part5" checked={settings.toeicPart === "part5"} onChange={(e) => setSettings({...settings, toeicPart: e.target.value})} style={{ transform: "scale(1.2)" }} />
+                <strong>Part 5:</strong> Hoàn thành câu (Điền từ)
+              </label>
+              <label style={{ display: "flex", alignItems: "center", gap: "10px", cursor: "pointer", fontSize: "15px", color: "#333" }}>
+                <input type="radio" name="toeicPart" value="part6" checked={settings.toeicPart === "part6"} onChange={(e) => setSettings({...settings, toeicPart: e.target.value})} style={{ transform: "scale(1.2)" }} />
+                <strong>Part 6:</strong> Hoàn thành đoạn văn (Email, Thư...)
+              </label>
+              <label style={{ display: "flex", alignItems: "center", gap: "10px", cursor: "pointer", fontSize: "15px", color: "#333" }}>
+                <input type="radio" name="toeicPart" value="part7" checked={settings.toeicPart === "part7"} onChange={(e) => setSettings({...settings, toeicPart: e.target.value})} style={{ transform: "scale(1.2)" }} />
+                <strong>Part 7:</strong> Đọc hiểu đoạn văn
+              </label>
+            </div>
+          </div>
+        )}
+
         {/* ĐỘ KHÓ (LEVEL) */}
         <div style={{ marginBottom: "20px", backgroundColor: "#fff", padding: "15px", borderRadius: "8px", borderLeft: `4px solid ${settings.difficultyLevel === 1 ? primaryColor : settings.difficultyLevel === 2 ? "#FF9800" : settings.difficultyLevel === 3 ? "#E91E63" : "#F44336"}`, boxShadow: "0 2px 4px rgba(0,0,0,0.05)" }}>
           <label style={{ fontWeight: "bold", color: "#333", display: "block", marginBottom: "8px", fontSize: "16px" }}>
@@ -431,11 +454,13 @@ function WordQuiz({ mode, onBack, updateGlobal, settings, learnedWords }) {
     const isFinished = isGameOver || (DIFFICULTY_LEVEL < 3 && questionsData.length > 0 && current >= questionsData.length);
     if (isFinished && DIFFICULTY_LEVEL < 3) {
       let count = 0;
+      confetti({ particleCount: 120, spread: 90, origin: { y: 0.4 }, zIndex: 9999 });
+      count++;
       const interval = setInterval(() => {
-        confetti({ particleCount: 150, spread: 100, origin: { y: 0.4 }, zIndex: 9999 });
+        confetti({ particleCount: 120, spread: 90, origin: { y: 0.4 }, zIndex: 9999 });
         count++;
         if (count >= 3) clearInterval(interval);
-      }, 700);
+      }, 600);
       return () => clearInterval(interval);
     }
   }, [isGameOver, current, questionsData.length, DIFFICULTY_LEVEL]);
@@ -784,17 +809,17 @@ function WordQuiz({ mode, onBack, updateGlobal, settings, learnedWords }) {
 }
 
 // =======================================================================
-// COMPONENT MỚI: NGỮ PHÁP TÍCH HỢP TRÍ TUỆ NHÂN TẠO (GOOGLE GEMINI AI)
+// COMPONENT MỚI: NGỮ PHÁP TÍCH HỢP TRÍ TUỆ NHÂN TẠO (HỖ TRỢ PART 5, 6, 7)
 // =======================================================================
 function GrammarQuiz({ onBack, updateGlobal, settings, learnedQuestions }) {
   const DIFFICULTY_LEVEL = settings.difficultyLevel;
   const QUIZ_LIMIT = settings.quizLimit; 
   const TIME_PER_QUESTION = settings.timePerQuestion;
   const REQUIRED_STREAK = settings.requiredStreak; 
+  const TOEIC_PART = settings.toeicPart || "part5";
   
-  // 👇👇👇 DÁN MÃ API KEY CỦA BẠN VÀO GIỮA 2 DẤU NGOẶC KÉP Ở DÒNG DƯỚI 👇👇👇
-  const GEMINI_API_KEY = "AIzaSyDAAmCewi4Jw1YFEmwVCdsZuIq1o0aCxFk";
-  // 👆👆👆 VÍ DỤ: const GEMINI_API_KEY = "AIzaSyCwAbCdEfGHIJ_123456789"; 👆👆👆
+  // 👇👇👇 DÁN MÃ API KEY CỦA BẠN VÀO ĐÂY 👇👇👇
+  const GEMINI_API_KEY = "AIzaSyClS6Fw3X6pyqaBud5cvCcwUgk6n8rUyuA";
 
   const [questionsData, setQuestionsData] = useState([]);
   const [loadingData, setLoadingData] = useState(true);
@@ -812,10 +837,9 @@ function GrammarQuiz({ onBack, updateGlobal, settings, learnedQuestions }) {
   const [answerStatus, setAnswerStatus] = useState(null); 
   const [streak, setStreak] = useState(0);
 
-  // HÀM GỌI AI ĐỂ SOẠN ĐỀ NGỮ PHÁP (TỰ ĐỘNG DÒ TÌM MODEL KHẢ DỤNG)
+  // HÀM GỌI AI ĐỂ SOẠN ĐỀ THEO TỪNG PART (ĐÃ FIX LỖI LỘ ĐÁP ÁN PART 6, 7)
   useEffect(() => {
     const fetchGrammarFromAI = async () => {
-      // Hãy giữ nguyên mã API thật của bạn ở biến GEMINI_API_KEY phía trên nhé
       if (GEMINI_API_KEY === "DÁN_MÃ_AIzaSy..._CỦA_BẠN_VÀO_ĐÂY" || GEMINI_API_KEY === "" || GEMINI_API_KEY.includes("ĐIỀN_API_KEY")) {
           alert("LỖI: Bạn chưa điền mã API Key của Google Gemini vào code!");
           onBack();
@@ -823,93 +847,77 @@ function GrammarQuiz({ onBack, updateGlobal, settings, learnedQuestions }) {
       }
 
       setLoadingData(true);
-      setLoadingMsg("🤖 Thầy giáo AI đang kiểm tra kết nối, chờ xíu nhé...");
+      setLoadingMsg(`🤖 Thầy AI đang biên soạn đề TOEIC ${TOEIC_PART.toUpperCase()}...`);
       
-      const prompt = `Bạn là một chuyên gia luyện thi TOEIC. Hãy tạo ${QUIZ_LIMIT} câu hỏi trắc nghiệm ngữ pháp tiếng Anh. Mức độ khó: ${DIFFICULTY_LEVEL <= 2 ? "Dễ và Trung bình" : "Khó, mang tính đánh đố"}.
+      // HUẤN LUYỆN LẠI AI BẰNG PROMPT NGHIÊM NGẶT HƠN
+      let partInstruction = "";
+      if (TOEIC_PART === "part5") {
+          partInstruction = `Đây là đề TOEIC Part 5 (Ngữ pháp/Từ vựng câu đơn).
+          - Trường "passage": bắt buộc để chuỗi rỗng "".
+          - Trường "question": Tạo 1 câu tiếng Anh có đúng 1 chỗ trống (___) cần điền.`;
+      } else if (TOEIC_PART === "part6") {
+          partInstruction = `Đây là đề TOEIC Part 6 (Điền từ vào đoạn văn).
+          - Trường "passage": Tạo 1 đoạn văn ngắn (email, thông báo...). ĐỤC ĐÚNG 1 LỖ (___) TRONG ĐOẠN VĂN NÀY. TUYỆT ĐỐI KHÔNG để lộ từ đáp án bên trong đoạn văn.
+          - Trường "question": Điền mặc định một câu lệnh: "Choose the best word or phrase to fill in the blank."`;
+      } else if (TOEIC_PART === "part7") {
+          partInstruction = `Đây là đề TOEIC Part 7 (Đọc hiểu đoạn văn).
+          - Trường "passage": Tạo 1 đoạn văn tiếng Anh hoàn chỉnh (KHÔNG đục lỗ).
+          - Trường "question": Tạo 1 câu hỏi Đọc hiểu hỏi về thông tin trong đoạn văn (Ví dụ: What is the main purpose of the email?). Cấm dùng dạng đục lỗ ở đây.`;
+      }
+
+      const prompt = `Bạn là một chuyên gia luyện thi TOEIC. Hãy tạo ${QUIZ_LIMIT} câu hỏi trắc nghiệm tiếng Anh. Mức độ khó: ${DIFFICULTY_LEVEL <= 2 ? "Dễ và Trung bình" : "Khó, mang tính đánh đố"}.
+      ${partInstruction}
       YÊU CẦU BẮT BUỘC: 
-      - Chỉ trả về duy nhất 1 mảng JSON, tuyệt đối không có markdown (\`\`\`json) hay bất kỳ chữ nào khác thừa thãi bên ngoài.
+      - Chỉ trả về duy nhất 1 mảng JSON, tuyệt đối không có markdown (\`\`\`json) hay bất kỳ chữ nào khác thừa thãi.
       - Cấu trúc JSON chuẩn xác của mỗi phần tử như sau:
         [
           {
-            "question": "Câu hỏi tiếng Anh với chỗ trống cần điền là ___",
+            "passage": "Nội dung đoạn văn (Chỉ có ở Part 6 và 7).",
+            "question": "Nội dung câu hỏi.",
             "options": ["Đáp án A", "Đáp án B", "Đáp án C", "Đáp án D"],
             "answer": "Đáp án đúng (phải khớp chính tả 100% với 1 trong 4 option)",
-            "explanation": "Giải thích ngữ pháp cực kỳ chi tiết bằng tiếng Việt. Bắt buộc dịch nghĩa và giải thích rõ cấu trúc."
+            "explanation": "Giải thích chi tiết bằng tiếng Việt. Dịch nghĩa và giải thích vì sao chọn đáp án này."
           }
         ]`;
 
       try {
-        // BƯỚC 1: HỎI GOOGLE XEM TÀI KHOẢN NÀY ĐƯỢC DÙNG NHỮNG CON AI NÀO
         const listRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${GEMINI_API_KEY}`);
         const listData = await listRes.json();
 
         if (listData.error) {
             alert(`Lỗi xác thực Google: ${listData.error.message}`);
-            onBack();
-            return;
+            onBack(); return;
         }
 
-        // Lọc ra những con AI có chức năng tạo văn bản (generateContent)
         const availableModels = listData.models || [];
         const textModels = availableModels.filter(m => m.supportedGenerationMethods && m.supportedGenerationMethods.includes("generateContent"));
-
-        if (textModels.length === 0) {
-            alert("Tài khoản của bạn không được cấp quyền dùng AI tạo văn bản!");
-            onBack();
-            return;
-        }
-
-        // Ưu tiên chọn bản flash, nếu không có thì chộp đại con đầu tiên trong danh sách
         const flashModel = textModels.find(m => m.name.includes("flash"));
         const selectedModel = flashModel ? flashModel.name : textModels[0].name;
         
-        console.log("✅ Đã bắt thành công AI của Google:", selectedModel);
-        setLoadingMsg("🤖 Đã kết nối AI! Đang rặn não soạn đề...");
-
-        // BƯỚC 2: GỌI ĐÚNG CON AI ĐÃ TÌM THẤY
         const apiUrl = `https://generativelanguage.googleapis.com/v1beta/${selectedModel}:generateContent?key=${GEMINI_API_KEY}`;
         
-        let requestBody = {
-          contents: [{ parts: [{ text: prompt }] }]
-        };
-
-        // Chỉ ép chuẩn JSON nếu con AI đó là phiên bản đời mới (1.5)
+        let requestBody = { contents: [{ parts: [{ text: prompt }] }] };
         if (selectedModel.includes("1.5")) {
             requestBody.generationConfig = { response_mime_type: "application/json" };
         }
 
-        const response = await fetch(apiUrl, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(requestBody)
-        });
-
+        const response = await fetch(apiUrl, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(requestBody) });
         const data = await response.json();
 
         if(data.error) {
-            console.error("API Error:", data.error);
             alert(`Lỗi sinh đề thi: ${data.error.message}`);
-            onBack();
-            return;
+            onBack(); return;
         }
 
         let rawText = data.candidates[0].content.parts[0].text;
-        
-        // BƯỚC 3: BỘ LỌC CHỐNG LỖI JSON TỪ AI
         rawText = rawText.replace(/```json/g, '').replace(/```/g, '').trim();
-        
         const parsedQuestions = JSON.parse(rawText);
         
-        // Đảo ngẫu nhiên vị trí các đáp án
-        const finalPool = parsedQuestions.map(q => ({
-            ...q,
-            options: shuffleArray(q.options) 
-        }));
-
+        const finalPool = parsedQuestions.map(q => ({ ...q, options: shuffleArray(q.options) }));
         setQuestionsData(finalPool);
       } catch (error) {
-        console.error("Lỗi tạo đề bằng AI:", error);
-        alert("Thầy AI đang bận hoặc mạng yếu! Vui lòng ấn bắt đầu lại nhé.");
+        console.error("Lỗi tạo đề:", error);
+        alert("Thầy AI đang bận rộn! Vui lòng ấn bắt đầu lại nhé.");
         onBack();
       } finally {
         setLoadingData(false);
@@ -922,10 +930,7 @@ function GrammarQuiz({ onBack, updateGlobal, settings, learnedQuestions }) {
 
   useEffect(() => {
     if (selected !== null || loadingData || isGameOver || DIFFICULTY_LEVEL === 4) return;
-    if (timeLeft <= 0) {
-        handleAnswer(null);
-        return;
-    }
+    if (timeLeft <= 0) { handleAnswer(null); return; }
     const timer = setInterval(() => setTimeLeft((prev) => prev - 1), 1000);
     return () => clearInterval(timer);
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -935,11 +940,7 @@ function GrammarQuiz({ onBack, updateGlobal, settings, learnedQuestions }) {
     if (DIFFICULTY_LEVEL !== 4 || isGameOver || loadingData) return;
     const timer = setInterval(() => {
         setGlobalTime(prev => {
-            if (prev <= 1) {
-                setIsGameOver(true);
-                playSound("timeout");
-                return 0;
-            }
+            if (prev <= 1) { setIsGameOver(true); playSound("timeout"); return 0; }
             return prev - 1;
         });
     }, 1000);
@@ -950,42 +951,30 @@ function GrammarQuiz({ onBack, updateGlobal, settings, learnedQuestions }) {
       if (DIFFICULTY_LEVEL === 3 && lives !== null && lives <= 0) setIsGameOver(true);
   }, [lives, DIFFICULTY_LEVEL]);
 
-  // HIỆU ỨNG PHÁO HOA X3 LẦN KHI KẾT THÚC BÀI (NGỮ PHÁP AI)
+  // PHÁO HOA X3 LẦN
   useEffect(() => {
     const isFinished = isGameOver || (DIFFICULTY_LEVEL < 3 && questionsData.length > 0 && current >= questionsData.length);
     if (isFinished && DIFFICULTY_LEVEL < 3) {
       let count = 0;
+      confetti({ particleCount: 120, spread: 90, origin: { y: 0.4 }, zIndex: 9999 });
+      count++;
       const interval = setInterval(() => {
-        confetti({ particleCount: 150, spread: 100, origin: { y: 0.4 }, zIndex: 9999 });
+        confetti({ particleCount: 120, spread: 90, origin: { y: 0.4 }, zIndex: 9999 });
         count++;
         if (count >= 3) clearInterval(interval);
-      }, 700);
+      }, 600);
       return () => clearInterval(interval);
     }
   }, [isGameOver, current, questionsData.length, DIFFICULTY_LEVEL]);
 
-  const encourages = ["Chú ý bẫy nhé! 💪", "Đọc kỹ lại xíu nào! 🌱", "Gần đúng rồi! 😅"];
+  const encourages = ["Chú ý bẫy nhé! 💪", "Đọc kỹ đoạn văn xíu nào! 🌱", "Suýt nữa là đúng rồi! 😅"];
 
   const handleComboRewards = (newStreak) => {
-    if (newStreak === 1) {
-      playSound("combo_1");
-      return "Hiểu bài rất nhanh! 👍";
-    } else if (newStreak === 2) {
-      playSound("combo_2");
-      return "COMBO x2! Chuẩn không cần chỉnh! ⭐";
-    } else if (newStreak === 3) {
-      playSound("combo_3");
-      confetti({ particleCount: 80, spread: 60, origin: { y: 0.6 } }); 
-      return "🔥 COMBO x3! Master Ngữ pháp! 🔥";
-    } else if (newStreak === 4) {
-      playSound("combo_4");
-      confetti({ particleCount: 150, spread: 80, origin: { y: 0.5 } }); 
-      return "⚡ COMBO x4! Não nhảy số cực mượt! ⚡";
-    } else {
-      playSound("combo_max");
-      confetti({ particleCount: 300, spread: 120, origin: { y: 0.4 } }); 
-      return `👑 UNSTOPPABLE x${newStreak}! Out trình! 👑`;
-    }
+    if (newStreak === 1) { playSound("combo_1"); return "Khởi đầu thuận lợi! 👍"; }
+    else if (newStreak === 2) { playSound("combo_2"); return "COMBO x2! Đọc hiểu sắc bén! ⭐"; }
+    else if (newStreak === 3) { playSound("combo_3"); confetti({ particleCount: 80, spread: 60, origin: { y: 0.6 } }); return "🔥 COMBO x3! Master TOEIC! 🔥"; }
+    else if (newStreak === 4) { playSound("combo_4"); confetti({ particleCount: 150, spread: 80, origin: { y: 0.5 } }); return "⚡ COMBO x4! Quét thông tin quá đỉnh! ⚡"; }
+    else { playSound("combo_max"); confetti({ particleCount: 300, spread: 120, origin: { y: 0.4 } }); return `👑 UNSTOPPABLE x${newStreak}! Out trình! 👑`; }
   };
 
   const handleAnswer = (userAnswer) => {
@@ -997,22 +986,18 @@ function GrammarQuiz({ onBack, updateGlobal, settings, learnedQuestions }) {
     const currentQ = questionsData[current];
     const isCorrect = actualOption === currentQ.answer;
     
-    // Ghi nhận câu hỏi này đã làm vào DB
     updateGlobal("grammar", isCorrect, currentQ.question);
 
     if (isCorrect) {
       const newStreak = streak + 1;
       setScore(score + 1);
       setStreak(newStreak); 
-      
       const msg = handleComboRewards(newStreak);
       setAnswerStatus({ type: "correct", streak: newStreak, text: msg });
-      
       if (DIFFICULTY_LEVEL === 4) setGlobalTime(t => t + 5); 
     } else {
       playSound(isTimeout ? "timeout" : "wrong");
       setStreak(0); 
-      
       if (DIFFICULTY_LEVEL === 3) {
           setLives(l => l - 1); 
           setAnswerStatus({ type: "wrong", streak: 0, text: isTimeout ? "⏰ Hết giờ! -1 ❤️" : "❌ Chọn sai! -1 ❤️" });
@@ -1021,16 +1006,13 @@ function GrammarQuiz({ onBack, updateGlobal, settings, learnedQuestions }) {
           setAnswerStatus({ type: "wrong", streak: 0, text: "❌ Sai cấu trúc! Bị trừ 10 giây!" });
       } else {
           setAnswerStatus({ type: "wrong", streak: 0, text: isTimeout ? "⏰ Hết giờ mất rồi!" : encourages[Math.floor(Math.random() * encourages.length)] });
-          
           setQuestionsData((prev) => {
             const newData = [...prev];
             const remaining = newData.length - current - 1;
             let insertIndex = newData.length; 
             if (remaining > 3) insertIndex = current + 2 + Math.floor(Math.random() * (remaining - 1));
-            
             let penaltyItem = {...newData[current]};
             penaltyItem.options = shuffleArray([...penaltyItem.options]);
-            
             newData.splice(insertIndex, 0, penaltyItem);
             return newData;
           });
@@ -1052,7 +1034,7 @@ function GrammarQuiz({ onBack, updateGlobal, settings, learnedQuestions }) {
     return (
       <div className="container" style={{ textAlign: "center", paddingTop: "50px", display: "flex", flexDirection: "column", alignItems: "center" }}>
         <h1 style={{ fontSize: "50px", margin: "0" }}>🤖</h1>
-        <h2 style={{ color: "#2196F3", marginTop: "15px" }}>{loadingMsg}</h2>
+        <h2 style={{ color: "#2196F3", marginTop: "15px", lineHeight: "1.4" }}>{loadingMsg}</h2>
         <p style={{ color: "#888", fontStyle: "italic", fontSize: "14px" }}>AI đang phân tích và đẻ ra bộ câu hỏi mới toanh...</p>
       </div>
     );
@@ -1065,9 +1047,9 @@ function GrammarQuiz({ onBack, updateGlobal, settings, learnedQuestions }) {
           {DIFFICULTY_LEVEL >= 3 ? "Game Over ☠️" : "Hoàn thành 🎉"}
         </h1>
         <h2>
-          {DIFFICULTY_LEVEL === 3 && `Bạn đã sống sót qua ${score} câu Ngữ pháp!`}
+          {DIFFICULTY_LEVEL === 3 && `Bạn đã sống sót qua ${score} câu TOEIC!`}
           {DIFFICULTY_LEVEL === 4 && `Bạn đạt tốc độ trả lời đúng ${score} câu!`}
-          {DIFFICULTY_LEVEL < 3 && "Bạn đã ôn tập xong bài Ngữ pháp AI!"}
+          {DIFFICULTY_LEVEL < 3 && "Bạn đã hoàn thành phiên luyện thi!"}
         </h2>
         <div style={{ margin: "20px auto", padding: "20px", backgroundColor: "#f9f9f9", borderRadius: "12px", maxWidth: "300px", boxShadow: "0 4px 6px rgba(0,0,0,0.05)", border: "1px solid #eee" }}>
           <p style={{ fontSize: "18px", margin: "10px 0", color: "#2196F3", fontWeight: "bold" }}>✅ Trả lời đúng: {score}</p>
@@ -1092,7 +1074,7 @@ function GrammarQuiz({ onBack, updateGlobal, settings, learnedQuestions }) {
   }
 
   return (
-    <div className="container">
+    <div className="container" style={{ maxWidth: TOEIC_PART !== "part5" ? "600px" : "450px" }}> 
       {/* THANH TRẠNG THÁI */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%", height: "40px", marginBottom: "15px", gap: "10px" }}>
         <div style={{ flex: 1, display: "flex", justifyContent: "flex-start" }}>
@@ -1112,7 +1094,8 @@ function GrammarQuiz({ onBack, updateGlobal, settings, learnedQuestions }) {
           </span>
         </div>
 
-        <div style={{ flex: 1, display: "flex", justifyContent: "flex-end" }}>
+        <div style={{ flex: 1, display: "flex", justifyContent: "flex-end", alignItems: "center", gap: "8px" }}>
+          <span style={{ fontSize: "12px", backgroundColor: "#2196F3", color: "white", padding: "3px 8px", borderRadius: "4px", fontWeight: "bold", textTransform: "uppercase" }}>{TOEIC_PART}</span>
           {DIFFICULTY_LEVEL === 3 ? (
             <span style={{ fontSize: "15px", whiteSpace: "nowrap", flexShrink: 0 }}>
                {"❤️".repeat(Math.max(0, lives))}
@@ -1129,7 +1112,17 @@ function GrammarQuiz({ onBack, updateGlobal, settings, learnedQuestions }) {
         <div style={{ height: "100%", width: `${timePercentage}%`, backgroundColor: timeLeft <= 3 ? "#f44336" : "#2196F3", transition: "width 1s linear" }} />
       </div>}
 
-      <h2 style={{ lineHeight: "1.6", color: "#2c3e50", fontSize: "20px", borderBottom: "2px dashed #bbdefb", paddingBottom: "15px", marginBottom: "20px" }}>
+      {/* KHUNG HIỂN THỊ ĐOẠN VĂN (DÀNH CHO PART 6 & 7) */}
+      {currentQ.passage && currentQ.passage.trim() !== "" && (
+        <div style={{ backgroundColor: "#fdfdfd", border: "1px solid #d0d7de", padding: "15px", borderRadius: "8px", marginBottom: "20px", textAlign: "left", boxShadow: "inset 0 0 10px rgba(0,0,0,0.02)" }}>
+           <p style={{ fontSize: "15px", lineHeight: "1.6", color: "#333", margin: 0, whiteSpace: "pre-line" }}>
+             {currentQ.passage}
+           </p>
+        </div>
+      )}
+
+      {/* CÂU HỎI */}
+      <h2 style={{ lineHeight: "1.6", color: "#2c3e50", fontSize: TOEIC_PART !== "part5" ? "18px" : "20px", borderBottom: "2px dashed #bbdefb", paddingBottom: "15px", marginBottom: "20px" }}>
         {currentQ.question}
       </h2>
 
@@ -1141,7 +1134,7 @@ function GrammarQuiz({ onBack, updateGlobal, settings, learnedQuestions }) {
         ))}
       </div>
 
-      {/* FEEDBACK BÀI GIẢNG XỊN SÒ */}
+      {/* FEEDBACK BÀI GIẢNG */}
       {selected && answerStatus && (
         <>
           <div className={`feedback-box ${comboClass}`}>
@@ -1155,11 +1148,11 @@ function GrammarQuiz({ onBack, updateGlobal, settings, learnedQuestions }) {
             
             {selected !== "TIMEOUT" && selected !== currentQ.answer && (
              <div style={{ marginTop: "10px", marginBottom: "15px", fontSize: "16px", color: "#d32f2f", fontWeight: "bold" }}>
-               Phải điền là: <span style={{ textDecoration: "underline", color: "#2e7d32", padding: "2px 6px", backgroundColor: "#e8f5e9", borderRadius: "4px" }}>{currentQ.answer}</span>
+               Đáp án đúng: <span style={{ textDecoration: "underline", color: "#2e7d32", padding: "2px 6px", backgroundColor: "#e8f5e9", borderRadius: "4px" }}>{currentQ.answer}</span>
              </div>
             )}
 
-            <p style={{ margin: "10px 0 0 0", fontSize: "16px", lineHeight: "1.7", color: "#333" }}>
+            <p style={{ margin: "10px 0 0 0", fontSize: "15px", lineHeight: "1.7", color: "#333", whiteSpace: "pre-line" }}>
               {currentQ.explanation}
             </p>
           </div>
@@ -1487,7 +1480,7 @@ function App() {
       <h1 style={{ fontSize: "2.2rem", margin: "10px 0", color: "#2c3e50" }}>TOEIC Master 🚀</h1>
       <p style={{ color: "#7f8c8d", marginBottom: "25px" }}>Đã đồng bộ dữ liệu đám mây ☁️</p>
 
-      {/* DASHBOARD THỐNG KÊ (ĐÃ ĐỒNG BỘ 3 CARD XỊN SÒ NHƯ NHAU) */}
+      {/* DASHBOARD THỐNG KÊ */}
       <div style={{ display: "flex", justifyContent: "center", gap: "10px", marginBottom: "35px", flexWrap: "wrap" }}>
         
         {/* CARD TỪ VỰNG */}
@@ -1506,7 +1499,7 @@ function App() {
         <div style={{ flex: "1 1 120px", backgroundColor: "#f9f9f9", padding: "12px", borderRadius: "12px", boxShadow: "0 2px 8px rgba(0,0,0,0.06)", border: "1px solid #eee", textAlign: "left" }}>
           <h3 style={{ margin: "0 0 10px 0", color: "#9C27B0", fontSize: "15px" }}>🔗Collocation</h3>
           <p style={{ margin: "4px 0", fontSize: "13px", color: "#555" }}>Trả lời: <strong>{collocTotal}</strong></p>
-          <p style={{ margin: "4px 0 8px 0", fontSize: "13px", color: "#555" }}> Đúng: <strong style={{color: "#9C27B0"}}>{collocCorrect}</strong></p>
+          <p style={{ margin: "4px 0 8px 0", fontSize: "13px", color: "#555" }}>Đúng: <strong style={{color: "#9C27B0"}}>{collocCorrect}</strong></p>
           <div style={{ margin: "0", padding: "8px", backgroundColor: "#f3e5f5", borderRadius: "8px", border: "1px dashed #9C27B0" }}>
              <p style={{ margin: "0 0 5px 0", fontSize: "12px", color: "#6a1b9a", fontWeight: "bold" }}>Thuộc: {uniqueCollocCount} / {totalCollocDbWords || "..."} cụm</p>
              <div style={{ width: "100%", height: "5px", backgroundColor: "#e1bee7", borderRadius: "3px" }}><div style={{ width: `${collocPercentage}%`, height: "100%", backgroundColor: "#9C27B0", borderRadius: "3px" }}></div></div>
@@ -1514,7 +1507,7 @@ function App() {
           </div>
         </div>
 
-        {/* CARD NGỮ PHÁP */}
+        {/* CARD NGỮ PHÁP (CẬP NHẬT GIAO DIỆN AI VÔ TẬN) */}
         <div style={{ flex: "1 1 120px", backgroundColor: "#f9f9f9", padding: "12px", borderRadius: "12px", boxShadow: "0 2px 8px rgba(0,0,0,0.06)", border: "1px solid #eee", textAlign: "left", position: "relative", overflow: "hidden" }}>
           <div style={{ position: "absolute", top: "-15px", right: "-15px", fontSize: "40px", opacity: "0.1" }}>🤖</div>
           <h3 style={{ margin: "0 0 10px 0", color: "#2196F3", fontSize: "15px" }}>📝 Ngữ pháp</h3>
@@ -1525,7 +1518,7 @@ function App() {
              <div style={{ width: "100%", height: "5px", backgroundColor: "#bbdefb", borderRadius: "3px", overflow: "hidden" }}>
                 <div style={{ width: "100%", height: "100%", background: "linear-gradient(90deg, #2196F3, #64b5f6, #2196F3)", backgroundSize: "200% 100%", animation: "gradientMove 2s infinite linear" }}></div>
              </div>
-             <p style={{ margin: "4px 0 0 0", fontSize: "11px", textAlign: "right", color: "#1565c0", fontWeight: "bold" }}>Kho đề vô tận (AI)</p>
+             <p style={{ margin: "4px 0 0 0", fontSize: "11px", textAlign: "right", color: "#1565c0", fontWeight: "bold" }}>Kho đề vô tận</p>
           </div>
         </div>
 
