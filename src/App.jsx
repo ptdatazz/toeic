@@ -799,7 +799,29 @@ function WordQuiz({ mode, onBack, updateGlobal, settings, learnedWords }) {
               {currentQ.usage}
             </p>
           </div>
-          <button className="next" onClick={nextQuestion} style={{ marginTop: "20px", width: "100%", padding: "15px", fontSize: "18px", fontWeight: "bold", borderRadius: "10px", boxShadow: "0 4px 6px rgba(0,0,0,0.1)" }}>
+          {/* 1. Dải đệm tàng hình: Giúp phần chữ giải thích bên trên không bị cái nút che mất khi lướt xuống đáy */}
+          <div style={{ height: "90px", width: "100%" }}></div>
+
+          {/* 2. Nút bấm được ghim nổi bồng bềnh trên mặt màn hình */}
+          <button 
+            className="next" 
+            onClick={nextQuestion} 
+            style={{ 
+              position: "fixed", 
+              bottom: "30px", 
+              left: "50%", 
+              transform: "translateX(-50%)", 
+              width: "calc(100% - 40px)", 
+              maxWidth: "400px", 
+              padding: "16px", 
+              fontSize: "18px", 
+              fontWeight: "bold", 
+              borderRadius: "16px", 
+              boxShadow: "0 10px 25px rgba(0,0,0,0.25)", 
+              zIndex: 9999, 
+              border: "3px solid white"
+            }}
+          >
             Câu tiếp theo ➡️
           </button>
         </>
@@ -1158,7 +1180,29 @@ function GrammarQuiz({ onBack, updateGlobal, settings, learnedQuestions }) {
             </p>
           </div>
 
-          <button className="next" onClick={nextQuestion} style={{ marginTop: "20px", width: "100%", padding: "15px", fontSize: "18px", fontWeight: "bold", borderRadius: "10px", boxShadow: "0 4px 6px rgba(0,0,0,0.1)" }}>
+          {/* 1. Dải đệm tàng hình: Giúp phần chữ giải thích bên trên không bị cái nút che mất khi lướt xuống đáy */}
+          <div style={{ height: "90px", width: "100%" }}></div>
+
+          {/* 2. Nút bấm được ghim nổi bồng bềnh trên mặt màn hình */}
+          <button 
+            className="next" 
+            onClick={nextQuestion} 
+            style={{ 
+              position: "fixed", 
+              bottom: "30px", 
+              left: "50%", 
+              transform: "translateX(-50%)", 
+              width: "calc(100% - 40px)", 
+              maxWidth: "400px", 
+              padding: "16px", 
+              fontSize: "18px", 
+              fontWeight: "bold", 
+              borderRadius: "16px", 
+              boxShadow: "0 10px 25px rgba(0,0,0,0.25)", 
+              zIndex: 9999, 
+              border: "3px solid white"
+            }}
+          >
             Câu tiếp theo ➡️
           </button>
         </>
